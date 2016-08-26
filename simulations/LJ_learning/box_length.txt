@@ -1,3 +1,0 @@
-
-STEP		box_length		density		pressure
-0 15.5547 0.544181 0.269643
