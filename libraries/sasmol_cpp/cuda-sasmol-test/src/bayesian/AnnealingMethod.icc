@@ -1,0 +1,71 @@
+// -*- C++ -*-
+// 
+// michael a.g. aïvázis
+// california institute of technology
+// (c) 2010-2013 all rights reserved
+// 
+
+// code guard
+#if !defined(altar_bayesian_AnnealingMethod_icc)
+#error This file contains implementation details of {altar::bayesian::AnnealingMethod}
+#endif
+
+
+/// @par Main functionality
+/// Get the annealing temperature
+/// @return Annealing temperature
+TYPE
+altar::bayesian::AnnealingMethod::
+beta() const
+{
+    return _state.beta();
+}
+
+/// @par Main functionality
+/// Get the iteration count of the present Annealing step 
+/// @return iteration count of the present Annealing step
+size_t
+altar::bayesian::AnnealingMethod::
+iteration() const
+{
+    return _iteration;
+}
+
+/// @par Main functionality
+/// Get the CPU state where @b M, <i>LLK</i>'s and @b Cs resides
+/// @return CPU state where @b M, <i>LLK</i>'s and @b Cs resides
+altar::bayesian::AnnealingMethod::state_t &
+altar::bayesian::AnnealingMethod::
+state()
+{
+    return _state;
+}
+
+/// @par Main functionality
+/// Get the CPU state where @b M, <i>LLK</i>'s and @b Cs resides as a constant
+/// @return Annealing temperature as a constant
+const altar::bayesian::AnnealingMethod::state_t &
+altar::bayesian::AnnealingMethod::
+state() const
+{
+    return _state;
+}
+
+/// @par Main functionality
+/// Constructor
+/// @param [in] name The name of the annealing method (eg distributed annealing, cuda annealing)
+/// @param [in] workers The number of slaves that the present AnnealingMethod owns
+/// @param [in] samples Number of samples
+/// @param [in] parameters Number of parameters
+altar::bayesian::AnnealingMethod::
+AnnealingMethod(std::string name, size_t workers, size_t samples, size_t parameters) :
+    _name(name),
+    _workers(workers),
+    _iteration(0),
+    _state(samples, parameters),
+    _info("catmip.annealing"),
+    _debug("catmip.annealing")
+{}
+
+
+// end of file

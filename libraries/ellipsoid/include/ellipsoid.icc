@@ -1,0 +1,63 @@
+#ifndef ellipsoid_icc
+#error inline definition can only be included from the corresponding header
+#endif
+
+/// @par Main functionality
+/// rotate the A matrices
+void
+ellipsoid::Ellipsoid::
+rotate_Amat(const Eigen::Matrix3f & rot_matrix)
+{
+    _Amat1 = rot_matrix*_Amat1*rot_matrix.transpose();
+    _Amat2 = rot_matrix*_Amat2*rot_matrix.transpose();
+}
+
+/// @par Main functionality
+/// get the A matrices in Equation 1 <br>
+Eigen::Matrix3f
+ellipsoid::Ellipsoid::
+_ellipsoid_matrix(const Eigen::Vector3f & axis_lengths, const Eigen::Vector3f & u0, const Eigen::Vector3f & u1, const Eigen::Vector3f & u2) const
+{
+    const float a0 = float(axis_lengths[0]);
+    const float a1 = float(axis_lengths[1]);
+    const float a2 = float(axis_lengths[2]);
+
+    Eigen::Matrix3f output = u0*u0.transpose()/(a0*a0) + u1*u1.transpose()/(a1*a1) + u2*u2.transpose()/(a2*a2);
+
+    return output;
+}
+
+
+/// @par Main functionality
+/// constructor for identical ellipsoids from individual length values
+ellipsoid::Ellipsoid::
+Ellipsoid(const float a1, const float a2, const float a3,
+          const float a11, const float a12, const float a13, const float a21, const float a22, const float a23,
+          const float ep, const float sig):
+_Avec(Eigen::Vector3f(a1,a2,a3)),
+_Amat1(_ellipsoid_matrix(Eigen::Vector3f(a11,a12,a13),_vx,_vy,_vz)),
+_Amat2(_ellipsoid_matrix(Eigen::Vector3f(a21,a22,a23),_vx,_vy,_vz)),
+_ep(ep), _sig(sig)
+{
+}
+
+/// @par Main functionality
+/// constructor for non-identical ellipsoids from length vectors
+ellipsoid::Ellipsoid::
+Ellipsoid(const Eigen::Vector3f & A,
+          const Eigen::Vector3f & axis_lengths_A1, const Eigen::Vector3f & axis_lengths_A2,
+          const float ep, const float sig):
+_Avec(A),
+_Amat1(_ellipsoid_matrix(axis_lengths_A1,_vx,_vy,_vz)),
+_Amat2(_ellipsoid_matrix(axis_lengths_A2,_vx,_vy,_vz)),
+_ep(ep), _sig(sig)
+{
+}
+
+/// @par Main functionality
+/// default constructor
+ellipsoid::Ellipsoid::
+Ellipsoid():
+_ep(0.0), _sig(0.0)
+{
+}

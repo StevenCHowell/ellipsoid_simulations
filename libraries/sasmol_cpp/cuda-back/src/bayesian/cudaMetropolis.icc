@@ -1,0 +1,30 @@
+// -*- C++ -*-
+// 
+// Hailiang Zhang
+// california institute of technology
+// 
+
+// code guard
+#if !defined(altar_bayesian_cuda_cudaMetropolis_icc)
+#error This file contains implementation details of the class {altar::bayesian::cuda::cudaMetropolis}
+#endif
+
+
+/// @par Main functionality
+/// constructor
+/// @note
+/// The cublas handle and cuda random generator are created here
+altar::bayesian::cuda::cudaMetropolis::
+cudaMetropolis(
+           rng_t * rng,
+           size_t steps,
+           TYPE scaling,
+           TYPE acceptanceWeight, TYPE rejectionWeight
+           ) :
+		  altar::bayesian::Metropolis(rng, steps, scaling, acceptanceWeight, rejectionWeight)
+{
+	CALL_CUBLAS(cublasCreate(&_cublas_handle));
+    CALL_CURAND(curandCreateGenerator(&_curand_gen, CURAND_RNG_PSEUDO_MTGP32));
+    CALL_CURAND(curandSetPseudoRandomGeneratorSeed(_curand_gen, altar::utils::random_seed()));
+}
+

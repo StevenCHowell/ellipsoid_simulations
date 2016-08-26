@@ -1,0 +1,67 @@
+// -*- C++ -*-
+// 
+// michael a.g. aïvázis
+// Hailiang Zhang
+// california institute of technology
+// (c) 2010-2013 all rights reserved
+// 
+
+// code guard
+#if !defined(altar_bayesian_Annealer_icc)
+#error This file contains implementation details of the class {altar::bayesian::Annealer}
+#endif
+
+
+/// @par Main functionality
+/// Get the number of samples
+/// @return The number of samples
+size_t
+altar::bayesian::Annealer::
+samples() const
+{
+    return _chains;
+}
+
+/// @par Main functionality
+/// Get the problem entity
+/// @return Reference to the <i>problem</i> class 
+altar::bayesian::Annealer::problem_t &
+altar::bayesian::Annealer::
+problem() const
+{
+    return _problem;
+}
+
+/// @par Main functionality
+/// Get the worker to implement the annealing 
+/// @return Reference to the <i>AnnealingMethod</i> class 
+altar::bayesian::Annealer::method_t &
+altar::bayesian::Annealer::
+worker() const
+{
+    return _worker;
+}
+
+
+/// @par Main functionality
+/// Get the random walk implementation class 
+/// @return Reference to the <i>Metropolis</i> class 
+altar::bayesian::Annealer::sampler_t &
+altar::bayesian::Annealer::
+sampler() const
+{
+    return _sampler;
+}
+
+/// @par Main functionality
+/// Get the annealing temperature scheduler 
+/// @return Reference to the <i>COV</i> class 
+altar::bayesian::Annealer::scheduler_t & 
+altar::bayesian::Annealer::
+scheduler() const
+{
+    return _scheduler;
+}
+
+
+// end of file

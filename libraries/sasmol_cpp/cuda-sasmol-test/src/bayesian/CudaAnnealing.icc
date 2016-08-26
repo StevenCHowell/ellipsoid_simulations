@@ -1,0 +1,28 @@
+// -*- C++ -*-
+// 
+// Hailiang Zhang
+// california institute of technology
+// 
+
+// code guard
+#if !defined(altar_bayesian_cuda_CudaAnnealing_icc)
+#error This file contains implementation details of {altar::bayesian::cuda::CudaAnnealing}
+#endif
+
+
+/// @par Main functionality
+/// Constructor
+/// @param [in] samples Number of samples
+/// @param [in] parameters Number of parameters
+/// @param [in] ngpu The GPU number
+/// @param [in] rank Rank of the worker
+/// @note
+/// <i>ngpu</i> <i>rank</i> may not be needed
+altar::bayesian::cuda::CudaAnnealing::
+CudaAnnealing(const size_t samples, const size_t parameters, const size_t ngpu, unsigned short rank) :
+    AnnealingMethod("cuda annealing", 1, samples, parameters),
+	cuda_state(samples, parameters, ngpu, rank)
+{}
+
+
+// end of file

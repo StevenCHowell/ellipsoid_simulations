@@ -1,0 +1,38 @@
+// -*- C++ -*-
+// 
+// michael a.g. aïvázis
+// california institute of technology
+// (c) 2010-2013 all rights reserved
+// 
+
+// code guard
+#if !defined(altar_bayesian_MPIAnnealing_icc)
+#error This file contains implementation details of {altar::bayesian::MPIAnnealing}
+#endif
+
+/// @par Main functionality
+/// constructor
+/// @param [in] samples Number of samples
+/// @param [in] parameters Number of parameters
+/// @param [in] worker The worker for MPI
+altar::bayesian::MPIAnnealing::
+MPIAnnealing(communicator_t & communicator, size_t samples, size_t parameters, method_t & worker) :
+    AnnealingMethod("distributed annealing", 
+                    communicator.size(), 
+                    communicator.size()*samples, parameters),
+    _master(communicator.rank() == 0),
+    _communicator(communicator),
+    _worker(worker)
+{}
+
+/// @par Main functionality
+/// Get the const communicator
+/// @return communicator as constant
+altar::bayesian::MPIAnnealing::communicator_t &
+altar::bayesian::MPIAnnealing::
+communicator_const() const
+{
+    return _communicator;
+}
+
+// end of file

@@ -1,0 +1,60 @@
+// -*- C++ -*-
+// 
+// michael a.g. aïvázis
+// california institute of technology
+// (c) 2010-2013 all rights reserved
+// 
+
+// code guard
+#if !defined(altar_bayesian_COV_icc)
+#error This file contains implementation details of the class altar::bayesian::COV
+#endif
+
+/// @par Main functionality
+/// Set the temperature
+/// @param [in] value The temperature value to be set
+TYPE
+altar::bayesian::COV::
+cov() const
+{
+    return _cov;
+}
+
+/// @par Main functionality
+/// Get the temperature
+/// @return The temperature
+TYPE
+altar::bayesian::COV::
+beta() const
+{
+    return _beta;
+}
+
+/// @par Main functionality
+/// Set the temperature
+/// @param [in] value The temperature value to be set
+void
+altar::bayesian::COV::
+beta(const TYPE b)
+{
+    _beta = b;
+}
+
+
+/// @par Main functionality
+/// constructor
+/// @param [in] rng The random number generator
+/// @param [in] tolerance The tolerance value used in dbeta optimization that we can skip straight to beta = 1
+/// @param [in] maxIterations The max number of iteration for dbeta optimization
+/// @param [in] target The COV value we are aiming for; should be 1
+altar::bayesian::COV::
+COV(rng_t * rng, TYPE tolerance, size_t maxIterations, TYPE target) :
+    _betaMin(0), _betaMax(1),
+    _rng(rng),
+    _tolerance(tolerance), _maxIterations(maxIterations), _target(target),
+    _beta(0), _cov(0)
+{
+}
+
+
+// end of file

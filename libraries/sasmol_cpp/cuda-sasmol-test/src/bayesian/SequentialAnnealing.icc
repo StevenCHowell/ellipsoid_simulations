@@ -1,0 +1,26 @@
+// -*- C++ -*-
+// 
+// michael a.g. aïvázis
+// california institute of technology
+// (c) 2010-2013 all rights reserved
+// 
+
+// code guard
+#if !defined(altar_bayesian_SequentialAnnealing_icc)
+#error This file contains implementation details of {altar::bayesian::SequentialAnnealing}
+#endif
+
+
+/// @par Main functionality
+/// Constructor
+/// @param [in] samples Number of samples
+/// @param [in] parameters Number of parameters
+/// @param [in] rank Rank of the worker
+altar::bayesian::SequentialAnnealing::
+SequentialAnnealing(size_t samples, size_t parameters, unsigned short rank) :
+    AnnealingMethod("sequential annealing", 1, samples, parameters),
+	_rank(rank)
+{}
+
+
+// end of file

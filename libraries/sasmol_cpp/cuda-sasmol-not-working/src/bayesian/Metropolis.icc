@@ -1,0 +1,28 @@
+// -*- C++ -*-
+// 
+// michael a.g. aïvázis
+// california institute of technology
+// (c) 2010-2013 all rights reserved
+// 
+
+// code guard
+#if !defined(altar_bayesian_Metropolis_icc)
+#error This file contains implementation details of the class {altar::bayesian::Metropolis}
+#endif
+
+/// @par Main functionality
+/// constructor
+altar::bayesian::Metropolis::
+Metropolis(
+           rng_t * rng,
+           size_t steps,
+           TYPE scaling,
+           TYPE acceptanceWeight, TYPE rejectionWeight
+           ) :
+    _steps(steps),
+    _scaling(scaling), _acceptanceWeight(acceptanceWeight), _rejectionWeight(rejectionWeight),
+    _rng(rng)
+{}
+
+
+// end of file

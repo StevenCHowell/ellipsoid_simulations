@@ -1,0 +1,437 @@
+//
+// Hailiang Zhang
+// NIST & UTK
+//
+
+#include "cudaKernel_GV.h"
+
+/// @par Main functionality
+/// Calculate I(q) based on GV method
+/// @param [in] gpu_coor the XYX coordinates where the leading dimension is Natoms and the slow dimension is X->Y->Z
+/// @param [in] gpu_gv the gv data where the leading dimension is Ngv and the slow dimension is X->Y->Z
+/// @param [in] gpu_Ireal the Ireal data where the leading dimension is Nq and the slow dimension is Ngv
+__global__ void
+sascalc::cuda::
+cudaKernel_GV_calc(const float * const gpu_coor, const float * const gpu_b, const float * const gpu_gv, const float * const gpu_q, float * const gpu_I, const int Natoms, const int Nq, const int Ngv)
+{
+	// get the thread id
+    //int idx = blockIdx.x*blockDim.x + threadIdx.x;
+
+    //printf("blockIdx.x: %d blockDim.x: %d threadIdx.x: %d idx: %d Natoms %d Nq %d Ngv %d\n",blockIdx.x,blockDim.x,threadIdx.x,idx,Natoms,Nq,Ngv);
+
+    // get q values
+    const int iq = threadIdx.x;
+    const int igv = blockIdx.x;
+    const float qmag = gpu_q[iq];
+    const float qx = qmag * gpu_gv[igv];
+    const float qy = qmag * gpu_gv[Ngv + igv];
+    const float qz = qmag * gpu_gv[Ngv*2 + igv];
+
+    // locals
+    int iatom;
+    float x, y, z, b;
+    float q_dot_r;
+    float sine, cose;
+    
+    // summation
+    float Ireal = 0.0;
+    float Iimag = 0.0;
+    for (iatom=0; iatom<Natoms; ++iatom)
+    {
+        x = gpu_coor[iatom];
+        y = gpu_coor[Natoms + iatom];
+        z = gpu_coor[Natoms*2 + iatom];
+        b = gpu_b[iatom];
+        q_dot_r = qx*x+qy*y+qz*z;
+        sincosf(q_dot_r, &sine, &cose);
+        Ireal += b*cose;
+        Iimag += b*sine;
+    }
+
+    // save
+    gpu_I[igv*Nq + iq] = Ireal*Ireal + Iimag*Iimag;
+}
+
+/// @par Main functionality
+/// Calculate I(q) based on GV method
+/// @param [in] gpu_coor the XYX coordinates where the leading dimension is Natoms and the slow dimension is X->Y->Z
+/// @param [in] gpu_gv the gv data where the leading dimension is Ngv and the slow dimension is X->Y->Z
+/// @param [in] gpu_Ireal the Ireal data where the leading dimension is Nq and the slow dimension is Ngv
+__global__ void
+sascalc::cuda::
+cudaKernel_GV_calc_subset(const float * const gpu_coor, const float * const gpu_b, const float * const gpu_gv, const float * const gpu_q, float * const gpu_I, const int Natoms, const int Natoms_subset, const int Nq, const int Ngv, const float scale)
+{
+	// get the thread id
+    //int idx = blockIdx.x*blockDim.x + threadIdx.x;
+
+    //printf("blockIdx.x: %d blockDim.x: %d threadIdx.x: %d idx: %d Natoms %d Nq %d Ngv %d\n",blockIdx.x,blockDim.x,threadIdx.x,idx,Natoms,Nq,Ngv);
+
+    // get q values
+    const int iq = threadIdx.x;
+    const int igv = blockIdx.x;
+    const float qmag = gpu_q[iq];
+    const float qx = qmag * gpu_gv[igv];
+    const float qy = qmag * gpu_gv[Ngv + igv];
+    const float qz = qmag * gpu_gv[Ngv*2 + igv];
+
+    // locals
+    int iatom;
+    float x, y, z, b;
+    float q_dot_r;
+    float sine, cose;
+    
+    // summation
+    float Ireal = 0.0;
+    float Iimag = 0.0;
+    for (iatom=0; iatom<Natoms_subset; ++iatom)
+    {
+        x = gpu_coor[iatom];
+        y = gpu_coor[Natoms + iatom];
+        z = gpu_coor[Natoms*2 + iatom];
+        b = gpu_b[iatom];
+        b *= scale;
+        q_dot_r = qx*x+qy*y+qz*z;
+        sincosf(q_dot_r, &sine, &cose);
+        Ireal += b*cose;
+        Iimag += b*sine;
+    }
+
+    // save
+    gpu_I[igv*Nq + iq] = Ireal*Ireal + Iimag*Iimag;
+}
+
+
+/// @par Main functionality
+/// Calculate I(q) based on GV method for solvent contrast
+/// @param [in] gpu_coor the XYX coordinates where the leading dimension is Natoms and the slow dimension is X->Y->Z
+/// @param [in] gpu_gv the gv data where the leading dimension is Ngv and the slow dimension is X->Y->Z
+/// @param [in] gpu_Ireal the Ireal data where the leading dimension is Nq and the slow dimension is Ngv
+__global__ void
+sascalc::cuda::
+cudaKernel_GV_calc_GVVV(const float * const gpu_coor, const float * const gpu_radius, const float * const gpu_gv, const float * const gpu_q, float * const gpu_I, const int Natoms, const int Nq, const int Ngv, const float sld_solvent)
+{
+	// get the thread id
+    //int idx = blockIdx.x*blockDim.x + threadIdx.x;
+
+    //printf("blockIdx.x: %d blockDim.x: %d threadIdx.x: %d idx: %d Natoms %d Nq %d Ngv %d\n",blockIdx.x,blockDim.x,threadIdx.x,idx,Natoms,Nq,Ngv);
+
+    // get q values
+    const int iq = threadIdx.x;
+    const int igv = blockIdx.x;
+    const float qmag = gpu_q[iq];
+    const float qx = qmag * gpu_gv[igv];
+    const float qy = qmag * gpu_gv[Ngv + igv];
+    const float qz = qmag * gpu_gv[Ngv*2 + igv];
+
+    // locals
+    int iatom;
+    float x, y, z, b, radius;
+    float q_dot_r;
+    float sine, cose;
+
+    // summation
+    float Ireal = 0.0;
+    float Iimag = 0.0;
+    for (iatom=0; iatom<Natoms; ++iatom)
+    {
+        x = gpu_coor[iatom];
+        y = gpu_coor[Natoms + iatom];
+        z = gpu_coor[Natoms*2 + iatom];
+        radius = gpu_radius[iatom];
+        b = 4./3.*M_PI*radius*radius*radius;
+        b *= sld_solvent;
+        q_dot_r = qx*x+qy*y+qz*z;
+        sincosf(q_dot_r, &sine, &cose);
+        Ireal += b*cose;
+        Iimag += b*sine;
+    }
+
+    // save
+    gpu_I[igv*Nq + iq] = Ireal*Ireal + Iimag*Iimag;
+}
+
+
+/// @par Main functionality
+/// Calculate I(q) based on GV method for solvent contrast
+/// @param [in] gpu_coor the XYX coordinates where the leading dimension is Natoms and the slow dimension is X->Y->Z
+/// @param [in] gpu_gv the gv data where the leading dimension is Ngv and the slow dimension is X->Y->Z
+/// @param [in] gpu_Ireal the Ireal data where the leading dimension is Nq and the slow dimension is Ngv
+__global__ void
+sascalc::cuda::
+cudaKernel_GV_calc_GVGaussian(const float * const gpu_coor, const float * const gpu_radius, const float * const gpu_gv, const float * const gpu_q, float * const gpu_I, const int Natoms, const float volume, const int Nq, const int Ngv, const float sld_solvent)
+{
+	// get the thread id
+    //int idx = blockIdx.x*blockDim.x + threadIdx.x;
+
+    //printf("blockIdx.x: %d blockDim.x: %d threadIdx.x: %d idx: %d Natoms %d Nq %d Ngv %d\n",blockIdx.x,blockDim.x,threadIdx.x,idx,Natoms,Nq,Ngv);
+
+    // get q values
+    const int iq = threadIdx.x;
+    const int igv = blockIdx.x;
+    const float qmag = gpu_q[iq];
+    const float qx = qmag * gpu_gv[igv];
+    const float qy = qmag * gpu_gv[Ngv + igv];
+    const float qz = qmag * gpu_gv[Ngv*2 + igv];
+
+    // locals
+    int iatom;
+    float x, y, z, b, radius;
+    float q_dot_r;
+    float sine, cose;
+
+    const float b_point = sld_solvent*volume/Natoms;
+    const float scale = 0.25; ///< @ note ZHL hardwired
+    const float coeff = -scale*0.25/M_PI*qmag*qmag*powf(4./3.*M_PI, 2./3.);
+    
+    // summation
+    float Ireal = 0.0;
+    float Iimag = 0.0;
+    for (iatom=0; iatom<Natoms; ++iatom)
+    {
+        x = gpu_coor[iatom];
+        y = gpu_coor[Natoms + iatom];
+        z = gpu_coor[Natoms*2 + iatom];
+        radius = gpu_radius[iatom];
+        b = b_point*exp(coeff*radius*radius);
+        q_dot_r = qx*x+qy*y+qz*z;
+        sincosf(q_dot_r, &sine, &cose);
+        Ireal += b*cose;
+        Iimag += b*sine;
+    }
+
+    // save
+    gpu_I[igv*Nq + iq] = Ireal*Ireal + Iimag*Iimag;
+}
+
+/// @par Main functionality
+/// Calculate I(q) based on GV method for solvent contrast
+/// @param [in] gpu_coor the XYX coordinates where the leading dimension is Natoms and the slow dimension is X->Y->Z
+/// @param [in] gpu_gv the gv data where the leading dimension is Ngv and the slow dimension is X->Y->Z
+/// @param [in] gpu_Ireal the Ireal data where the leading dimension is Nq and the slow dimension is Ngv
+__global__ void
+sascalc::cuda::
+cudaKernel_GV_calc_Merge_ND(const float * const gpu_coor, const float * const gpu_b, const float * const gpu_radius, const float * const gpu_mc_coor, const float * const gpu_gv, const float * const gpu_q, float * const gpu_I, const int Natoms, const int N_mc_points, const float volume, const int Nq, const int Ngv, const float sld_solvent)
+{
+	// get the thread id
+    //int idx = blockIdx.x*blockDim.x + threadIdx.x;
+
+    //printf("blockIdx.x: %d blockDim.x: %d threadIdx.x: %d idx: %d Natoms %d Nq %d Ngv %d\n",blockIdx.x,blockDim.x,threadIdx.x,idx,Natoms,Nq,Ngv);
+
+    // get q values
+    const int iq = threadIdx.x;
+    const int igv = blockIdx.x;
+    const float qmag = gpu_q[iq];
+    const float qx = qmag * gpu_gv[igv];
+    const float qy = qmag * gpu_gv[Ngv + igv];
+    const float qz = qmag * gpu_gv[Ngv*2 + igv];
+
+    // locals
+    int iatom;
+    float x, y, z, b;
+    float q_dot_r;
+    float sine, cose;
+
+    // scaling factor for MC points scattering
+    const float b_point = sld_solvent*volume/N_mc_points;
+    
+    // sum over Natoms
+    float Ireal = 0.0;
+    float Iimag = 0.0;
+    for (iatom=0; iatom<Natoms; ++iatom)
+    {
+        x = gpu_coor[iatom];
+        y = gpu_coor[Natoms + iatom];
+        z = gpu_coor[Natoms*2 + iatom];
+        b = gpu_b[iatom];
+        q_dot_r = qx*x+qy*y+qz*z;
+        sincosf(q_dot_r, &sine, &cose);
+        Ireal += b*cose;
+        Iimag += b*sine;
+    }
+
+    // sum over N_mc_points
+    for (iatom=0; iatom<N_mc_points; ++iatom)
+    {
+        x = gpu_mc_coor[iatom];
+        y = gpu_mc_coor[Natoms + iatom];
+        z = gpu_mc_coor[Natoms*2 + iatom];
+        q_dot_r = qx*x+qy*y+qz*z;
+        sincosf(q_dot_r, &sine, &cose);
+        Ireal -= b_point*cose;
+        Iimag -= b_point*sine;
+    }
+
+    // save
+    gpu_I[igv*Nq + iq] = Ireal*Ireal + Iimag*Iimag;
+}
+
+/// @par Main functionality
+/// Calculate I(q) based on GV method for solvent contrast
+/// @param [in] gpu_coor the XYX coordinates where the leading dimension is Natoms and the slow dimension is X->Y->Z
+/// @param [in] gpu_gv the gv data where the leading dimension is Ngv and the slow dimension is X->Y->Z
+/// @param [in] gpu_Ireal the Ireal data where the leading dimension is Nq and the slow dimension is Ngv
+__global__ void
+sascalc::cuda::
+cudaKernel_GV_calc_Merge_NDsubset(const float * const gpu_coor, const float * const gpu_b, const float * const gpu_radius, const float * const gpu_mc_coor, const float * const gpu_gv, const float * const gpu_q, float * const gpu_I, const int Natoms, const int N_mc_points, const int N_mc_points_subset, const float volume, const int Nq, const int Ngv, const float sld_solvent)
+{
+	// get the thread id
+    //int idx = blockIdx.x*blockDim.x + threadIdx.x;
+
+    //printf("blockIdx.x: %d blockDim.x: %d threadIdx.x: %d idx: %d Natoms %d Nq %d Ngv %d sld_solvent %f volume %f N_mc_points %d N_mc_points_subset %d\n",blockIdx.x,blockDim.x,threadIdx.x,idx,Natoms,Nq,Ngv,sld_solvent,volume,N_mc_points,N_mc_points_subset);
+
+    // get q values
+    const int iq = threadIdx.x;
+    const int igv = blockIdx.x;
+    const float qmag = gpu_q[iq];
+    const float qx = qmag * gpu_gv[igv];
+    const float qy = qmag * gpu_gv[Ngv + igv];
+    const float qz = qmag * gpu_gv[Ngv*2 + igv];
+
+    // locals
+    int iatom;
+    float x, y, z, b;
+    float q_dot_r;
+    float sine, cose;
+
+    // scaling factor for MC points scattering
+    const float b_point = sld_solvent*volume/N_mc_points_subset;
+    
+    // sum over Natoms
+    float Ireal = 0.0;
+    float Iimag = 0.0;
+    for (iatom=0; iatom<Natoms; ++iatom)
+    {
+        x = gpu_coor[iatom];
+        y = gpu_coor[Natoms + iatom];
+        z = gpu_coor[Natoms*2 + iatom];
+        b = gpu_b[iatom];
+        q_dot_r = qx*x+qy*y+qz*z;
+        sincosf(q_dot_r, &sine, &cose);
+        Ireal += b*cose;
+        Iimag += b*sine;
+    }
+    //if (idx==1) printf("vacuum only: Ireal %f Iimag %f\n",Ireal,Iimag);
+
+    // sum over N_mc_points_subset
+    for (iatom=0; iatom<N_mc_points_subset; ++iatom)
+    {
+        x = gpu_mc_coor[iatom];
+        y = gpu_mc_coor[N_mc_points + iatom];
+        z = gpu_mc_coor[N_mc_points*2 + iatom];
+        q_dot_r = qx*x+qy*y+qz*z;
+        sincosf(q_dot_r, &sine, &cose);
+        Ireal -= b_point*cose;
+        Iimag -= b_point*sine;
+    }
+    //if (idx==1) printf("vacuum&solvent: Ireal %f Iimag %f\n",Ireal,Iimag);
+
+    // save
+    gpu_I[igv*Nq + iq] = Ireal*Ireal + Iimag*Iimag;
+}
+
+/// @par Main functionality
+/// Calculate I(q) based on GV method for solvent contrast
+/// @param [in] gpu_coor the XYX coordinates where the leading dimension is Natoms and the slow dimension is X->Y->Z
+/// @param [in] gpu_gv the gv data where the leading dimension is Ngv and the slow dimension is X->Y->Z
+/// @param [in] gpu_Ireal the Ireal data where the leading dimension is Nq and the slow dimension is Ngv
+__global__ void
+sascalc::cuda::
+cudaKernel_GV_calc_Merge_GVVV(const float * const gpu_coor, const float * const gpu_b, const float * const gpu_radius, const float * const gpu_gv, const float * const gpu_q, float * const gpu_I, const int Natoms, const int Nq, const int Ngv, const float sld_solvent, const float scale_volume)
+{
+	// get the thread id
+    //int idx = blockIdx.x*blockDim.x + threadIdx.x;
+
+    //printf("blockIdx.x: %d blockDim.x: %d threadIdx.x: %d idx: %d Natoms %d Nq %d Ngv %d\n",blockIdx.x,blockDim.x,threadIdx.x,idx,Natoms,Nq,Ngv);
+
+    // get q values
+    const int iq = threadIdx.x;
+    const int igv = blockIdx.x;
+    const float qmag = gpu_q[iq];
+    const float qx = qmag * gpu_gv[igv];
+    const float qy = qmag * gpu_gv[Ngv + igv];
+    const float qz = qmag * gpu_gv[Ngv*2 + igv];
+
+    // locals
+    int iatom;
+    float x, y, z, b, radius;
+    float q_dot_r;
+    float sine, cose;
+    
+    //const float scale = 0.7; ///< @note ZHL hacked
+
+    // summation
+    float Ireal = 0.0;
+    float Iimag = 0.0;
+    for (iatom=0; iatom<Natoms; ++iatom)
+    {
+        x = gpu_coor[iatom];
+        y = gpu_coor[Natoms + iatom];
+        z = gpu_coor[Natoms*2 + iatom];
+        radius = gpu_radius[iatom];
+        b = gpu_b[iatom];
+        //b -= 4./3.*M_PI*radius*radius*radius*sld_solvent;
+        b -= scale_volume*4./3.*M_PI*radius*radius*radius*sld_solvent;
+        q_dot_r = qx*x+qy*y+qz*z;
+        sincosf(q_dot_r, &sine, &cose);
+        Ireal += b*cose;
+        Iimag += b*sine;
+    }
+
+    // save
+    gpu_I[igv*Nq + iq] = Ireal*Ireal + Iimag*Iimag;
+}
+
+
+/// @par Main functionality
+/// Calculate I(q) based on GV method for solvent contrast
+/// @param [in] gpu_coor the XYX coordinates where the leading dimension is Natoms and the slow dimension is X->Y->Z
+/// @param [in] gpu_gv the gv data where the leading dimension is Ngv and the slow dimension is X->Y->Z
+/// @param [in] gpu_Ireal the Ireal data where the leading dimension is Nq and the slow dimension is Ngv
+__global__ void
+sascalc::cuda::
+cudaKernel_GV_calc_Merge_GVGaussian(const float * const gpu_coor, const float * const gpu_b, const float * const gpu_radius, const float * const gpu_gv, const float * const gpu_q, float * const gpu_I, const int Natoms, const float volume, const int Nq, const int Ngv, const float sld_solvent)
+{
+	// get the thread id
+    //int idx = blockIdx.x*blockDim.x + threadIdx.x;
+
+    //printf("blockIdx.x: %d blockDim.x: %d threadIdx.x: %d idx: %d Natoms %d Nq %d Ngv %d\n",blockIdx.x,blockDim.x,threadIdx.x,idx,Natoms,Nq,Ngv);
+
+    // get q values
+    const int iq = threadIdx.x;
+    const int igv = blockIdx.x;
+    const float qmag = gpu_q[iq];
+    const float qx = qmag * gpu_gv[igv];
+    const float qy = qmag * gpu_gv[Ngv + igv];
+    const float qz = qmag * gpu_gv[Ngv*2 + igv];
+
+    // locals
+    int iatom;
+    float x, y, z, b, radius;
+    float q_dot_r;
+    float sine, cose;
+    
+    const float b_point = sld_solvent*volume/Natoms;
+    const float scale = 0.25*0.25; ///< @note ZHL hardwired
+    const float coeff = -scale*0.25/M_PI*qmag*qmag*powf(4./3.*M_PI, 2./3.);
+
+    // summation
+    float Ireal = 0.0;
+    float Iimag = 0.0;
+    for (iatom=0; iatom<Natoms; ++iatom)
+    {
+        x = gpu_coor[iatom];
+        y = gpu_coor[Natoms + iatom];
+        z = gpu_coor[Natoms*2 + iatom];
+        radius = gpu_radius[iatom];
+        b = gpu_b[iatom];
+        b -= b_point*exp(coeff*radius*radius);
+        q_dot_r = qx*x+qy*y+qz*z;
+        sincosf(q_dot_r, &sine, &cose);
+        Ireal += b*cose;
+        Iimag += b*sine;
+    }
+
+    // save
+    gpu_I[igv*Nq + iq] = Ireal*Ireal + Iimag*Iimag;
+}
+
