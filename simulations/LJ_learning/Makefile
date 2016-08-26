@@ -1,8 +1,8 @@
-# created by Hailiang Zhang 
+# created by Hailiang Zhang
 # modified by Steven C Howell
 # 24 August 2016
 
-EXE=lj 
+EXE=lj.out
 
 # DIRINC=../../libraries/sasmol_cpp/include/
 # DIRLIB=../../libraries/sasmol_cpp/lib/
