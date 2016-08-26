@@ -31,3 +31,10 @@
 # Structure files
 *.pdb
 *.dcd
+
+# SASSIE files
+*.sassie_log
+*.sassie_json
+
+# Output files
+*.log
