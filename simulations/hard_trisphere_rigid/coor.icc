@@ -1,0 +1,153 @@
+// Hailiang Zhang
+
+#ifndef COOR_ICC
+#error the "coor.icc" file can only be included from the corresponding header
+#endif
+
+// get the distance between two coordinates
+float
+Coor::
+distance(const Coor & coor) const
+{
+	return sqrt(pow((_x-coor._x),2.0)+pow((_y-coor._y),2.0)+pow((_z-coor._z),2.0));
+}
+
+// get the sum of two coordinates
+Coor
+Coor::
+operator+(const Coor & coor) const
+{
+	Coor coor_result;
+	coor_result._x = this->_x + coor._x;
+	coor_result._y = this->_y + coor._y;
+	coor_result._z = this->_z + coor._z;
+	return coor_result;
+}
+
+// get the substraction of two coordinates
+Coor
+Coor::
+operator-(const Coor & coor) const
+{
+	Coor coor_result;
+	coor_result._x = this->_x - coor._x;
+	coor_result._y = this->_y - coor._y;
+	coor_result._z = this->_z - coor._z;
+	return coor_result;
+}
+
+// get the sum of two coordinates
+Coor &
+Coor::
+operator+=(const Coor & coor)
+{
+	this->_x += coor._x;
+	this->_y += coor._y;
+	this->_z += coor._z;
+	return *this;
+}
+
+// get the substraction of two coordinates
+Coor &
+Coor::
+operator-=(const Coor & coor)
+{
+	this->_x -= coor._x;
+	this->_y -= coor._y;
+	this->_z -= coor._z;
+	return *this;
+}
+
+// get the dot product of two coordinates
+float
+Coor::
+operator*(const Coor & coor) const
+{
+	return (this->_x * coor._x + this->_y * coor._y + this->_z * coor._z);
+}
+
+// get a coordinate scaled by a value
+Coor 
+Coor::
+operator*(const float c) const
+{
+	Coor coor;
+	coor._x = this->_x * c;
+	coor._y = this->_y * c;
+	coor._z = this->_z * c;
+	return coor;
+}
+
+// scale it
+Coor &
+Coor::
+operator*=(const float scale)
+{
+	this->_x *= scale;
+	this->_y *= scale;
+	this->_z *= scale;
+	return *this;
+}
+
+// scale it
+Coor &
+Coor::
+operator/=(const float scale)
+
+{
+	this->_x /= scale;
+	this->_y /= scale;
+	this->_z /= scale;
+	return *this;
+}
+
+// get the x coordinate
+float
+Coor::
+x() const
+{
+	return _x;
+}
+
+// get the y coordinate
+float
+Coor::
+y() const
+{
+	return _y;
+}
+
+// get the z coordinate
+float
+Coor::
+z() const
+{
+	return _z;
+}
+
+// default constructor
+Coor::
+Coor():
+	_x(0.0),
+	_y(0.0),
+	_z(0.0)
+{
+}
+
+// constructor for xyz
+Coor::
+Coor(const float x, const float y, const float z):
+	_x(x),
+	_y(y),
+	_z(z)
+{
+}
+
+// constructor from a vector<float>
+Coor::
+Coor(const std::vector<float> & coor):
+	_x(coor[0]),
+	_y(coor[1]),
+	_z(coor[2])
+{
+}
