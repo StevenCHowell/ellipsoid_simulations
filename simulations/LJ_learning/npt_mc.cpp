@@ -20,7 +20,7 @@ void lj_energy(sasmol::SasMol &mol, float &x1, float &y1, float &z1, int &thisi,
 {
     float x2, y2, z2 ;
     float sr2, sr6, vij12, vij6, r2_cutoff ;
-    float rxij, ryij, rzij, rijsq ;
+    float rxij, ryij, rzij, r2ij ;
 
     v12 = 0.0, v6 = 0.0, w12 = 0.0, w6 = 0 ;
 
@@ -44,11 +44,11 @@ void lj_energy(sasmol::SasMol &mol, float &x1, float &y1, float &z1, int &thisi,
             ryij = ryij - box_length*(round(ryij/box_length)) ;
             rzij = rzij - box_length*(round(rzij/box_length)) ;
 
-            rijsq = rxij*rxij + ryij*ryij + rzij*rzij ;
+            r2ij = rxij*rxij + ryij*ryij + rzij*rzij ;
 
-            if (rijsq < r2_cutoff)
+            if (r2ij < r2_cutoff)
             {
-                sr2 = 1.0/rijsq ;
+                sr2 = 1.0/r2ij ;
                 sr6 = sr2*sr2*sr2 ;
                 vij12 = sr6*sr6 ;
                 vij6 = -sr6 ;
@@ -74,7 +74,7 @@ void sum_up(sasmol::SasMol &mol, RunParameters &par, float &v12, float &v6, floa
     int frame = 0 ;
     float r2_cutoff = par.r_cutoff * par.r_cutoff ;
 
-    float rijsq, sr2, sr6, vij12, vij6 ;
+    float r2ij, sr2, sr6, vij12, vij6 ;
     float rxi, ryi, rzi, rxj, ryj, rzj ;
     float rxij, ryij, rzij ;
 
@@ -95,11 +95,11 @@ void sum_up(sasmol::SasMol &mol, RunParameters &par, float &v12, float &v6, floa
             ryij = ryij - par.box_length*(round(ryij*par.inv_box_length)) ;
             rzij = rzij - par.box_length*(round(rzij*par.inv_box_length)) ;
 
-            rijsq = rxij*rxij + ryij*ryij + rzij*rzij ;
+            r2ij = rxij*rxij + ryij*ryij + rzij*rzij ;
 
-            if(rijsq < r2_cutoff)
+            if(r2ij < r2_cutoff)
             {
-                sr2 = 1.0/rijsq ;
+                sr2 = 1.0/r2ij ;
                 sr6 = sr2*sr2*sr2 ;
                 vij12 = sr6*sr6 ;
                 vij6 = -sr6 ;
