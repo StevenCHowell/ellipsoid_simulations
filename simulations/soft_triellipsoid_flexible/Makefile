@@ -1,5 +1,5 @@
-DIRINC=/usr/local/core_libraries/include/
-DIRLIB=/usr/local/core_libraries/lib/
+DIRINC=/usr/local/sasmol_cpp/include/
+DIRLIB=/usr/local/sasmol_cpp/lib/
 
 LIB=sasmol
 

@@ -4,18 +4,23 @@ DIRLIB=lib/
 DIRTESTS=test/
 
 DIRINC_PTEROS=$(DIRINC)SasPteros/
+
+SYSINSTALLDIR=/usr/local/sasmol_cpp/
+
 #boost on MAC
 #DIRINC_BOOST=/usr/local/include/
 #DIRLIB_BOOST=/usr/local/lib/
+
 #boost on Entropy
 #DIRINC_BOOST=/share/apps/local/boost_1_55_0/
 #DIRLIB_BOOST=/share/apps/local/boost_1_55_0/libs/
+
 # boost on Linux
-DIRINC_BOOST=/usr/local/boost_1_57_0/
-DIRLIB_BOOST=/usr/local/boost_1_57_0/libs/
+DIRINC_BOOST=/usr/local/lib/
+DIRLIB_BOOST=/usr/local/lib/
 
 # need g++ >=4.8
-#CC=/share/apps/local/bin/g++  
+#CC=/share/apps/local/bin/g++
 CC=g++
 CCFLAGS=-std=c++11 -c -fPIC -w -g -I$(DIRINC) -I$(DIRINC_PTEROS)
 LDFLAGS=-std=c++11 -g -w -I$(DIRINC) -I$(DIRINC_BOOST) -I$(DIRINC_PTEROS)
@@ -56,9 +61,16 @@ $(OBJECTS): $(DIRLIB)%.o: $(DIRSRC)%.cpp $(DIRINC)%.h
 $(PTEROS_OBJECTS): $(PTEROS_DIRLIB)%.o: $(PTEROS_DIRSRC)%.cpp $(PTEROS_DIRINC)%.h
 	$(CC) $(CCFLAGS) -I$(DIRINC_BOOST) $< -o $@
 
+install: all
+	mkdir -p $(SYSINSTALLDIR)
+	cp -rf $(DIRINC) $(SYSINSTALLDIR)
+	cp -rf $(DIRLIB) $(SYSINSTALLDIR)
+	chmod -R o=g $(SYSINSTALLDIR)
+
 .PHONY: clean
 clean:
 	rm -f $(OBJECTS)
 	rm -f $(PTEROS_OBJECTS)
 	rm -f $(LIBRARY)
 	rm -f $(DIRTESTS)test.out $(DIRTESTS)test_pteros.out
+	rm -rf $(SYSINSTALLDIR)
