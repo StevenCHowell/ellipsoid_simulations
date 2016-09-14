@@ -29,10 +29,10 @@ class RunParameters{
     int number_of_steps = 10 ;                        // number of steps
     float delta_translation = 0.20 ;                  // translational move step size
     float temperature = 0.71 ;                        // temperature (85 Kelvin in units of 119.8 K)
-    float goal_pressure = 0.2 ;                       // pressure (bar)
+    float goal_pressure = 0.2 ;                       // pressure (bar) <--- ??? do not believe these units ???
     float r_lj = diameter_of_Ar / 2.0 ;               // Lennard-Jones radius
 
-    /*** do NOT set here, currently these are overwritten ***/
+    /*** do NOT set here, only initialize, these are overwritten ***/
     float translation_ratio = 0.0 ;          // set in nptmc.cpp to number_of_steps/100.0
     float volume_ratio = 0.0 ;               // set in nptmc.cpp to number_of_steps/100.0
     float pressure = 0.0 ;                   // pressure (bar)
