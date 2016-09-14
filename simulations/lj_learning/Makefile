@@ -6,8 +6,8 @@ EXE=lj.out
 
 # DIRINC=../../libraries/sasmol_cpp/include/
 # DIRLIB=../../libraries/sasmol_cpp/lib/
-DIRINC=/home/schowell/ellipsoids_simulation/libraries/sasmol_cpp/include/
-DIRLIB=/home/schowell/ellipsoids_simulation/libraries/sasmol_cpp/lib/
+DIRINC=/usr/local/core_libraries/include/
+DIRLIB=/usr/local/core_libraries/lib/
 
 LIB=sasmol
 
@@ -18,8 +18,8 @@ LIB=sasmol
 #DIRLIB_BOOST=/share/apps/local/boost_1_55_0/libs/
 
 ## boost on linux
-DIRINC_BOOST=/usr/local/boost_1_57_0/
-DIRLIB_BOOST=/usr/local/boost_1_57_0/stage/lib/
+DIRINC_BOOST=/usr/local/lib/
+DIRLIB_BOOST=/usr/local/lib/
 
 #CC=/share/apps/local/bin/g++
 CC=g++
