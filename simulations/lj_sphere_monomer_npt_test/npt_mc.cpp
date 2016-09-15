@@ -1,6 +1,6 @@
-#include "npt_mc.h"
-#include <dcdio.h>
-#include <util.h>
+#include "npt_mc.h" // located here
+#include <dcdio.h> // located /usr/local/sasmol_cpp/include
+#include <util.h> // located /usr/local/sasmol_cpp/include
 #include <fstream>
 
 using namespace Eigen ;
@@ -127,7 +127,7 @@ int main()
     std::cout << "\n\n\n" ;
 
     /*** While nice, this line prevents running using `nohup` ***/
-    //util::compile_time(__FILE__, __func__, __DATE__, __TIME__ );
+    util::compile_time(__FILE__, __func__, __DATE__, __TIME__ );
 
     util::pp("welcome to a new beginning") ;
 
