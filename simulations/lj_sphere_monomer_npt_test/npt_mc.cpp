@@ -259,7 +259,7 @@ int main()
 
     std::ofstream fout("box_length.txt", std::ofstream::out);
     std::cout << "STARTING MC SIMULATION : " << par.number_of_steps << " steps " << std::endl ;
-    fout << "\nSTEP\t\tbox_length\t\tdensity\t\tpressure"<<std::endl;
+    fout << "\n#step\t\tbox_length\t\tdensity\t\tpressure"<<std::endl;
 
     for(this_step = 0 ; this_step < par.number_of_steps ; ++this_step)
     {
