@@ -29,7 +29,7 @@ class RunParameters{
     int number_of_steps = 5 ;                     // number of steps
     float delta_translation = 0.20 ;                  // translational move step size
     float temperature = 0.71 ;                        // temperature (85 Kelvin in units of 119.8 K)
-    float goal_pressure = 0.2 ;                       // pressure (bar) <--- ??? do not believe these units ???
+    float goal_pressure = 0.2 ;                       // pressure (unitless) <--- ??? do not believe these units ???
     float r_lj = diameter_of_Ar / 2.0 ;               // Lennard-Jones radius
 
     /*** do NOT set here, only initialize, these are overwritten ***/
