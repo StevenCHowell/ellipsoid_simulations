@@ -21,8 +21,8 @@ from bokeh.plotting import figure, output_file, show
 logging.basicConfig(format=':', level=logging.DEBUG)
 
 """ INPUT HERE """
-run_dir = 'run_0'
-pdb_file = "final.pdb"
+run_dir = 'run_1'
+pdb_file = "run_2.pdb"
 goal_density = 0.0213 # atoms/A^3
 epsilon = 119.8 * 1.3806505e-23  # J
 """ INPUT HERE """

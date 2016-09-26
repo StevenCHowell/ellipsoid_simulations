@@ -21,7 +21,7 @@ from bokeh.plotting import figure, output_file, show
 logging.basicConfig(format=':', level=logging.DEBUG)
 
 """ INPUT HERE """
-run_dir = 'run_0'
+run_dir = 'run_1'
 pdb_file = "final.pdb"
 goal_density = 0.0213 # atoms/A^3
 epsilon = 119.8 * 1.3806505e-23  # J
@@ -50,7 +50,7 @@ pressure_mc_rolling_mean = pd.rolling_mean(pressure_mc, n_mean)
 
 
 # setup the plots
-output_file("box_size.html")
+output_file(op.join(run_dir, "box_size.html"))
 size_plot = figure(title="Box Size", x_axis_label='MC step', width=300,
                    height=300, y_axis_label='Side Length (A)')
 den_plot = figure(title="Density", x_axis_label='MC step', width=300,
@@ -72,12 +72,12 @@ size_plot.line(steps, box_length_rolling_mean, legend="rolling average", line_wi
                line_color="orange")
 
 den_plot.line(steps, density, legend="density", line_width=2)
-den_plot.line(steps, goal_density, legend="goal", line_width=2,
-              line_color="green")
 den_plot.line(steps, density_rolling_mean, legend="rolling average", line_width=2,
               line_color="orange")
 den_plot.line(steps, density_mc, legend="MC density", line_width= 1,
               line_color="firebrick")
+den_plot.line(steps, goal_density, legend="goal", line_width=2,
+              line_color="green")
 
 pres_plot.line(steps, pressure_mc, legend="MC pressure", line_width= 2,
                line_color="firebrick")
