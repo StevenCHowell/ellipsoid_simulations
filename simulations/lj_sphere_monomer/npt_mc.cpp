@@ -256,7 +256,7 @@ int main()
     int overall_frame = 0 ;
     float ratio, bratio ;
 
-    std::ofstream fout("box_length.txt", std::ofstream::out);
+    std::ofstream fout("output/box_length.txt", std::ofstream::out);
     std::cout << "STARTING MC SIMULATION : " << par.number_of_steps << " steps " << std::endl ;
     fout << "\nSTEP\t\tbox_length\t\tdensity\t\tpressure"<<std::endl;
 
