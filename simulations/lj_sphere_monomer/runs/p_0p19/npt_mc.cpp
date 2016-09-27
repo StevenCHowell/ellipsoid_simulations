@@ -1,6 +1,6 @@
 #include "npt_mc.h" // located here
-#include <dcdio.h> // located /usr/local/sasmol_cpp/include
-#include <util.h> // located /usr/local/sasmol_cpp/include
+#include <dcdio.h>  // located /usr/local/sasmol_cpp/include
+#include <util.h>   // located /usr/local/sasmol_cpp/include
 #include <fstream>
 
 using namespace Eigen ;
@@ -126,7 +126,6 @@ int main()
   /*** Intro print Statements ***/
   std::cout << "\n\n\n" ;
 
-  /*** While nice, this line prevents running using `nohup` ***/
   util::compile_time(__FILE__, __func__, __DATE__, __TIME__ );
 
   util::pp("welcome to a new beginning") ;
@@ -257,7 +256,7 @@ int main()
   int overall_frame = 0 ;
   float ratio, bratio ;
 
-  std::ofstream fout("box_length.txt", std::ofstream::out);
+  std::ofstream fout("output/box_length.txt", std::ofstream::out);
   std::cout << "STARTING MC SIMULATION : " << par.number_of_steps << " steps " << std::endl ;
   fout << "#step  box_length  density  pressure"<<std::endl;
 
