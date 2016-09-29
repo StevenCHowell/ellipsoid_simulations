@@ -1,4 +1,4 @@
-#include "nptmc.h"
+#include "npt_mc.h"
 #include <dcdio.h>
 #include <util.h>
 #include <fstream>
@@ -47,7 +47,7 @@ float dist_2atoms_pbc(const Eigen::Array<float,1,3> & R1, const Eigen::Array<flo
     rxij=rxij-box_length*(round(rxij/box_length)) ;
     ryij=ryij-box_length*(round(ryij/box_length)) ;
     rzij=rzij-box_length*(round(rzij/box_length)) ;
-                         
+
 	return rxij*rxij+ryij*ryij+rzij*rzij;
 }
 
@@ -75,7 +75,7 @@ bool check_conflict_1atom(const int natoms, const Eigen::Array<float,1,3> & R1_H
     for(int j = 0 ; j < natoms; ++j)
     {
         if( j != thisi)
-        { 
+        {
 			R2_H << coor_H(j,0),coor_H(j,1),coor_H(j,2);
 			R2_L1 << coor_L1(j,0),coor_L1(j,1),coor_L1(j,2);
 			R2_L2 << coor_L2(j,0),coor_L2(j,1),coor_L2(j,2);
@@ -107,7 +107,7 @@ bool check_conflict_1atom(const int natoms, const Eigen::Array<float,1,3> & R1_H
 	        //util::profiling(t1,t2,"calc distance");
         }
 
-    } // end of loop j over mol._natoms() 
+    } // end of loop j over mol._natoms()
 	//util::profiling(t1,t2,"check_conflict_1atom");
 
     return false;
@@ -139,7 +139,7 @@ bool check_conflict_scale(const int natoms, const Eigen::ArrayXXf & coor_center,
             R2_H = R2_center*scale + (R2_H-R2_center);
             R2_L1 = R2_center*scale + (R2_L1-R2_center);
             R2_L2 = R2_center*scale + (R2_L2-R2_center);
-         
+
 			if (dist_2atoms_pbc(R1_H, R2_H, boxlnew)<RHH) return true;
 			if (dist_2atoms_pbc(R1_H, R2_L1, boxlnew)<RHL1) return true;
 			if (dist_2atoms_pbc(R1_H, R2_L2, boxlnew)<RHL2) return true;
@@ -149,9 +149,9 @@ bool check_conflict_scale(const int natoms, const Eigen::ArrayXXf & coor_center,
 			if (dist_2atoms_pbc(R1_L2, R2_H, boxlnew)<RHL2) return true;
 			if (dist_2atoms_pbc(R1_L2, R2_L1, boxlnew)<RL1L2) return true;
 			if (dist_2atoms_pbc(R1_L2, R2_L2, boxlnew)<RL2L2) return true;
-        } // end of loop j over mol._natoms() 
+        } // end of loop j over mol._natoms()
 
-    } // end of loop i over mol._natoms() 
+    } // end of loop i over mol._natoms()
 
     return false;
 }
@@ -162,7 +162,7 @@ bool check_conflict_scale(const int natoms, const Eigen::ArrayXXf & coor_center,
 int main(){
 
     std::cout << "\n\n\n" ;
-    
+
     util::compile_time(__FILE__, __func__, __DATE__, __TIME__ );
 
     util::pp("welcome to a new beginning") ;
@@ -223,12 +223,12 @@ int main(){
 //    pressfile=open(runname+'_press.dat','w')
 //    densityfile=open(runname+'_density.dat','w')
 
-    par.volume = pow(par.box_length,3.0) ; 
-    par.boxlinv = 1.0/par.box_length ;
+    par.volume = pow(par.box_length,3.0) ;
+    par.inv_box_length = 1.0/par.box_length ;
     par.density = mol_triplets._natoms()/par.volume ;
 
-      par.translation_ratio = par.number_of_steps/100.0 ;  
-      par.volume_ratio = par.number_of_steps/100.0 ; 
+      par.translation_ratio = par.number_of_steps/100.0 ;
+      par.volume_ratio = par.number_of_steps/100.0 ;
 
     float dboxmx = par.box_length/40.0 ;
     float drmax = par.delta_translation ;
@@ -239,12 +239,12 @@ int main(){
     float acpsq = 0.0, acdsq = 0.0, flv = 0.0, flp = 0.0, fld = 0.0 ;
 
     float ps = par.density * par.temperature;
-    
+
     std::cout << "density = " << par.density << std::endl ;
     std::cout << "initial pressure = " << ps << std::endl ;
 
     int m = 0, v = 0, tm = 0, tv = 0 ;
-     
+
     int fr = 1 ;
 
     std::cout << "\nSTEP\t\tVN\t%ACC_MOV\t%ACC_VOL\t ETA\t\t<ETA>\t\tDENSITY\t\t<DENSITY>\tPRESSURE\t<PRESSURE>\tBOXL\n" << std::endl ;
@@ -260,9 +260,9 @@ int main(){
     float rxiold, ryiold, rziold ;
     float rxinew, ryinew, rzinew ;
 
-    Eigen::Array<float,1,3> Rinew_H, Rinew_L1, Rinew_L2, Rinew_center; 
+    Eigen::Array<float,1,3> Rinew_H, Rinew_L1, Rinew_L2, Rinew_center;
 
-    float neg_1 = -1.0, pos_1 = 1.0, zero = 0.0 ; 
+    float neg_1 = -1.0, pos_1 = 1.0, zero = 0.0 ;
 
     float ratbox,dpv,dvol,delthb,rrbox,boxlnew ;
 
@@ -289,37 +289,37 @@ int main(){
         std::cout << this_step << " " << std::endl;
 
         if(this_step == 0)
-        { 
+        {
             frames_since_last_dcd_save = par.dcd_save_frequency ;
         }
         else
         {
-            frames_since_last_dcd_save += 1 ;    
-        }    
+            frames_since_last_dcd_save += 1 ;
+        }
 
         if (Q_profiling_overall) gettimeofday(&t1_overall,NULL);
         for(int i = 0 ; i < mol._natoms() ; ++i)
         {
             count++ ;
             m=m+1 ; tm=tm+1 ;
-    
+
             if (Q_profiling_detail) gettimeofday(&t1_detail,NULL);
             int dice = int(util::get_random_float(0.0,3.0));
             // translate the triplet
             if (dice == 0)
             {
-                rxiold = mol._x()(i,frame) ;        
-                ryiold = mol._y()(i,frame) ;        
-                rziold = mol._z()(i,frame) ;        
+                rxiold = mol._x()(i,frame) ;
+                ryiold = mol._y()(i,frame) ;
+                rziold = mol._z()(i,frame) ;
 
                 rxinew = rxiold + (util::get_random_float(neg_1,pos_1)) * drmax ;
                 ryinew = ryiold + (util::get_random_float(neg_1,pos_1)) * drmax ;
                 rzinew = rziold + (util::get_random_float(neg_1,pos_1)) * drmax ;
 
-                rxinew = rxinew-par.box_length*(round(rxinew*par.boxlinv)) ;
-                ryinew = ryinew-par.box_length*(round(ryinew*par.boxlinv)) ;
-                rzinew = rzinew-par.box_length*(round(rzinew*par.boxlinv)) ;
-                
+                rxinew = rxinew-par.box_length*(round(rxinew*par.inv_box_length)) ;
+                ryinew = ryinew-par.box_length*(round(ryinew*par.inv_box_length)) ;
+                rzinew = rzinew-par.box_length*(round(rzinew*par.inv_box_length)) ;
+
                 Rinew_center = coor_center.row(i);
                 Rinew_H = coor_H.row(i)-Rinew_center;
                 Rinew_L1 = coor_L1.row(i)-Rinew_center;
@@ -333,10 +333,10 @@ int main(){
             // rotate the triplet
             else if (dice==1)
             {
-                rxinew = mol._x()(i,frame) ;        
-                ryinew = mol._y()(i,frame) ;        
-                rzinew = mol._z()(i,frame) ;        
-                
+                rxinew = mol._x()(i,frame) ;
+                ryinew = mol._y()(i,frame) ;
+                rzinew = mol._z()(i,frame) ;
+
                 d_theta = (util::get_random_float(neg_1,pos_1)) * PI;
                 //d_theta = -PI/2.;
                 rot_axis = int(util::get_random_float(0.0,3.0));
@@ -357,10 +357,10 @@ int main(){
             // deform the triplet
             else
             {
-                rxinew = mol._x()(i,frame) ;        
-                ryinew = mol._y()(i,frame) ;        
-                rzinew = mol._z()(i,frame) ;        
-                
+                rxinew = mol._x()(i,frame) ;
+                ryinew = mol._y()(i,frame) ;
+                rzinew = mol._z()(i,frame) ;
+
                 Rinew_center = coor_center.row(i);
                 Rinew_H = coor_H.row(i)-Rinew_center;
                 Rinew_L1 = coor_L1.row(i)-Rinew_center;
@@ -422,17 +422,17 @@ int main(){
             acm = acm + 1.0 ;
             acp = acp + par.pressure ;
             acd = acd + par.density ;
-    
+
             acpsq = acpsq + pow(par.pressure,2.0) ;
             acdsq = acdsq + pow(par.density,2.0) ;
-            
+
         } // end of loop i over mol._natoms()
         if(Q_profiling_overall) util::profiling(t1_overall,t2_overall,"update per atoms");
-            
+
         v=v+1 ; tv=tv+1 ;
-        
+
         boxlnew = par.box_length + (util::get_random_float(neg_1,pos_1)) * dboxmx ;
-        
+
         ratbox = par.box_length / boxlnew ;
         rrbox = 1.0 / ratbox ;
 
@@ -471,13 +471,13 @@ int main(){
 
                     par.box_length = boxlnew ;
                     acboxa = acboxa + 1.0 ;
-                }    
+                }
             }
         }
         if (Q_profiling_overall) util::profiling(t1_overall, t2_overall, "update scale");
 
-        par.boxlinv = 1.0/par.box_length ;
-        par.volume = pow(par.box_length,3.0) ; 
+        par.inv_box_length = 1.0/par.box_length ;
+        par.volume = pow(par.box_length,3.0) ;
         par.density=mol_triplets._natoms()/par.volume ;
 
         par.pressure = par.density * par.temperature;
@@ -509,9 +509,9 @@ int main(){
             fout << this_step << " "<<par.box_length<<" "<<par.density <<" "<<par.pressure<<std::endl;
         }
 
-//        boxfile.write("%i\t%f\n" % (step,boxl))    
-//        pressfile.write("%i\t%f\t%f\n" % (step,pressure,acp/(tm+tv)))    
-//        densityfile.write("%i\t%f\t%f\n" % (step,density,acd/(tm+tv)))    
+//        boxfile.write("%i\t%f\n" % (step,boxl))
+//        pressfile.write("%i\t%f\t%f\n" % (step,pressure,acp/(tm+tv)))
+//        densityfile.write("%i\t%f\t%f\n" % (step,density,acd/(tm+tv)))
 //        boxfile.flush() ; pressfile.flush() ; densityfile.flush()
 
         if(fmodf(float(this_step),(par.number_of_steps/float(100.0)))==0)
@@ -524,7 +524,7 @@ int main(){
 
             fr += 1 ;
         }
-    
+
         if(fmodf(float(this_step),par.translation_ratio)==0)
         {
             ratio = acatma/(mol_triplets._natoms()*par.translation_ratio) ;
@@ -546,12 +546,12 @@ int main(){
             {
                 dboxmx=dboxmx*1.05 ;
             }
-            else    
+            else
             {
                 dboxmx=dboxmx*0.95 ;
             }
             acboxa = 0.0 ;
-            v=0 ;    
+            v=0 ;
         }
 
     std::cout << "\n\npercent mcmoves accepted " << acatma*100.0/tm << std::endl ;
@@ -590,5 +590,3 @@ int main(){
 
 
 }
-
-

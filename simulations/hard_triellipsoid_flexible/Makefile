@@ -1,3 +1,9 @@
+# created by Hailiang Zhang
+# modified by Steven C Howell
+# 24 August 2016
+
+EXE=hte.bin
+
 # DIRINC=../../libraries/sasmol_cpp/include/
 # DIRLIB=../../libraries/sasmol_cpp/lib/
 DIRINC=/usr/local/sasmol_cpp/include/
@@ -22,9 +28,9 @@ LDFLAGS=-std=c++11 -g -w -I$(DIRINC) -I.
 
 LIBRARY=$(DIRLIB)lib$(LIB).a
 
-a.out: nptmc.cpp
+$(EXE): npt_mc.cpp
 	$(CC) $^ $(LDFLAGS) -L$(DIRLIB) -l$(LIB) -L$(DIRLIB) -L$(DIRLIB_BOOST) -I$(DIRINC_BOOST) -lboost_regex -o $@
 
 .PHONY: clean
 clean:
-	rm -rf a.out*
+	rm -rf $(EXE)
