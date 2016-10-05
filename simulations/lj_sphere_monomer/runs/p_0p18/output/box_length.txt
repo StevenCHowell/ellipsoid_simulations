@@ -1,4 +1,4 @@
-# STEP		box_length		density		pressure
+# step		box_length		density		pressure
 0 15.4933 0.550683 0.408088
 10 15.5107 0.54883 0.198081
 20 15.523 0.547523 0.144292
