@@ -49,7 +49,7 @@ def update_gr(xcoor, ycoor, zcoor, box_length, nbins, natoms2, deltag):
     return tgr
 
 
-def main(pdb_file_name, dcd_file_name, xst_file_name, stride, sigma,
+def main(pdb_file_name, dcd_file_name, xst_file_name, stride, sigma, nskip=0,
          show=False):
 
     m1 = sasmol.SasMol(0)
@@ -64,25 +64,27 @@ def main(pdb_file_name, dcd_file_name, xst_file_name, stride, sigma,
     print '> found ', number_of_frames, ' frames in dcd file'
 
     if(xst_file_name != False):
-        box_length_list = get_box_length_list(xst_file_name, stride, sigma)
+        # box_length_list = get_box_length_list(xst_file_name, stride, sigma)
+        box_length = numpy.loadtxt(xst_file_name)
 
     #box_length_list = [box_length]
 
-    if len(box_length_list) != number_of_frames:
-        print 'len(box_length_list) = ', len(box_length_list)
-        print 'number of frames = ', number_of_frames
-        sys.exit()
+    assert len(box_length) == number_of_frames + 1, (
+        '# dcd should be one less than the lengeth of box length: ',
+        'len(box_length_list), number_of_frames = {}, {}'.format(
+            len(box_length), number_of_frames))
 
-    print 'box_length = ', box_length_list[0]
-    print 'box_length = ', box_length_list[-1]
+    print 'box_length = ', box_length[0]
+    print 'box_length = ', box_length[-1]
 
-    min_box_length = min(box_length_list)
-    max_box_length = max(box_length_list)
+    # # not sure what this was for
+    # min_box_length = min(box_length)
+    # max_box_length = max(box_length)
 
-    print 'mininum box length = ', min_box_length
-    print 'maximum box length = ', max_box_length
+    # print 'mininum box length = ', min_box_length
+    # print 'maximum box length = ', max_box_length
 
-    print '2 PI / boxlength = ', 2.0 * numpy.pi / min_box_length
+    # print '2 PI / boxlength = ', 2.0 * numpy.pi / min_box_length
 
     box_length_sum = 0.0
 
@@ -108,7 +110,9 @@ def main(pdb_file_name, dcd_file_name, xst_file_name, stride, sigma,
     ax1.set_xlabel('r')
 
     count = 0
-    for i in xrange(500,number_of_frames):
+
+
+    for i in xrange(nskip, number_of_frames):
         print i + 1,
         sys.stdout.flush()
         if(dcd_file_name != False):
@@ -119,10 +123,10 @@ def main(pdb_file_name, dcd_file_name, xst_file_name, stride, sigma,
 
         ftgr = numpy.zeros(nbins, numpy.float)
         ftgr = fortran_gr.update_gr(
-            xcoor, ycoor, zcoor, box_length_list[i], nbins, deltag)
+            xcoor, ycoor, zcoor, box_length[i], nbins, deltag)
         fsum_gr = fsum_gr + ftgr
 
-        box_length_sum += box_length_list[i]
+        box_length_sum += box_length[i]
         count += 1
 
     average_box_length = box_length_sum / count
@@ -149,13 +153,18 @@ def main(pdb_file_name, dcd_file_name, xst_file_name, stride, sigma,
 
 
 if __name__ == '__main__':
-
+    import os.path as op
     sigma = 3.405
 
-    pdb_file_name = 'final.pdb'
-    dcd_file_name = 'run_0.dcd'
+    run_path = '../../simulations/lj_sphere_monomer/runs/p_0p14/output'
+    pdb_file_name = 'run1.pdb'
+    dcd_file_name = 'run1_mod.dcd'
     xst_file_name = 'box_length.txt'
+    pdb_file_name = op.join(run_path, pdb_file_name)
+    dcd_file_name = op.join(run_path, dcd_file_name)
+    xst_file_name = op.join(run_path, xst_file_name)
 
     stride = 1
 
-    main(pdb_file_name, dcd_file_name, xst_file_name, stride, sigma)
+    main(pdb_file_name, dcd_file_name, xst_file_name, stride, sigma,
+         nskip=1000)
