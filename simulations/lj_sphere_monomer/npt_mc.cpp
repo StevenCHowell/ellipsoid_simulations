@@ -227,7 +227,7 @@ int main()
 
   int fr = 1 ;
 
-  std::cout << "\nSTEP\t\tVN\t%ACC_MOV\t%ACC_VOL\t ETA\t\t<ETA>\t\tDENSITY\t\t<DENSITY>\tPRESSURE\t<PRESSURE>\tBOXL\n" << std::endl ;
+  //std::cout << "\nSTEP\t\tVN\t%ACC_MOV\t%ACC_VOL\t ETA\t\t<ETA>\t\tDENSITY\t\t<DENSITY>\tPRESSURE\t<PRESSURE>\tBOXL\n" << std::endl ;
   //print '%i\t%8.6f\t%8.6f\t%8.6f\t%8.6f\t%8.6f\t%10.6f\t%8.6f\n' % (i + 1, acatma*100.0/m, acboxa*100.0/v, density, acd/(m + v), pressure, acp/(m + v), boxl)
 
   //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ MAIN LOOP ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
@@ -433,8 +433,8 @@ int main()
         {
           overall_frame += 1 ;
           mol.write_dcd_step(dcdoutfile, frame, overall_frame) ;
+          fout <<this_step<<" "<<par.box_length<<" "<<par.density <<" "<<par.pressure<<std::endl;
           frames_since_last_dcd_save = 0 ;
-          fout << this_step << " "<<par.box_length<<" "<<par.density <<" "<<par.pressure<<std::endl;
         }
 
       //        boxfile.write("%i\t%f\n" % (step, boxl))
@@ -493,7 +493,8 @@ int main()
 
     } // end of loop step over number_of_steps
 
-  fout << this_step << " "<<par.box_length<<" "<<par.density <<" "<<par.pressure<<std::endl;
+  mol.write_dcd_step(dcdoutfile, frame, overall_frame) ;
+  fout <<this_step<<" "<<par.box_length<<" "<<par.density<<" "<<par.pressure<<std::endl;
   fout.close();
 
   std::cout << "\nnumber of moves = " << count << std::endl ;
@@ -502,10 +503,6 @@ int main()
   std::cout << "ratio = " << accepted_moves / float(count) << std::endl ;
 
   mol.write_pdb(par.output_filename, frame) ;
-
-
-
-
 
   close_dcd_write(dcdoutfile) ;
 
