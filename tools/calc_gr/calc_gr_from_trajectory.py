@@ -1,56 +1,42 @@
+import logging
 import os
 import sys
 import numpy as np
-import matplotlib.pyplot as plt
 import sasmol.sasmol as sasmol
 
 sys.path.append('./')
 import gr as fortran_gr
 
-
-def get_box_length_list(xst_file_name, stride, sigma=1):
-    import string
-    import locale
-
-    boxlength_list = []
-
-    boxlength_file = open(xst_file_name, 'r').readlines()
-    number_of_lines = len(boxlength_file)
-    print 'number_of_lines = ', number_of_lines
-
-    for line in boxlength_file:
-        this_line = string.split(line)
-        boxlength_list.append(locale.atof(this_line[1])*sigma)
-
-    return boxlength_list
+FORMAT = "%(asctime)-15s: %(message)s"
+logging.basicConfig(format=FORMAT, level=logging.DEBUG)
 
 
-def update_gr(xcoor, ycoor, zcoor, box_length, n_bins, natoms2, delta_g):
+def update_gr(xcoor, ycoor, zcoor, box_length, n_bins, n_atoms, delta_r):
 
-    tgr = np.zeros(n_bins, np.float)
+    gr = np.zeros(n_bins, np.float)
 
-    for i in xrange(natoms2 - 1):
-        for j in xrange(i + 1, natoms2):
+    for i in xrange(n_atoms - 1):
+        for j in xrange(i + 1, n_atoms):
 
-            xr = xcoor[i] - xcoor[j]
-            yr = ycoor[i] - ycoor[j]
-            zr = zcoor[i] - zcoor[j]
+            dx = xcoor[i] - xcoor[j]
+            dy = ycoor[i] - ycoor[j]
+            dz = zcoor[i] - zcoor[j]
 
-            xr = xr - box_length * ((xr / box_length).round())
-            yr = yr - box_length * ((yr / box_length).round())
-            zr = zr - box_length * ((zr / box_length).round())
+            dx -= box_length * ((dx / box_length).round())
+            dy -= box_length * ((dy / box_length).round())
+            dz -= box_length * ((dz / box_length).round())
 
-            r = np.sqrt((xr * xr) + (yr * yr) + (zr * zr))
+            r = np.sqrt((dx * dx) + (dy * dy) + (dz * dz))
 
             if (r < box_length / 2.0):
-                ig = int(r / delta_g)
-                tgr[ig] = tgr[ig] + 2
+                ig = int(r / delta_r)  # round down
+                gr[ig] += 2
 
-    return tgr
+    return gr
 
 
 def main(pdb_fname, run_log_fname, stride=1, sigma=1, dcd_fname=None,
-         n_skip=0, show=False):
+         n_skip=0, n_bins=1000, show=False):
 
     box_mol = sasmol.SasMol(0)
     box_mol.read_pdb(pdb_fname)
@@ -63,33 +49,45 @@ def main(pdb_fname, run_log_fname, stride=1, sigma=1, dcd_fname=None,
 
     run_log = np.loadtxt(run_log_fname)
 
-    assert len(run_log) == n_frames + 1, (
-        '# dcd should be one less than the lengeth of box length: ',
-        'len(box_length_list), number_of_frames = {}, {}'.format(
-            len(run_log), n_frames))
-
-    box_length = run_log[:, 1]
-    print 'box_length: [ fist last] = {}'.format(box_length[[0, -1]])
+    if len(run_log) != n_frames:
+        if len(run_log) == n_frames + 1:
+            run_log = run_log[:-1]
+            logging.warning('dcd file  had one more frame than the log file, '
+                         'discarding last line\ndcd_fname:\t{}\n'
+                         'run_log_fname:\t{}'.format(dcd_fname, run_log_fname))
+        else:
+            logging.error('mismatch between dcd and log file \n'
+                          'dcd_fname:\t{}\nrun_log_fname:\t{}'.format(
+                              dcd_fname, run_log_fname))
 
     n_atoms = box_mol.natoms()
-    n_bins = 1000
-    delta_g = box_length / (2.0 * n_bins)
-    rho = n_atoms / box_length ** 3.0
-    n_frames_used = n_frames - n_skip
-    gr_all = np.empty((n_frames_used, n_bins))  # one g(r) for ecah dcd frame
+    n_gr = n_frames - n_skip  # number of frames, or g(r) curves, to averages
+
+    box_length = run_log[n_skip:, 1]
+    print('box_length: (min, max) = ({}, {})'.format(box_length.min(),
+                                                     box_length.max()))
+
+    gr_all = np.empty((n_gr, n_bins))  # one g(r) for ecah dcd frame
     gr = np.empty((n_bins, 2))
     r = np.empty(n_bins)
 
-    fsum_gr = np.zeros(n_bins, np.float)
-    fgr = np.zeros(n_bins, np.float)
+    # # using a different r_grid for each frame
+    # delta_r = box_length / (2.0 * n_bins)
+    # bin_index = np.arange(n_bins) + 1
+    # rho = (n_atoms / box_length ** 3.0).reshape(-1, 1)  # particle density
 
-    count = 0
+    # bin_volume = np.outer(delta_r ** 3, (bin_index + 1) ** 3 - bin_index ** 3)
+    # r = np.outer(delta_r, (bin_index + 0.5))
+    # n_ideal = (4.0 / 3.0) * np.pi * bin_volume * rho  # expected n for ideal gas
 
-
-    box_length_sum = 0.0
-
+    # using the same r_grid for each frame
+    delta_r = box_length.max() / (2.0 * n_bins)  # delg in F&S
     bin_index = np.arange(n_bins) + 1
-    bin_volume = np.outer(delta_g ** 3, (bin_index + 1) ** 3 - bin_index ** 3)
+    rho = (n_atoms / box_length ** 3.0).reshape(-1, 1)  # frame specific density
+
+    bin_volume = ((bin_index + 1) ** 3 - bin_index ** 3) * delta_r ** 3
+    r = (bin_index + 0.5) * delta_r
+    n_ideal = (4.0 / 3.0) * np.pi * bin_volume * rho  # expected n for ideal gas
 
     # for i in xrange(n_skip, n_frames):
     for i in xrange(n_skip, n_skip + 10):
@@ -102,26 +100,21 @@ def main(pdb_fname, run_log_fname, stride=1, sigma=1, dcd_fname=None,
         y_coor = box_mol.coor()[0, :, 1] * sigma
         z_coor = box_mol.coor()[0, :, 2] * sigma
 
-        gr_all[i] = fortran_gr.update_gr(x_coor, y_coor, z_coor, box_length[i],
-                                    n_bins, delta_g[i])
-
-        for i in xrange(n_bins):
-            nid = (4.0 / 3.0) * np.pi * bin_volume * rho
+        # gr_all[i] = fortran_gr.update_gr(x_coor, y_coor, z_coor, box_length[i],
+                                         # n_bins, delta_r)
+        gr_all[i] = update_gr(x_coor, y_coor, z_coor, box_length[i], n_bins,
+                              n_atoms, delta_r)
+        gr_all[i] /= n_ideal[i]  # normalize expected n for ideal gas
 
     gr[:, 0] = r
-    gr[:, 1] = np.mean(gr_all, axis=0)
+    gr[:, 1] = np.mean(gr_all, axis=0) / n_atoms  # normalize by frames and atoms
 
-    for i in xrange(n_bins):
-        r[i] = delta_g * (i + 0.5)
-        fgr[i] = fsum_gr[i] / (count * n_atoms * nid)
-
-
-    np.savetxt(gr, 'test{}.dat'.format(stride))
-
-
+    np.savetxt('gr_all_stride{}.dat'.format(stride), gr, fmt='%.14f')
+    gr_cutoff = gr[gr[:, 0] < box_length.min()/2]
+    np.savetxt('gr_cutoff_stride{}.dat'.format(stride), gr_cutoff, fmt='%.14f')
 
 def plot_gr(gr):
-
+    import matplotlib.pyplot as plt
     fig = plt.figure()
     ax1 = fig.add_subplot(111)
     ax1.set_ylabel('g(r)')
