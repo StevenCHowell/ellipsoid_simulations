@@ -36,7 +36,7 @@ def update_gr(xcoor, ycoor, zcoor, box_length, n_bins, n_atoms, delta_r):
 
 
 def main(pdb_fname, run_log_fname, stride=1, sigma=1, dcd_fname=None,
-         n_skip=0, n_bins=1000, show=False):
+         n_skip=0, n_bins=333):
 
     box_mol = sasmol.SasMol(0)
     box_mol.read_pdb(pdb_fname)
@@ -63,13 +63,12 @@ def main(pdb_fname, run_log_fname, stride=1, sigma=1, dcd_fname=None,
     n_atoms = box_mol.natoms()
     n_gr = n_frames - n_skip  # number of frames, or g(r) curves, to averages
 
-    box_length = run_log[n_skip:, 1]
+    box_length = run_log[n_skip:, 1] * sigma
     print('box_length: (min, max) = ({}, {})'.format(box_length.min(),
                                                      box_length.max()))
 
-    gr_all = np.empty((n_gr, n_bins))  # one g(r) for ecah dcd frame
-    gr = np.empty((n_bins, 2))
-    r = np.empty(n_bins)
+    gr_all = np.zeros((n_gr, n_bins))  # one g(r) for ecah dcd frame
+    gr = np.zeros((n_bins, 2))
 
     # # using a different r_grid for each frame
     # delta_r = box_length / (2.0 * n_bins)
@@ -85,8 +84,10 @@ def main(pdb_fname, run_log_fname, stride=1, sigma=1, dcd_fname=None,
     bin_index = np.arange(n_bins) + 1
     rho = (n_atoms / box_length ** 3.0).reshape(-1, 1)  # frame specific density
 
-    bin_volume = ((bin_index + 1) ** 3 - bin_index ** 3) * delta_r ** 3
-    r = (bin_index + 0.5) * delta_r
+    # bin_volume = ((bin_index + 1) ** 3 - bin_index ** 3) * delta_r ** 3
+    r = (bin_index - 0.5) * delta_r
+    bin_volume = 4.0 / 3.0 * np.pi * ((r + delta_r / 2) ** 3 -
+                                      (r - delta_r / 2) ** 3)
     n_ideal = (4.0 / 3.0) * np.pi * bin_volume * rho  # expected n for ideal gas
 
     # for i in xrange(n_skip, n_frames):
@@ -100,10 +101,10 @@ def main(pdb_fname, run_log_fname, stride=1, sigma=1, dcd_fname=None,
         y_coor = box_mol.coor()[0, :, 1] * sigma
         z_coor = box_mol.coor()[0, :, 2] * sigma
 
-        # gr_all[i] = fortran_gr.update_gr(x_coor, y_coor, z_coor, box_length[i],
-                                         # n_bins, delta_r)
-        gr_all[i] = update_gr(x_coor, y_coor, z_coor, box_length[i], n_bins,
-                              n_atoms, delta_r)
+        gr_all[i] = fortran_gr.update_gr(x_coor, y_coor, z_coor, box_length[i],
+                                         n_bins, delta_r)
+        # gr_all[i] = update_gr(x_coor, y_coor, z_coor, box_length[i], n_bins,
+                              # n_atoms, delta_r)
         gr_all[i] /= n_ideal[i]  # normalize expected n for ideal gas
 
     gr[:, 0] = r
@@ -113,13 +114,22 @@ def main(pdb_fname, run_log_fname, stride=1, sigma=1, dcd_fname=None,
     gr_cutoff = gr[gr[:, 0] < box_length.min()/2]
     np.savetxt('gr_cutoff_stride{}.dat'.format(stride), gr_cutoff, fmt='%.14f')
 
-def plot_gr(gr):
+    return gr_cutoff
+
+
+def plot_gr(gr, stride=1, show=False):
     import matplotlib.pyplot as plt
+
+    gr_dat = np.loadtxt('argon_85K_gr.dat')
+
     fig = plt.figure()
     ax1 = fig.add_subplot(111)
+
     ax1.set_ylabel('g(r)')
     ax1.set_xlabel('r')
-    line, = ax1.plot(r, fgr, color='red', lw=3)
+    scale_factor = 1.0 / gr[-1, 1]
+    ax1.plot(gr[:, 0], scale_factor * gr[:, 1], color='red', lw=2)
+    ax1.plot(gr_dat[:, 0], gr_dat[:, 1], color='blue', lw=2)
 
     plt.savefig('test_500to1000_by' + str(stride) + '.png')
 
