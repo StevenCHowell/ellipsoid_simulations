@@ -80,15 +80,15 @@ def main(pdb_fname, run_log_fname, stride=1, sigma=1, dcd_fname=None,
     # n_ideal = (4.0 / 3.0) * np.pi * bin_volume * rho  # expected n for ideal gas
 
     # using the same r_grid for each frame
-    delta_r = box_length.max() / (2.0 * n_bins)  # delg in F&S
+    dr = box_length.max() / (2.0 * n_bins)  # delg in F&S
     bin_index = np.arange(n_bins) + 1
-    rho = (n_atoms / box_length ** 3.0).reshape(-1, 1)  # frame specific density
+    rho = (n_atoms / (box_length ** 3.0)).reshape(-1, 1)  # frame specific density
 
     # bin_volume = ((bin_index + 1) ** 3 - bin_index ** 3) * delta_r ** 3
-    r = (bin_index - 0.5) * delta_r
-    bin_volume = 4.0 / 3.0 * np.pi * ((r + delta_r / 2) ** 3 -
-                                      (r - delta_r / 2) ** 3)
-    n_ideal = (4.0 / 3.0) * np.pi * bin_volume * rho  # expected n for ideal gas
+    r = (bin_index - 0.5) * dr
+    bin_volume = 4.0 / 3.0 * np.pi * ((r + dr / 2) ** 3 -
+                                      (r - dr / 2) ** 3)
+    n_ideal = bin_volume * rho  # expected n for ideal gas
 
     # for i in xrange(n_skip, n_frames):
     for i in xrange(n_skip, n_skip + 10):
@@ -97,12 +97,12 @@ def main(pdb_fname, run_log_fname, stride=1, sigma=1, dcd_fname=None,
         if dcd_fname:
             box_mol.read_dcd_step(dcd_file, i)
 
-        x_coor = box_mol.coor()[0, :, 0] * sigma
-        y_coor = box_mol.coor()[0, :, 1] * sigma
-        z_coor = box_mol.coor()[0, :, 2] * sigma
+        x_coor = box_mol.coor()[0][:, 0] * sigma
+        y_coor = box_mol.coor()[0][:, 1] * sigma
+        z_coor = box_mol.coor()[0][:, 2] * sigma
 
         gr_all[i] = fortran_gr.update_gr(x_coor, y_coor, z_coor, box_length[i],
-                                         n_bins, delta_r)
+                                         n_bins, dr)
         # gr_all[i] = update_gr(x_coor, y_coor, z_coor, box_length[i], n_bins,
                               # n_atoms, delta_r)
         gr_all[i] /= n_ideal[i]  # normalize expected n for ideal gas
@@ -144,8 +144,8 @@ if __name__ == '__main__':
     sigma = 3.405
 
     run_path = '../../simulations/lj_sphere_monomer/runs/p_0p14/output'
-    pdb_fname = 'run1.pdb'
-    dcd_file_name = 'run1_mod.dcd'
+    pdb_fname = 'run2.pdb'
+    dcd_file_name = 'run2.dcd'
     xst_file_name = 'box_length.txt'
     pdb_fname = op.join(run_path, pdb_fname)
     dcd_file_name = op.join(run_path, dcd_file_name)
