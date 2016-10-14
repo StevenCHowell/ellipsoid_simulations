@@ -63,7 +63,7 @@ def main(pdb_fname, run_log_fname, stride=1, sigma=1, dcd_fname=None,
     n_atoms = box_mol.natoms()
     n_gr = n_frames - n_skip  # number of frames, or g(r) curves, to averages
 
-    box_length = run_log[n_skip:, 1] * sigma
+    box_length = run_log[:, 1] * sigma
     print('box_length: (min, max) = ({}, {})'.format(box_length.min(),
                                                      box_length.max()))
 
@@ -80,7 +80,7 @@ def main(pdb_fname, run_log_fname, stride=1, sigma=1, dcd_fname=None,
     # n_ideal = (4.0 / 3.0) * np.pi * bin_volume * rho  # expected n for ideal gas
 
     # using the same r_grid for each frame
-    dr = box_length.max() / (2.0 * n_bins)  # delg in F&S
+    dr = box_length[n_skip:].max() / (2.0 * n_bins)  # delg in F&S
     bin_index = np.arange(n_bins) + 1
     rho = (n_atoms / (box_length ** 3.0)).reshape(-1, 1)  # frame specific density
 
@@ -91,7 +91,7 @@ def main(pdb_fname, run_log_fname, stride=1, sigma=1, dcd_fname=None,
     n_ideal = bin_volume * rho  # expected n for ideal gas
 
     # for i in xrange(n_skip, n_frames):
-    for i in xrange(n_skip, n_skip + 10):
+    for i in xrange(n_skip, n_frames):
         sys.stdout.flush()
 
         if dcd_fname:
@@ -101,11 +101,11 @@ def main(pdb_fname, run_log_fname, stride=1, sigma=1, dcd_fname=None,
         y_coor = box_mol.coor()[0][:, 1] * sigma
         z_coor = box_mol.coor()[0][:, 2] * sigma
 
-        gr_all[i] = fortran_gr.update_gr(x_coor, y_coor, z_coor, box_length[i],
-                                         n_bins, dr)
-        # gr_all[i] = update_gr(x_coor, y_coor, z_coor, box_length[i], n_bins,
+        gr_all[i-n_skip] = fortran_gr.update_gr(x_coor, y_coor, z_coor,
+                                                box_length[i], n_bins, dr)
+        # gr_all[i-n_skip] = update_gr(x_coor, y_coor, z_coor, box_length[i], n_bins,
                               # n_atoms, delta_r)
-        gr_all[i] /= n_ideal[i]  # normalize expected n for ideal gas
+        gr_all[i-n_skip] /= n_ideal[i]  # normalize expected n for ideal gas
 
     gr[:, 0] = r
     gr[:, 1] = np.mean(gr_all, axis=0) / n_atoms  # normalize by frames and atoms
@@ -127,11 +127,11 @@ def plot_gr(gr, stride=1, show=False):
 
     ax1.set_ylabel('g(r)')
     ax1.set_xlabel('r')
-    scale_factor = 1.0 / gr[-1, 1]
+    scale_factor = 1.0
     ax1.plot(gr[:, 0], scale_factor * gr[:, 1], color='red', lw=2)
     ax1.plot(gr_dat[:, 0], gr_dat[:, 1], color='blue', lw=2)
 
-    plt.savefig('test_500to1000_by' + str(stride) + '.png')
+    plt.savefig('steve_gr.png')
 
     if show:
         plt.show()
@@ -145,13 +145,13 @@ if __name__ == '__main__':
 
     run_path = '../../simulations/lj_sphere_monomer/runs/p_0p14/output'
     pdb_fname = 'run2.pdb'
-    dcd_file_name = 'run2.dcd'
-    xst_file_name = 'box_length.txt'
+    dcd_fname = 'run2.dcd'
+    xst_fname = 'box_length.txt'
     pdb_fname = op.join(run_path, pdb_fname)
-    dcd_file_name = op.join(run_path, dcd_file_name)
-    xst_file_name = op.join(run_path, xst_file_name)
+    dcd_fname = op.join(run_path, dcd_fname)
+    xst_fname = op.join(run_path, xst_fname)
 
-    gr = main(pdb_fname, xst_file_name, sigma=sigma, dcd_fname=dcd_file_name,
+    gr = main(pdb_fname, xst_fname, sigma=sigma, dcd_fname=dcd_fname,
               n_skip=1000)
 
     plot_gr(gr)
