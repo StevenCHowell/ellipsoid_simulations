@@ -1,36 +1,35 @@
 c         1         2         3         4         5         6         7
 c123456789012345678901234567890123456789012345678901234567890123456789012
 
-        subroutine update_gr(coor,boxl,gr,dr,nbins,natoms)
-        double precision boxl, rcutsq
+        subroutine calc_gr(coor,boxl,gr,dr,natoms,nbins)
+        double precision boxl,dr
         double precision coor(natoms,3)
-        integer natoms,i,j,nbins,ri
+        integer natoms,nbins,i,j,ri
         double precision gr(nbins)
-        double precision xij,yij,zij,rijsq,dr
+        double precision dxij,dyij,dzij,rijsq,rcutsq
 
-cf2py	intent(in):: coor,boxl,dr,nbins,natoms
-cf2py	intent(in,out):: gr
+cf2py	intent(in):: coor,boxl,dr,natoms,nbins
+cf2py	intent(in):: gr
 cf2py	intent(hide):: i,j,ri
-cf2py   depend(nbins):: gr
-cf2py	intent(hide):: xij,yij,zij,rijsq,rcutsq
+cf2py	intent(hide):: dxij,dyij,dzij,rijsq,rcutsq
 
         rcutsq=(boxl/2.0)*(boxl/2.0)
 
         do 200,i=1,natoms-1
                 do 300,j=i+1,natoms
-                        xij=coor(i,1)-coor(j,1)
-                        yij=coor(i,1)-coor(j,2)
-                        zij=coor(i,1)-coor(j,3)
+                        dxij=coor(i,1)-coor(j,1)
+                        dyij=coor(i,2)-coor(j,2)
+                        dzij=coor(i,3)-coor(j,3)
 
-                        xij=xij-boxl*(ANINT(xij/boxl))
-                        yij=yij-boxl*(ANINT(yij/boxl))
-                        zij=zij-boxl*(ANINT(zij/boxl))
+                        dxij=dxij-boxl*(ANINT(dxij/boxl))
+                        dyij=dyij-boxl*(ANINT(dyij/boxl))
+                        dzij=dzij-boxl*(ANINT(dzij/boxl))
 
-                        rijsq=xij*xij+yij*yij+zij*zij
+                        rijsq=dxij*dxij+dyij*dyij+dzij*dzij
 
                         if (rijsq .lt. rcutsq) then
-                                ri = int(dsqrt(rijsq)/dr)
-                                gr(ri) = gr(ri) + 2.0
+                           ri = int(dsqrt(rijsq)/dr) + 1
+                           gr(ri) = gr(ri) + 2.0
                         endif
 
   300   continue
