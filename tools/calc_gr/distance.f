@@ -31,7 +31,7 @@ c123456789012345678901234567890123456789012345678901234567890123456789012
                 yij=coor(i,2)-coor(j,2)
                 zij=coor(i,3)-coor(j,3)
 
-                dist(i,j)=sqrt(xij*xij+yij*yij+zij*zij)
+                dist(i,j)=dsqrt(xij*xij+yij*yij+zij*zij)
 
   300   continue
   200   continue
