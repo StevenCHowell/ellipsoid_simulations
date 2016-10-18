@@ -1,0 +1,14 @@
+NPT Monte Carlo simulation conditions
+N = 2048
+P' = 0.14 (reduced units)
+T' = 0.71 (reduced units)
+P = 4.866 MPa
+T = 85.058 K
+
+Final box size = 13.4622 (reduced units)*
+
+final_state.pdb: structure file (plain text) with the atom information and coordinates for the final state
+trajectory.dcd:  binary file with the coordinates for the trajectory
+box_size.txt:    plain text file documenting the box size for each frame in trajectory.dcd
+
+*ATTENTION: Note that the coordinates in final_state.pdb and trajectory.dcd are in reduced units.  To convert these to Angstroms, multiply by 3.405.
