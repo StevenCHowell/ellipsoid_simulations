@@ -44,3 +44,6 @@
 .DS_Store
 ._*
 *~
+
+# Run Directories
+*run*/
