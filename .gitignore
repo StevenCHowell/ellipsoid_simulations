@@ -47,3 +47,6 @@
 
 # Run Directories
 *run*/
+
+# Ipython Checkpoints
+.ipynb_checkpoints
