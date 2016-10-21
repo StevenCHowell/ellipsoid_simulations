@@ -15,7 +15,7 @@ float get_random_float(float &a, float &b)
   return ((b-a)*((float)rand()/RAND_MAX))+a;
 }
 
-bool check_conflict_scale(sasmol::SasMol &mol, const float scale, const float boxlnew)
+bool check_conflict_scale(sasmol::SasMol &mol, const float scale, const float box_length)
 {
 
   float x1,y1,z1,x2,y2,z2 ;
@@ -39,9 +39,9 @@ bool check_conflict_scale(sasmol::SasMol &mol, const float scale, const float bo
           ryij = y2-y1 ;
           rzij = z2-z1 ;
 
-          rxij=rxij-boxlnew*(round(rxij/boxlnew)) ;
-          ryij=ryij-boxlnew*(round(ryij/boxlnew)) ;
-          rzij=rzij-boxlnew*(round(rzij/boxlnew)) ;
+          rxij=rxij-box_length*(round(rxij/box_length)) ;
+          ryij=ryij-box_length*(round(ryij/box_length)) ;
+          rzij=rzij-box_length*(round(rzij/box_length)) ;
 
           r2ij=rxij*rxij+ryij*ryij+rzij*rzij ;
 
@@ -162,7 +162,7 @@ int main(){
 
   float neg_1 = -1.0, pos_1 = 1.0, zero = 0.0 ;
 
-  float ratbox,dpv,dvol,delthb,rrbox,boxlnew ;
+  float ratbox,dpv,dvol,delthb,rrbox,box_length_new ;
 
   int accepted_moves = 0 ;
   int count = 0 ;
@@ -226,16 +226,16 @@ int main(){
 
       v=v+1 ; tv=tv+1 ;
 
-      boxlnew = par.box_length + (get_random_float(neg_1,pos_1)) * dboxmx ;
+      box_length_new = par.box_length + (get_random_float(neg_1,pos_1)) * dboxmx ;
 
-      ratbox = par.box_length / boxlnew ;
+      ratbox = par.box_length / box_length_new ;
       rrbox = 1.0 / ratbox ;
 
-      dpv = par.goal_pressure * (pow(boxlnew,3.0) - par.volume) ;
+      dpv = par.goal_pressure * (pow(box_length_new,3.0) - par.volume) ;
       dvol = 3.0 * par.temperature * mol._natoms() * log(ratbox) ; //log == ln
       delthb = beta * ( dpv + dvol ) ;
 
-      if ( ! check_conflict_scale(mol, rrbox, boxlnew) )
+      if ( ! check_conflict_scale(mol, rrbox, box_length_new) )
         {
           if(delthb < 75.0)
             {
@@ -245,7 +245,7 @@ int main(){
                   mol._y() *= rrbox ;
                   mol._z() *= rrbox ;
 
-                  par.box_length = boxlnew ;
+                  par.box_length = box_length_new ;
                   acboxa = acboxa + 1.0 ;
                 }
               else if(exp(-delthb) > get_random_float(zero,pos_1))
@@ -254,7 +254,7 @@ int main(){
                   mol._y() *= rrbox ;
                   mol._z() *= rrbox ;
 
-                  par.box_length = boxlnew ;
+                  par.box_length = box_length_new ;
                   acboxa = acboxa + 1.0 ;
                 }
             }
