@@ -3,7 +3,7 @@
 #include <util.h>
 #include <fstream>
 
-#define Rcut 0.5 // cut off radius
+#define r_cutoff 0.5 // cut off radius
 
 using namespace Eigen ;
 
@@ -12,43 +12,43 @@ void stop_here(){ exit(0) ;} ;
 
 float get_random_float(float &a, float &b)
 {
-      return ((b-a)*((float)rand()/RAND_MAX))+a;
+  return ((b-a)*((float)rand()/RAND_MAX))+a;
 }
 
 bool check_conflict_scale(sasmol::SasMol &mol, const float scale, const float boxlnew)
 {
 
 	float x1,y1,z1,x2,y2,z2 ;
-	float rxij,ryij,rzij,rijsq ;
+	float rxij,ryij,rzij,r2ij ;
 
 	int frame = 0 ;
-    const float R2cut = (2*Rcut)*(2*Rcut);
+    const float r2_cutoff = (2*r_cutoff)*(2*r_cutoff);
 
 	for(int i = 0 ; i < mol._natoms()-1 ; ++i)
     {
-        x1 = mol._x()(i,frame)*scale ;            
-        y1 = mol._y()(i,frame)*scale ;            
-        z1 = mol._z()(i,frame)*scale ;            
+        x1 = mol._x()(i,frame)*scale ;
+        y1 = mol._y()(i,frame)*scale ;
+        z1 = mol._z()(i,frame)*scale ;
 	    for(int j = i+1 ; j < mol._natoms() ; ++j)
 	    {
-			x2 = mol._x()(j,frame)*scale ;            
-			y2 = mol._y()(j,frame)*scale ;            
-			z2 = mol._z()(j,frame)*scale ;            
-         
+			x2 = mol._x()(j,frame)*scale ;
+			y2 = mol._y()(j,frame)*scale ;
+			z2 = mol._z()(j,frame)*scale ;
+
 			rxij = x2-x1 ;
 			ryij = y2-y1 ;
 			rzij = z2-z1 ;
-         
+
 			rxij=rxij-boxlnew*(round(rxij/boxlnew)) ;
 			ryij=ryij-boxlnew*(round(ryij/boxlnew)) ;
 			rzij=rzij-boxlnew*(round(rzij/boxlnew)) ;
-                         
-			rijsq=rxij*rxij+ryij*ryij+rzij*rzij ;
 
-			if (rijsq < R2cut) return true;
-	    } // end of loop j over mol._natoms() 
+			r2ij=rxij*rxij+ryij*ryij+rzij*rzij ;
 
-	} // end of loop i over mol._natoms() 
+			if (r2ij < r2_cutoff) return true;
+	    } // end of loop j over mol._natoms()
+
+	} // end of loop i over mol._natoms()
 
 	return false;
 }
@@ -57,33 +57,33 @@ bool check_conflict_1atom(sasmol::SasMol &mol, float &x1, float &y1, float &z1, 
 {
 
 	float x2,y2,z2 ;
-	float rxij,ryij,rzij,rijsq ;
+	float rxij,ryij,rzij,r2ij ;
 
 	int frame = 0 ;
-    const float R2cut = (2*Rcut)*(2*Rcut);
+    const float r2_cutoff = (2*r_cutoff)*(2*r_cutoff);
 
 	for(int j = 0 ; j < mol._natoms() ; ++j)
 	{
         if( j != thisi)
-		{ 
-			x2 = mol._x()(j,frame) ;            
-			y2 = mol._y()(j,frame) ;            
-			z2 = mol._z()(j,frame) ;            
-         
+		{
+			x2 = mol._x()(j,frame) ;
+			y2 = mol._y()(j,frame) ;
+			z2 = mol._z()(j,frame) ;
+
 			rxij = x2-x1 ;
 			ryij = y2-y1 ;
 			rzij = z2-z1 ;
-         
+
 			rxij=rxij-box_length*(round(rxij/box_length)) ;
 			ryij=ryij-box_length*(round(ryij/box_length)) ;
 			rzij=rzij-box_length*(round(rzij/box_length)) ;
-                         
-			rijsq=rxij*rxij+ryij*ryij+rzij*rzij ;
 
-			if (rijsq < R2cut) return true;
+			r2ij=rxij*rxij+ryij*ryij+rzij*rzij ;
+
+			if (r2ij < r2_cutoff) return true;
         }
 
-	} // end of loop j over mol._natoms() 
+	} // end of loop j over mol._natoms()
 
 	return false;
 }
@@ -93,7 +93,7 @@ bool check_conflict_1atom(sasmol::SasMol &mol, float &x1, float &y1, float &z1, 
 int main(){
 
     std::cout << "\n\n\n" ;
-    
+
     util::compile_time(__FILE__, __func__, __DATE__, __TIME__ );
 
     util::pp("welcome to a new beginning") ;
@@ -103,7 +103,7 @@ int main(){
     sasmol::SasMol mol ;
 
     util::pp(">>> reading pdb") ;
-    
+
     mol.read_pdb(par.input_filename) ;
 
     util::pp(">>> writing pdb") ;
@@ -123,12 +123,12 @@ int main(){
 //    pressfile=open(runname+'_press.dat','w')
 //    densityfile=open(runname+'_density.dat','w')
 
-    par.volume = pow(par.box_length,3.0) ; 
+    par.volume = pow(par.box_length,3.0) ;
     par.boxlinv = 1.0/par.box_length ;
     par.density = mol._natoms()/par.volume ;
 
-      par.translation_ratio = par.number_of_steps/100.0 ;  
-      par.volume_ratio = par.number_of_steps/100.0 ; 
+      par.translation_ratio = par.number_of_steps/100.0 ;
+      par.volume_ratio = par.number_of_steps/100.0 ;
 
     float dboxmx = par.box_length/40.0 ;
     float drmax = par.delta_translation ;
@@ -139,12 +139,12 @@ int main(){
     float acpsq = 0.0, acdsq = 0.0, flv = 0.0, flp = 0.0, fld = 0.0 ;
 
     float ps = par.density * par.temperature;
-    
+
     std::cout << "density = " << par.density << std::endl ;
     std::cout << "initial pressure = " << ps << std::endl ;
 
     int m = 0, v = 0, tm = 0, tv = 0 ;
-     
+
     int fr = 1 ;
 
     std::cout << "\nSTEP\t\tVN\t%ACC_MOV\t%ACC_VOL\t ETA\t\t<ETA>\t\tDENSITY\t\t<DENSITY>\tPRESSURE\t<PRESSURE>\tBOXL\n" << std::endl ;
@@ -160,7 +160,7 @@ int main(){
     float rxiold, ryiold, rziold ;
     float rxinew, ryinew, rzinew ;
 
-    float neg_1 = -1.0, pos_1 = 1.0, zero = 0.0 ; 
+    float neg_1 = -1.0, pos_1 = 1.0, zero = 0.0 ;
 
     float ratbox,dpv,dvol,delthb,rrbox,boxlnew ;
 
@@ -179,21 +179,21 @@ int main(){
         std::cout << this_step << " " << std::flush ;
 
         if(this_step == 0)
-        { 
+        {
             frames_since_last_dcd_save = par.dcd_save_frequency ;
         }
         else
         {
-            frames_since_last_dcd_save += 1 ;    
-        }    
+            frames_since_last_dcd_save += 1 ;
+        }
         for(int i = 0 ; i < mol._natoms() ; ++i)
         {
             count++ ;
             m=m+1 ; tm=tm+1 ;
-    
-            rxiold = mol._x()(i,frame) ;        
-            ryiold = mol._y()(i,frame) ;        
-            rziold = mol._z()(i,frame) ;        
+
+            rxiold = mol._x()(i,frame) ;
+            ryiold = mol._y()(i,frame) ;
+            rziold = mol._z()(i,frame) ;
 
             rxinew = rxiold + (get_random_float(neg_1,pos_1)) * drmax ;
             ryinew = ryiold + (get_random_float(neg_1,pos_1)) * drmax ;
@@ -218,16 +218,16 @@ int main(){
             acm = acm + 1.0 ;
             acp = acp + par.pressure ;
             acd = acd + par.density ;
-    
+
             acpsq = acpsq + pow(par.pressure,2.0) ;
             acdsq = acdsq + pow(par.density,2.0) ;
-            
+
         } // end of loop i over mol._natoms()
-            
+
         v=v+1 ; tv=tv+1 ;
-        
+
         boxlnew = par.box_length + (get_random_float(neg_1,pos_1)) * dboxmx ;
-        
+
         ratbox = par.box_length / boxlnew ;
         rrbox = 1.0 / ratbox ;
 
@@ -256,12 +256,12 @@ int main(){
 
                     par.box_length = boxlnew ;
                     acboxa = acboxa + 1.0 ;
-                }    
+                }
             }
         }
 
         par.boxlinv = 1.0/par.box_length ;
-        par.volume = pow(par.box_length,3.0) ; 
+        par.volume = pow(par.box_length,3.0) ;
         par.density=mol._natoms()/par.volume ;
 
         par.pressure = par.density * par.temperature;
@@ -281,9 +281,9 @@ int main(){
             fout << this_step << " "<<par.box_length<<" "<<par.density <<" "<<par.pressure<<std::endl;
         }
 
-//        boxfile.write("%i\t%f\n" % (step,boxl))    
-//        pressfile.write("%i\t%f\t%f\n" % (step,pressure,acp/(tm+tv)))    
-//        densityfile.write("%i\t%f\t%f\n" % (step,density,acd/(tm+tv)))    
+//        boxfile.write("%i\t%f\n" % (step,boxl))
+//        pressfile.write("%i\t%f\t%f\n" % (step,pressure,acp/(tm+tv)))
+//        densityfile.write("%i\t%f\t%f\n" % (step,density,acd/(tm+tv)))
 //        boxfile.flush() ; pressfile.flush() ; densityfile.flush()
 
         if(fmodf(float(this_step),(par.number_of_steps/float(100.0)))==0)
@@ -296,7 +296,7 @@ int main(){
 
             fr += 1 ;
         }
-    
+
         if(fmodf(float(this_step),par.translation_ratio)==0)
         {
             ratio = acatma/(mol._natoms()*par.translation_ratio) ;
@@ -318,12 +318,12 @@ int main(){
             {
                 dboxmx=dboxmx*1.05 ;
             }
-            else    
+            else
             {
                 dboxmx=dboxmx*0.95 ;
             }
             acboxa = 0.0 ;
-            v=0 ;    
+            v=0 ;
         }
 
     std::cout << "\n\npercent mcmoves accepted " << acatma*100.0/tm << std::endl ;
@@ -361,5 +361,3 @@ int main(){
 
 
 }
-
-
