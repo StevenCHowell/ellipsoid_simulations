@@ -24,7 +24,7 @@ void initHLCoor(sasmol::SasMol & mol, Eigen::ArrayXXf & coor_center, Eigen::Arra
 
     util::pp(">>> running Eigen::Vector3f vaxis") ;
     Eigen::Vector3f v_axis;
-    util::pp(">>> iteratively setting coordinates") ; 
+    util::pp(">>> iteratively setting coordinates") ;
     for (int i=0; i<mol._natoms() ; ++i)
     {
         d_theta = (util::get_random_float(-1.0, 1.0)) * PI;
@@ -178,7 +178,7 @@ int main(){
     // set up sasmol object
     sasmol::SasMol mol_single;
     util::pp(">>> reading pdb") ;
-    mol_single.read_pdb("triplet_H.pdb") ;
+    mol_single.read_pdb("singlet_H.pdb") ;
 
     util::pp(">>> creating duplicate sasmol object") ;
     sasmol::SasMol mol;
@@ -188,17 +188,17 @@ int main(){
     mol.center(frame) ;
 
     util::pp(">>> writing duplicate to local dir") ;
-    mol.write_pdb("triplets_H.pdb",frame) ;
+    mol.write_pdb("singlets_H.pdb",frame) ;
     mol.calc_mass() ;
 
     // set up sasmol reference object (for writing out coordinate)
-    sasmol::SasMol mol_triplet;
+    sasmol::SasMol mol_singlet;
     util::pp(">>> reading pdb") ;
-    mol_triplet.read_pdb("triplet.pdb") ;
+    mol_singlet.read_pdb("singlet.pdb") ;
 
     util::pp(">>> creating duplicate sasmol object") ;
-    sasmol::SasMol mol_triplets;
-    mol_triplet.duplicate_molecule(mol_triplets, frame, N1d, par.box_length/N1d) ;
+    sasmol::SasMol mol_singlets;
+    mol_singlet.duplicate_molecule(mol_singlets, frame, N1d, par.box_length/N1d) ;
 
 
     // initialize the heavy and light chain center coordinates
@@ -210,33 +210,33 @@ int main(){
     Eigen::Array<float,Eigen::Dynamic,Eigen::Dynamic> coor_H(natoms, 3) ;
     util::pp(">>> initialize coor_L1") ;
     Eigen::Array<float,Eigen::Dynamic,Eigen::Dynamic> coor_L1(natoms, 3) ;
-    util::pp(">>> initialize coor_L2") ; 
+    util::pp(">>> initialize coor_L2") ;
     Eigen::Array<float,Eigen::Dynamic,Eigen::Dynamic> coor_L2(natoms, 3) ;
-    util::pp(">>> pass coordinates into 'initHLCoor'") ; 
+    util::pp(">>> pass coordinates into 'initHLCoor'") ;
     initHLCoor(mol, coor_center, coor_H, coor_L1, coor_L2) ;
 
-    util::pp(">>> update the coordinates in mol_triplets") ;
-    // update the coordinates in mol_triplets
-    for (int i=0; i<mol_triplets._natoms()/3; ++i)
+    util::pp(">>> update the coordinates in mol_singlets") ;
+    // update the coordinates in mol_singlets
+    for (int i=0; i<mol_singlets._natoms()/3; ++i)
     {
-        mol_triplets._x()(i*3,frame) = coor_H(i,0) ;
-        mol_triplets._y()(i*3,frame) = coor_H(i,1) ;
-        mol_triplets._z()(i*3,frame) = coor_H(i,2) ;
-        mol_triplets._x()(i*3+1,frame) = coor_L1(i,0) ;
-        mol_triplets._y()(i*3+1,frame) = coor_L1(i,1) ;
-        mol_triplets._z()(i*3+1,frame) = coor_L1(i,2) ;
-        mol_triplets._x()(i*3+2,frame) = coor_L2(i,0) ;
-        mol_triplets._y()(i*3+2,frame) = coor_L2(i,1) ;
-        mol_triplets._z()(i*3+2,frame) = coor_L2(i,2) ;
+        mol_singlets._x()(i*3,frame) = coor_H(i,0) ;
+        mol_singlets._y()(i*3,frame) = coor_H(i,1) ;
+        mol_singlets._z()(i*3,frame) = coor_H(i,2) ;
+        mol_singlets._x()(i*3+1,frame) = coor_L1(i,0) ;
+        mol_singlets._y()(i*3+1,frame) = coor_L1(i,1) ;
+        mol_singlets._z()(i*3+1,frame) = coor_L1(i,2) ;
+        mol_singlets._x()(i*3+2,frame) = coor_L2(i,0) ;
+        mol_singlets._y()(i*3+2,frame) = coor_L2(i,1) ;
+        mol_singlets._z()(i*3+2,frame) = coor_L2(i,2) ;
     }
-    mol_triplets.center(frame) ;
-    mol_triplets.write_pdb("triplets.pdb",frame) ;
+    mol_singlets.center(frame) ;
+    mol_singlets.write_pdb("singlets.pdb",frame) ;
 
     std::cout << "total mass = " << mol._total_mass() << std::endl ;
     std::cout << "number of atoms = " << mol._natoms() << std::endl ;
     std::cout << "starting box length = " << par.box_length << std::endl ;
 
-     FILE *dcdoutfile = sasio::open_write_dcd_file(par.dcd_output_filename, mol_triplets._natoms(), par.number_of_steps) ;
+     FILE *dcdoutfile = sasio::open_write_dcd_file(par.dcd_output_filename, mol_singlets._natoms(), par.number_of_steps) ;
 
 //    boxfile=open(runname+'_box.dat','w')
 //    pressfile=open(runname+'_press.dat','w')
@@ -244,7 +244,7 @@ int main(){
 
     par.volume = pow(par.box_length,3.0) ;
     par.inv_box_length = 1.0/par.box_length ;
-    par.density = mol_triplets._natoms()/par.volume ;
+    par.density = mol_singlets._natoms()/par.volume ;
 
       par.translation_ratio = par.number_of_steps/100.0 ;
       par.volume_ratio = par.number_of_steps/100.0 ;
@@ -324,7 +324,7 @@ int main(){
 
             if (Q_profiling_detail) gettimeofday(&t1_detail,NULL) ;
             int dice = int(util::get_random_float(0.0,3.0)) ;
-            // translate the triplet
+            // translate the singlet
             if (dice == 0)
             {
                 rxiold = mol._x()(i,frame) ;
@@ -347,9 +347,9 @@ int main(){
                 Rinew_H = Rinew_center + Rinew_H;
                 Rinew_L1 = Rinew_center + Rinew_L1;
                 Rinew_L2 = Rinew_center + Rinew_L2;
-                if (Q_profiling_detail) util::profiling(t1_detail,t2_detail,"shift triplet") ;
+                if (Q_profiling_detail) util::profiling(t1_detail,t2_detail,"shift singlet") ;
             }
-            // rotate the triplet
+            // rotate the singlet
             else if (dice==1)
             {
                 rxinew = mol._x()(i,frame) ;
@@ -371,9 +371,9 @@ int main(){
                 Rinew_H = Rinew_center + (rot*(Rinew_H.matrix().transpose())).transpose().array() ;
                 Rinew_L1 = Rinew_center + (rot*(Rinew_L1.matrix().transpose())).transpose().array() ;
                 Rinew_L2 = Rinew_center + (rot*(Rinew_L2.matrix().transpose())).transpose().array() ;
-                if (Q_profiling_detail) util::profiling(t1_detail,t2_detail,"rotate triplet") ;
+                if (Q_profiling_detail) util::profiling(t1_detail,t2_detail,"rotate singlet") ;
             }
-            // deform the triplet
+            // deform the singlet
             else
             {
                 rxinew = mol._x()(i,frame) ;
@@ -410,7 +410,7 @@ int main(){
                     Rinew_L2 = Rinew_center + (rot*(Rinew_L2.matrix().transpose())).transpose().array() ;
                 }
 
-                if (Q_profiling_detail) util::profiling(t1_detail,t2_detail,"deform triplet") ;
+                if (Q_profiling_detail) util::profiling(t1_detail,t2_detail,"deform singlet") ;
             }
             /*
             std::cout<<"v_axis: "<<v_axis<<std::endl;
@@ -456,7 +456,7 @@ int main(){
         rrbox = 1.0 / ratbox ;
 
         dpv = par.goal_pressure * (pow(boxlnew,3.0) - par.volume) ;
-        dvol = 3.0 * par.temperature * mol_triplets._natoms() * log(ratbox) ; //log == ln
+        dvol = 3.0 * par.temperature * mol_singlets._natoms() * log(ratbox) ; //log == ln
         delthb = beta * ( dpv + dvol ) ;
 
         if ( ! check_conflict_scale(mol._natoms(), coor_center, coor_H, coor_L1, coor_L2, rrbox, boxlnew) )
@@ -497,7 +497,7 @@ int main(){
 
         par.inv_box_length = 1.0/par.box_length ;
         par.volume = pow(par.box_length,3.0) ;
-        par.density=mol_triplets._natoms()/par.volume ;
+        par.density=mol_singlets._natoms()/par.volume ;
 
         par.pressure = par.density * par.temperature;
 
@@ -511,19 +511,19 @@ int main(){
         if(frames_since_last_dcd_save == par.dcd_save_frequency)
         {
             overall_frame += 1 ;
-            for (int i=0; i<mol_triplets._natoms()/3; ++i)
+            for (int i=0; i<mol_singlets._natoms()/3; ++i)
             {
-                mol_triplets._x()(i*3,frame) = coor_H(i,0) ;
-                mol_triplets._y()(i*3,frame) = coor_H(i,1) ;
-                mol_triplets._z()(i*3,frame) = coor_H(i,2) ;
-                mol_triplets._x()(i*3+1,frame) = coor_L1(i,0) ;
-                mol_triplets._y()(i*3+1,frame) = coor_L1(i,1) ;
-                mol_triplets._z()(i*3+1,frame) = coor_L1(i,2) ;
-                mol_triplets._x()(i*3+2,frame) = coor_L2(i,0) ;
-                mol_triplets._y()(i*3+2,frame) = coor_L2(i,1) ;
-                mol_triplets._z()(i*3+2,frame) = coor_L2(i,2) ;
+                mol_singlets._x()(i*3,frame) = coor_H(i,0) ;
+                mol_singlets._y()(i*3,frame) = coor_H(i,1) ;
+                mol_singlets._z()(i*3,frame) = coor_H(i,2) ;
+                mol_singlets._x()(i*3+1,frame) = coor_L1(i,0) ;
+                mol_singlets._y()(i*3+1,frame) = coor_L1(i,1) ;
+                mol_singlets._z()(i*3+1,frame) = coor_L1(i,2) ;
+                mol_singlets._x()(i*3+2,frame) = coor_L2(i,0) ;
+                mol_singlets._y()(i*3+2,frame) = coor_L2(i,1) ;
+                mol_singlets._z()(i*3+2,frame) = coor_L2(i,2) ;
             }
-            mol_triplets.write_dcd_step(dcdoutfile,frame,overall_frame) ;
+            mol_singlets.write_dcd_step(dcdoutfile,frame,overall_frame) ;
             frames_since_last_dcd_save = 0 ;
             fout << this_step << " "<<par.box_length<<" "<<par.density <<" "<<par.pressure<<std::endl;
         }
@@ -546,7 +546,7 @@ int main(){
 
         if(fmodf(float(this_step),par.translation_ratio)==0)
         {
-            ratio = acatma/(mol_triplets._natoms()*par.translation_ratio) ;
+            ratio = acatma/(mol_singlets._natoms()*par.translation_ratio) ;
             if (ratio > 0.5)
             {
                 drmax=drmax*1.05 ;
