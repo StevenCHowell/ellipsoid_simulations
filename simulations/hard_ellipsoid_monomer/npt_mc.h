@@ -45,7 +45,7 @@ class RunParameters{
   const int dcd_save_frequency = 10 ;     // how often to save frames
 
   float box_length = (RBEADTOBEAD+2.*RADIUS)*N1d*1.011*2.0;        // initial box length
-  int number_of_steps = 100000 ;
+  int number_of_steps = 100 ;
   float delta_translation = 0.20*RADIUS ;         // translational move step size
   float temperature = 300./119.8 ;                // temperature (300 Kelvin in reduced units, T K / 119.8 K)
   float goal_pressure = 100./419.;                // pressure (100 bar in reduced units, P bar / 419 bar)
