@@ -14,35 +14,6 @@ void stop_here(){ exit(0) ;} ;
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void initHLCoor(sasmol::SasMol & mol, Eigen::ArrayXXf & coor_center, Eigen::ArrayXXf & coor_H, Eigen::ArrayXXf & coor_L1, Eigen::ArrayXXf & coor_L2)
-{
-  util::pp(">>> entered loop") ;
-  coor_center = mol._coor() ;
-
-  float d_theta ;
-  int rot_axis ;
-
-  util::pp(">>> running Eigen::Vector3f vaxis") ;
-  Eigen::Vector3f v_axis;
-  util::pp(">>> iteratively setting coordinates") ;
-  for (int i=0; i<mol._natoms() ; ++i)
-    {
-      d_theta = (util::get_random_float(-1.0, 1.0)) * PI;
-      rot_axis = int(util::get_random_float(0.0,3.0)) ;
-      if (rot_axis==0) v_axis<<1.0,0.0,0.0;
-      else if (rot_axis==1) v_axis<<0.0,1.0,0.0;
-      else v_axis<<0.0,0.0,1.0;
-      Eigen::AngleAxisf rot(d_theta, v_axis) ;
-      coor_H.row(i) = coor_center.row(i) + (rot*(v_H.matrix().transpose())).transpose().array() ;
-      coor_L1.row(i) = coor_center.row(i) + (rot*(v_L1.matrix().transpose())).transpose().array() ;
-      coor_L2.row(i) = coor_center.row(i) + (rot*(v_L2.matrix().transpose())).transpose().array() ;
-
-    }
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
 float dist_2atoms_pbc(const Eigen::Array<float,1,3> & R1, const Eigen::Array<float,1,3> & R2, const float box_length)
 {
   float rxij = R2(0,0)-R1(0,0) ;
@@ -178,69 +149,30 @@ int main(){
   // set up sasmol object
   sasmol::SasMol mol_single;
   util::pp(">>> reading pdb") ;
-  mol_single.read_pdb("singlet_H.pdb") ;
+  mol_single.read_pdb("ellipsoid.pdb") ;
 
-  util::pp(">>> creating duplicate sasmol object") ;
+  util::pp(">>> creating copies of sasmol object") ;
   sasmol::SasMol mol;
+  //sh note: N1d is a global variable defined in npt_mc.h
   mol_single.duplicate_molecule(mol, frame, N1d, par.box_length/N1d) ;
 
-  util::pp(">>> centeringing duplicate") ;
+  util::pp(">>> centeringing composite system of copies") ;
   mol.center(frame) ;
 
-  util::pp(">>> writing duplicate to local dir") ;
-  mol.write_pdb("singlets_H.pdb",frame) ;
+  util::pp(">>> writing pdb of composite system to local dir") ;
+  mol.write_pdb("ellipsoids.pdb",frame) ;
+  //sh: need to write ANISOU line!!!
   mol.calc_mass() ;
 
-  // set up sasmol reference object (for writing out coordinate)
-  sasmol::SasMol mol_singlet;
-  util::pp(">>> reading pdb") ;
-  mol_singlet.read_pdb("singlet.pdb") ;
-
-  util::pp(">>> creating duplicate sasmol object") ;
-  sasmol::SasMol mol_singlets;
-  mol_singlet.duplicate_molecule(mol_singlets, frame, N1d, par.box_length/N1d) ;
-
-
-  // initialize the heavy and light chain center coordinates
-  util::pp(">>> initialize heavy and light chain centers") ;
-  const int natoms = mol._natoms() ;
-  util::pp(">>> initialize coor_centers") ;
-  Eigen::Array<float,Eigen::Dynamic,Eigen::Dynamic> coor_center(natoms, 3) ;
-  util::pp(">>> initialize coor_H") ;
-  Eigen::Array<float,Eigen::Dynamic,Eigen::Dynamic> coor_H(natoms, 3) ;
-  util::pp(">>> initialize coor_L1") ;
-  Eigen::Array<float,Eigen::Dynamic,Eigen::Dynamic> coor_L1(natoms, 3) ;
-  util::pp(">>> initialize coor_L2") ;
-  Eigen::Array<float,Eigen::Dynamic,Eigen::Dynamic> coor_L2(natoms, 3) ;
-  util::pp(">>> pass coordinates into 'initHLCoor'") ;
-  initHLCoor(mol, coor_center, coor_H, coor_L1, coor_L2) ;
-
-  util::pp(">>> update the coordinates in mol_singlets") ;
-  // update the coordinates in mol_singlets
-  for (int i=0; i<mol_singlets._natoms()/3; ++i)
-    {
-      mol_singlets._x()(i*3,frame) = coor_H(i,0) ;
-      mol_singlets._y()(i*3,frame) = coor_H(i,1) ;
-      mol_singlets._z()(i*3,frame) = coor_H(i,2) ;
-      mol_singlets._x()(i*3+1,frame) = coor_L1(i,0) ;
-      mol_singlets._y()(i*3+1,frame) = coor_L1(i,1) ;
-      mol_singlets._z()(i*3+1,frame) = coor_L1(i,2) ;
-      mol_singlets._x()(i*3+2,frame) = coor_L2(i,0) ;
-      mol_singlets._y()(i*3+2,frame) = coor_L2(i,1) ;
-      mol_singlets._z()(i*3+2,frame) = coor_L2(i,2) ;
-    }
-  mol_singlets.center(frame) ;
-  mol_singlets.write_pdb("singlets.pdb",frame) ;
+  //sh: how do I want to represent ellipsoid orientation?!?
+  //sh: need to randomize the orientations of starting ellipsoids!!!
 
   std::cout << "total mass = " << mol._total_mass() << std::endl ;
   std::cout << "number of atoms = " << mol._natoms() << std::endl ;
   std::cout << "starting box length = " << par.box_length << std::endl ;
 
   FILE *dcdoutfile = sasio::open_write_dcd_file(par.dcd_output_filename, mol_singlets._natoms(), par.number_of_steps) ;
-
-  //    boxfile=open(runname+'_box.dat','w')
-  //    pressfile=open(runname+'_press.dat','w')
-  //    densityfile=open(runname+'_density.dat','w')
+  //sh: cannot use dcd to store orientation of ellipsoids!?!
 
   par.volume = pow(par.box_length,3.0) ;
   par.inv_box_length = 1.0/par.box_length ;
@@ -252,7 +184,7 @@ int main(){
   float dboxmx = par.box_length/40.0 ;
   float drmax = par.delta_translation ;
 
-  float beta = 1.0/par.temperature ;         // i.e. kb=1.0
+  float beta = 1.0/par.temperature ;         // i.e., kb=1.0
 
   float acm = 0.0, acatma = 0.0, acboxa = 0.0, acp = 0.0, acd = 0.0 ;
   float acpsq = 0.0, acdsq = 0.0, flv = 0.0, flp = 0.0, fld = 0.0 ;
@@ -272,9 +204,6 @@ int main(){
   ///// MAIN LOOP
 
   int frames_since_last_dcd_save = 0 ;
-
-  //    Array<float,Dynamic,Dynamic> rxiold ;
-  //     rxiold.setZero(mol._natoms(), 1) ;
 
   float rxiold, ryiold, rziold ;
   float rxinew, ryinew, rzinew ;
