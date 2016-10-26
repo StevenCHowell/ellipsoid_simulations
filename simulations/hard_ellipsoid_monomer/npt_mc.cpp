@@ -181,8 +181,8 @@ int main(){
   par.translation_ratio = par.number_of_steps/100.0 ;
   par.volume_ratio = par.number_of_steps/100.0 ;
 
-  float dboxmx = par.box_length/40.0 ;
-  float drmax = par.delta_translation ;
+  float dbox_max = par.box_length/40.0 ;
+  float dr_max = par.delta_translation ;
 
   float beta = 1.0/par.temperature ;         // i.e., kb=1.0
 
@@ -203,12 +203,12 @@ int main(){
 
   ///// MAIN LOOP
 
-  int frames_since_last_dcd_save = 0 ;
+  int frames_since_last_dcd_save = par.dcd_save_frequency ;
 
-  float rxiold, ryiold, rziold ;
-  float rxinew, ryinew, rzinew ;
+  float rxi_old, ryi_old, rzi_old ;
+  float rxi_new, ryi_new, rzi_new ;
 
-  Eigen::Array<float,1,3> Rinew_H, Rinew_L1, Rinew_L2, Rinew_center;
+  Eigen::Array<float,1,3> Ri_new_H, Ri_new_L1, Ri_new_L2, ri_new;
 
   float neg_1 = -1.0, pos_1 = 1.0, zero = 0.0 ;
 
@@ -236,11 +236,7 @@ int main(){
       if (Q_profiling_overall) gettimeofday(&t0_overall,NULL) ;
       std::cout << this_step << " " << std::endl;
 
-      if(this_step == 0)
-        {
-          frames_since_last_dcd_save = par.dcd_save_frequency ;
-        }
-      else
+      if(this_step > 0)
         {
           frames_since_last_dcd_save += 1 ;
         }
@@ -253,68 +249,70 @@ int main(){
 
           if (Q_profiling_detail) gettimeofday(&t1_detail,NULL) ;
           int dice = int(util::get_random_float(0.0,3.0)) ;
-          // translate the singlet
+          // translate a molecule
           if (dice == 0)
             {
-              rxiold = mol._x()(i,frame) ;
-              ryiold = mol._y()(i,frame) ;
-              rziold = mol._z()(i,frame) ;
+              rxi_old = mol._x()(i,frame) ;
+              ryi_old = mol._y()(i,frame) ;
+              rzi_old = mol._z()(i,frame) ;
 
-              rxinew = rxiold + (util::get_random_float(neg_1,pos_1)) * drmax ;
-              ryinew = ryiold + (util::get_random_float(neg_1,pos_1)) * drmax ;
-              rzinew = rziold + (util::get_random_float(neg_1,pos_1)) * drmax ;
+              rxi_new = rxi_old + (util::get_random_float(neg_1,pos_1)) * dr_max ;
+              ryi_new = ryi_old + (util::get_random_float(neg_1,pos_1)) * dr_max ;
+              rzi_new = rzi_old + (util::get_random_float(neg_1,pos_1)) * dr_max ;
 
-              rxinew = rxinew-par.box_length*(round(rxinew*par.inv_box_length)) ;
-              ryinew = ryinew-par.box_length*(round(ryinew*par.inv_box_length)) ;
-              rzinew = rzinew-par.box_length*(round(rzinew*par.inv_box_length)) ;
+              // wrap coordinates that exceeded the box range
+              rxi_new = rxi_new-par.box_length*(round(rxi_new*par.inv_box_length)) ;
+              ryi_new = ryi_new-par.box_length*(round(ryi_new*par.inv_box_length)) ;
+              rzi_new = rzi_new-par.box_length*(round(rzi_new*par.inv_box_length)) ;
 
-              Rinew_center = coor_center.row(i) ;
-              Rinew_H = coor_H.row(i)-Rinew_center;
-              Rinew_L1 = coor_L1.row(i)-Rinew_center;
-              Rinew_L2 = coor_L2.row(i)-Rinew_center;
-              Rinew_center << rxinew, ryinew, rzinew;
-              Rinew_H = Rinew_center + Rinew_H;
-              Rinew_L1 = Rinew_center + Rinew_L1;
-              Rinew_L2 = Rinew_center + Rinew_L2;
-              if (Q_profiling_detail) util::profiling(t1_detail,t2_detail,"shift singlet") ;
+              if (Q_profiling_detail) util::profiling(t1_detail,t2_detail,"shift molecule") ;
             }
-          // rotate the singlet
+          // rotate a molecule
           else if (dice==1)
             {
-              rxinew = mol._x()(i,frame) ;
-              ryinew = mol._y()(i,frame) ;
-              rzinew = mol._z()(i,frame) ;
+              rxi_new = mol._x()(i,frame) ;
+              ryi_new = mol._y()(i,frame) ;
+              rzi_new = mol._z()(i,frame) ;
 
               d_theta = (util::get_random_float(neg_1,pos_1)) * PI;
-              //d_theta = -PI/2.;
+
               rot_axis = int(util::get_random_float(0.0,3.0)) ;
+
+              /*
+              try_v_axis<<0.0,0.0,0.0;
+              try_v_axis(rot_axis) = 1.0;
+              print tri_v_axis
+              */
+
               if (rot_axis==0) v_axis<<1.0,0.0,0.0;
               else if (rot_axis==1) v_axis<<0.0,1.0,0.0;
               else v_axis<<0.0,0.0,1.0;
+              // print v_axis
+
               Eigen::AngleAxisf rot(d_theta, v_axis) ;
 
-              Rinew_center = coor_center.row(i) ;
-              Rinew_H = coor_H.row(i)-Rinew_center;
-              Rinew_L1 = coor_L1.row(i)-Rinew_center;
-              Rinew_L2 = coor_L2.row(i)-Rinew_center;
-              Rinew_H = Rinew_center + (rot*(Rinew_H.matrix().transpose())).transpose().array() ;
-              Rinew_L1 = Rinew_center + (rot*(Rinew_L1.matrix().transpose())).transpose().array() ;
-              Rinew_L2 = Rinew_center + (rot*(Rinew_L2.matrix().transpose())).transpose().array() ;
+              ri_new = coor_center.row(i) ;
+              Ri_new_H = coor_H.row(i)-ri_new;
+              Ri_new_L1 = coor_L1.row(i)-ri_new;
+              Ri_new_L2 = coor_L2.row(i)-ri_new;
+              Ri_new_H = ri_new + (rot*(Ri_new_H.matrix().transpose())).transpose().array() ;
+              Ri_new_L1 = ri_new + (rot*(Ri_new_L1.matrix().transpose())).transpose().array() ;
+              Ri_new_L2 = ri_new + (rot*(Ri_new_L2.matrix().transpose())).transpose().array() ;
               if (Q_profiling_detail) util::profiling(t1_detail,t2_detail,"rotate singlet") ;
             }
-          // deform the singlet
+          // deform a molecule
           else
             {
-              rxinew = mol._x()(i,frame) ;
-              ryinew = mol._y()(i,frame) ;
-              rzinew = mol._z()(i,frame) ;
+              rxi_new = mol._x()(i,frame) ;
+              ryi_new = mol._y()(i,frame) ;
+              rzi_new = mol._z()(i,frame) ;
 
-              Rinew_center = coor_center.row(i) ;
-              Rinew_H = coor_H.row(i)-Rinew_center;
-              Rinew_L1 = coor_L1.row(i)-Rinew_center;
-              Rinew_L2 = coor_L2.row(i)-Rinew_center;
+              ri_new = coor_center.row(i) ;
+              Ri_new_H = coor_H.row(i)-ri_new;
+              Ri_new_L1 = coor_L1.row(i)-ri_new;
+              Ri_new_L2 = coor_L2.row(i)-ri_new;
 
-              v_axis = (Rinew_H.matrix().transpose()).cross((Rinew_L1.matrix().transpose())) ;
+              v_axis = (Ri_new_H.matrix().transpose()).cross((Ri_new_L1.matrix().transpose())) ;
               v_axis = v_axis/v_axis.norm() ;
               d_theta = (util::get_random_float(neg_1,pos_1)) * PI/6.0; // ZHL hardwired to rotate a small amount
               Eigen::AngleAxisf rot(d_theta, v_axis) ;
@@ -322,21 +320,21 @@ int main(){
               rot_axis = int(util::get_random_float(0.0,3.0)) ;
               if (rot_axis==0)
                 {
-                  Rinew_H = Rinew_center + (rot*(Rinew_H.matrix().transpose())).transpose().array() ;
-                  Rinew_L1 = Rinew_center + Rinew_L1;
-                  Rinew_L2 = Rinew_center + Rinew_L2;
+                  Ri_new_H = ri_new + (rot*(Ri_new_H.matrix().transpose())).transpose().array() ;
+                  Ri_new_L1 = ri_new + Ri_new_L1;
+                  Ri_new_L2 = ri_new + Ri_new_L2;
                 }
               else if (rot_axis==1)
                 {
-                  Rinew_H = Rinew_center + Rinew_H;
-                  Rinew_L1 = Rinew_center + (rot*(Rinew_L1.matrix().transpose())).transpose().array() ;
-                  Rinew_L2 = Rinew_center + Rinew_L2;
+                  Ri_new_H = ri_new + Ri_new_H;
+                  Ri_new_L1 = ri_new + (rot*(Ri_new_L1.matrix().transpose())).transpose().array() ;
+                  Ri_new_L2 = ri_new + Ri_new_L2;
                 }
               else
                 {
-                  Rinew_H = Rinew_center + Rinew_H;
-                  Rinew_L1 = Rinew_center + Rinew_L1;
-                  Rinew_L2 = Rinew_center + (rot*(Rinew_L2.matrix().transpose())).transpose().array() ;
+                  Ri_new_H = ri_new + Ri_new_H;
+                  Ri_new_L1 = ri_new + Ri_new_L1;
+                  Ri_new_L2 = ri_new + (rot*(Ri_new_L2.matrix().transpose())).transpose().array() ;
                 }
 
               if (Q_profiling_detail) util::profiling(t1_detail,t2_detail,"deform singlet") ;
@@ -344,21 +342,21 @@ int main(){
           /*
             std::cout<<"v_axis: "<<v_axis<<std::endl;
             std::cout<<"d_theta: "<<d_theta<<std::endl;
-            std::cout<<"Rinew_H: "<<Rinew_H<<std::endl;
-            std::cout<<"Rinew_L1: "<<Rinew_L1<<std::endl;
-            std::cout<<"Rinew_L2: "<<Rinew_L2<<std::endl;
+            std::cout<<"Ri_new_H: "<<Ri_new_H<<std::endl;
+            std::cout<<"Ri_new_L1: "<<Ri_new_L1<<std::endl;
+            std::cout<<"Ri_new_L2: "<<Ri_new_L2<<std::endl;
           */
 
-          if ( ! check_conflict_1atom(mol._natoms(), Rinew_H,Rinew_L1,Rinew_L2,i,par.box_length, coor_H, coor_L1, coor_L2) )
+          if ( ! check_conflict_1atom(mol._natoms(), Ri_new_H,Ri_new_L1,Ri_new_L2,i,par.box_length, coor_H, coor_L1, coor_L2) )
             {
-              mol._x()(i,frame) = rxinew ;
-              mol._y()(i,frame) = ryinew ;
-              mol._z()(i,frame) = rzinew ;
+              mol._x()(i,frame) = rxi_new ;
+              mol._y()(i,frame) = ryi_new ;
+              mol._z()(i,frame) = rzi_new ;
               //util::profiling(t1,t2,"assign new sasmol") ;
-              coor_center.row(i) <<rxinew, ryinew, rzinew;
-              coor_H.row(i) = Rinew_H;
-              coor_L1.row(i) = Rinew_L1;
-              coor_L2.row(i) = Rinew_L2;
+              coor_center.row(i) <<rxi_new, ryi_new, rzi_new;
+              coor_H.row(i) = Ri_new_H;
+              coor_L1.row(i) = Ri_new_L1;
+              coor_L2.row(i) = Ri_new_L2;
               //util::profiling(t1,t2,"assign new coor") ;
               acatma=acatma+1.0 ;
               accepted_moves ++ ;
@@ -379,7 +377,7 @@ int main(){
 
       v=v+1 ; tv=tv+1 ;
 
-      boxlnew = par.box_length + (util::get_random_float(neg_1,pos_1)) * dboxmx ;
+      boxlnew = par.box_length + (util::get_random_float(neg_1,pos_1)) * dbox_max ;
 
       ratbox = par.box_length / boxlnew ;
       rrbox = 1.0 / ratbox ;
@@ -478,11 +476,11 @@ int main(){
           ratio = acatma/(mol_singlets._natoms()*par.translation_ratio) ;
           if (ratio > 0.5)
             {
-              drmax=drmax*1.05 ;
+              dr_max=dr_max*1.05 ;
             }
           else
             {
-              drmax=drmax*0.95 ;
+              dr_max=dr_max*0.95 ;
             }
           acatma = 0.0 ;
           m=0 ;
@@ -492,11 +490,11 @@ int main(){
           bratio = acboxa/par.volume_ratio ;
           if (bratio > 0.5)
             {
-              dboxmx=dboxmx*1.05 ;
+              dbox_max=dbox_max*1.05 ;
             }
           else
             {
-              dboxmx=dboxmx*0.95 ;
+              dbox_max=dbox_max*0.95 ;
             }
           acboxa = 0.0 ;
           v=0 ;
