@@ -22,8 +22,8 @@ except AttributeError:
 
 # simple extension module
 distance = Extension(name="distance",sources=['./distance.f'],
-                   include_dirs = [numpy_include],
-                   )
+                     include_dirs = [numpy_include],
+                     extra_compile_args=['-mavx'])
 
 # NumyTypemapTests setup
 setup(  name        = "distance",

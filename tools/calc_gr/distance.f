@@ -24,14 +24,13 @@ c     dist = distance(coor, dist)
 c
 c         1         2         3         4         5         6         7
 c123456789012345678901234567890123456789012345678901234567890123456789012
+       do 200,i=1,n-1
+           do 300,j=i+1,n
+               xij=coor(i,1)-coor(j,1)
+               yij=coor(i,2)-coor(j,2)
+               zij=coor(i,3)-coor(j,3)
 
-        do 200,i=1,n-1
-            do 300,j=i+1,n
-                xij=coor(i,1)-coor(j,1)
-                yij=coor(i,2)-coor(j,2)
-                zij=coor(i,3)-coor(j,3)
-
-                dist(i,j)=dsqrt(xij*xij+yij*yij+zij*zij)
+               dist(i,j)=dsqrt(xij*xij+yij*yij+zij*zij)
 
   300   continue
   200   continue

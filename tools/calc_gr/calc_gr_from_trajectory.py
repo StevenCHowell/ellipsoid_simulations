@@ -7,7 +7,10 @@ from scipy.spatial.distance import pdist
 import sasmol.sasmol as sasmol
 
 sys.path.append('./')
-import gr as fortran_gr
+try:
+    import gr as fortran_gr
+except ImportError:
+    pass
 
 FORMAT = "%(asctime)-15s: %(message)s"
 logging.basicConfig(format=FORMAT, level=logging.DEBUG)
@@ -91,6 +94,7 @@ def main(pdb_fname, run_log_fname, stride=1, sigma=1, dcd_fname=None,
 
     # using the same r_grid for each frame
     dr = box_length[n_skip:].max() / (2.0 * n_bins)  # delg in F&S
+    print(dr)
     bin_index = np.arange(n_bins) + 1
     rho = (n_atoms / (box_length ** 3.0)).reshape(-1, 1)  # frame specific density
 
@@ -167,7 +171,7 @@ if __name__ == '__main__':
     test = False
 
     if test:
-        run_path = './output'
+        run_path = './run2_output'
         pdb_fname = 'run2.pdb'
         dcd_fname = 'run2_last100.dcd'
         xst_fname = 'box_length_last100.txt'
@@ -182,7 +186,7 @@ if __name__ == '__main__':
         # gr_fname = 'gr_python.dat'; plot_fname = 'gr_python.png'
 
     else:
-        run_path = '../../simulations/lj_sphere_monomer/runs/p_0p14/output'
+        run_path = '../../simulations/lj_sphere_monomer/runs/p_0p14/run2_output'
         pdb_fname = 'run2.pdb'
         dcd_fname = 'run2.dcd'
         xst_fname = 'box_length.txt'
@@ -192,7 +196,9 @@ if __name__ == '__main__':
         xst_fname = op.join(run_path, xst_fname)
 
         n_skip = 1000
-        gr_fname = 'gr_1000_25001.dat'; plot_fname = 'gr_1000_25001.png'
+        # n_skip = 25000
+        # gr_fname = 'gr_1000_25001.dat'; plot_fname = 'gr_1000_25001.png'
+        gr_fname = 'gr_last_frame.dat'; plot_fname = 'gr_last_frame.png'
 
     gr = main(pdb_fname, xst_fname, sigma=sigma, dcd_fname=dcd_fname,
               n_skip=n_skip, gr_fname=gr_fname)
