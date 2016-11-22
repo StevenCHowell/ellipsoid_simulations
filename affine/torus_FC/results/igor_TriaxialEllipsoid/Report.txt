@@ -1,0 +1,17 @@
+Fit to TriaxialEllipsoid, 2/6/15, 10:30:47 AM
+
+Data file: Iq_exp_txt
+
+Scale Factor = 	0.145317	±	0.00594269
+Semi-axis A [smallest](A) = 	11.6622	±	0.661106
+Semi-axis B (A) = 	33.6254	±	3.56297
+Semi-axis C [largest](A) = 	41.8524	±	4.36735
+SLD ellipsoid (A^-2) = 	1e-06	±	0
+SLD solvent (A^-2) = 	0	±	0
+Incoherent Bgd (cm-1) = 	0.0018355	±	0.000873894
+chisq = 0.667038
+Npnts = 50 		 Sqrt(X^2/N) = 0.115502
+Fitted range = [0,49] = 0 < Q < 0.3
+FitError = No Error		FitQuitReason = No Error
+
+

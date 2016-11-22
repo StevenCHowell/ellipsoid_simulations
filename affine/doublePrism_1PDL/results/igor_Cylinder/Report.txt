@@ -1,0 +1,16 @@
+Fit to CylinderForm, 2/5/15, 3:48:13 PM
+
+Data file: Iq_exp_txt
+
+scale = 	0.0290686	±	0.000717302
+radius (A) = 	31.9772	±	0.562135
+length (A) = 	105.318	±	4.31867
+SLD cylinder (A^-2) = 	1e-06	±	0
+SLD solvent (A^-2) = 	0	±	0
+incoh. bkg (cm^-1) = 	0.00147431	±	0.000260005
+chisq = 52.5828
+Npnts = 50 		 Sqrt(X^2/N) = 1.0255
+Fitted range = [0,49] = 0 < Q < 0.3
+FitError = No Error		FitQuitReason = No Error
+
+

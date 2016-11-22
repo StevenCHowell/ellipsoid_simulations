@@ -1,0 +1,17 @@
+Fit to HollowCylinder, 2/6/15, 9:30:09 AM
+
+Data file: Iq_exp_txt
+
+scale = 	0.142024	±	0.00601395
+core radius (A) = 	-0.0584664	±	149.26
+shell radius (A) = 	33.9585	±	0.696823
+length (A) = 	19.3725	±	1.45276
+SLD shell (A^-2) = 	1e-06	±	0
+SLD solvent (in/out) = 	0	±	0
+incoh. bkg (cm^-1) = 	0.00176861	±	0.00128488
+chisq = 6.06547
+Npnts = 50 		 Sqrt(X^2/N) = 0.348295
+Fitted range = [0,49] = 0 < Q < 0.3
+FitError = No Error		FitQuitReason = No Error
+
+

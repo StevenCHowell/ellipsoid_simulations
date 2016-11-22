@@ -1,0 +1,17 @@
+Fit to Parallelepiped, 2/5/15, 4:59:03 PM
+
+Data file: Iq_exp_txt
+
+Scale Factor = 	0.487263	±	0.0608899
+Shortest Edge A (A) = 	24.5122	±	1676.78
+B (A) = 	24.4758	±	1673.06
+Longest Edge C (A) = 	33.9357	±	5.81162
+SLD particle (A^-2) = 	1e-06	±	0
+SLD solvent (A^-2) = 	0	±	0
+Incoherent Bgd (cm-1) = 	0.00593764	±	0.0108706
+chisq = 0.139801
+Npnts = 50 		 Sqrt(X^2/N) = 0.0528774
+Fitted range = [0,49] = 0 < Q < 0.3
+FitError = No Error		FitQuitReason = No Error
+
+

@@ -1,0 +1,3085 @@
+Exp data:
+0.0 1.0 0.04
+0.006122 0.997541 0.039938502297
+0.012245 0.990198 0.0397545879263
+0.018367 0.978071 0.0394499516485
+0.02449 0.961324 0.0390273794571
+0.030612 0.940185 0.0384907911976
+0.036735 0.914935 0.0378450204051
+0.042857 0.885908 0.0370958857684
+0.04898 0.853479 0.0362499681521
+0.055102 0.818063 0.0353146805638
+0.061224 0.780099 0.034297953977
+0.067347 0.740048 0.0332082927706
+0.073469 0.698381 0.0320545678665
+0.079592 0.655571 0.0308459117283
+0.085714 0.612086 0.0295916375755
+0.091837 0.568378 0.0283010344753
+0.097959 0.524879 0.026983350037
+0.104082 0.481991 0.0256475814973
+0.110204 0.440085 0.0243025207841
+0.116327 0.399494 0.0229566013196
+0.122449 0.360506 0.0216177055581
+0.128571 0.32337 0.0202933893289
+0.134694 0.288285 0.0189905034604
+0.140816 0.255409 0.0177154916502
+0.146939 0.224852 0.0164740885299
+0.153061 0.196682 0.0152714733213
+0.159184 0.170928 0.0141123118874
+0.165306 0.147579 0.013000593686
+0.171429 0.126593 0.0119399030185
+0.177551 0.107896 0.0109332179629
+0.183673 0.091392 0.00998325294129
+0.189796 0.076961 0.00909216369463
+0.195918 0.06447 0.00826198298017
+0.202041 0.053773 0.00749443180473
+0.208163 0.044716 0.00679100741305
+0.214286 0.037142 0.00615309795713
+0.220408 0.030895 0.00558204207202
+0.226531 0.025821 0.0050788842267
+0.232653 0.021771 0.00464420974585
+0.238776 0.018605 0.00427805439882
+0.244898 0.016191 0.00397922581088
+0.25102 0.014409 0.00374521482427
+0.257143 0.013148 0.00357142185997
+0.263265 0.01231 0.00345161318159
+0.269388 0.011809 0.00337816668621
+0.27551 0.011567 0.00334216965132
+0.281633 0.011521 0.00333528763882
+0.287755 0.011614 0.00334918809738
+0.293878 0.0118 0.00337683414736
+0.3 0.012041 0.003412354714
+
+GV calculation on GPU...
+parameters: 
+15.00  0.00  0.00
+ 0.00 15.00  0.00
+ 0.00  0.00 25.00
+reduced X2:  0.0151440769602
+
+GV calculation on GPU...
+parameters: 
+15.00  0.00  0.00
+ 0.00 15.00  0.00
+ 0.00  0.00 25.00
+reduced X2:  0.0196228254916
+
+GV calculation on GPU...
+parameters: 
+15.00  0.00  0.00
+ 0.00 15.00  0.00
+ 0.00  0.00 25.00
+reduced X2:  0.0201933394349
+
+GV calculation on GPU...
+parameters: 
+16.00  0.00  0.00
+ 0.00 15.00  0.00
+ 0.00  0.00 25.00
+reduced X2:  0.0394848334713
+
+GV calculation on GPU...
+parameters: 
+13.38  0.00  0.00
+ 0.00 15.00  0.00
+ 0.00  0.00 25.00
+reduced X2:  0.00274908882118
+
+GV calculation on GPU...
+parameters: 
+12.53  0.00  0.00
+ 0.00 15.00  0.00
+ 0.00  0.00 25.00
+reduced X2:  0.00609879947932
+
+GV calculation on GPU...
+parameters: 
+13.38  0.00  0.00
+ 0.00 15.00  0.00
+ 0.00  0.00 25.00
+reduced X2:  0.00337451244038
+
+GV calculation on GPU...
+parameters: 
+14.00  0.00  0.00
+ 0.00 15.00  0.00
+ 0.00  0.00 25.00
+reduced X2:  0.00715539392045
+
+GV calculation on GPU...
+parameters: 
+13.06  0.00  0.00
+ 0.00 15.00  0.00
+ 0.00  0.00 25.00
+reduced X2:  0.00354035604377
+
+GV calculation on GPU...
+parameters: 
+13.26  0.00  0.00
+ 0.00 15.00  0.00
+ 0.00  0.00 25.00
+reduced X2:  0.00271318771799
+
+GV calculation on GPU...
+parameters: 
+13.23  0.00  0.00
+ 0.00 15.00  0.00
+ 0.00  0.00 25.00
+reduced X2:  0.00305719740641
+
+GV calculation on GPU...
+parameters: 
+13.30  0.00  0.00
+ 0.00 15.00  0.00
+ 0.00  0.00 25.00
+reduced X2:  0.00322821027333
+
+GV calculation on GPU...
+parameters: 
+13.27  0.00  0.00
+ 0.00 15.00  0.00
+ 0.00  0.00 25.00
+reduced X2:  0.00315373138595
+
+GV calculation on GPU...
+parameters: 
+13.26  0.00  0.00
+ 0.00 15.00  0.00
+ 0.00  0.00 25.00
+reduced X2:  0.00315186082327
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00  0.00
+ 0.00 15.00  0.00
+ 0.00  0.00 25.00
+reduced X2:  0.00279037327551
+
+GV calculation on GPU...
+parameters: 
+13.26  2.62  0.00
+ 0.00 15.00  0.00
+ 0.00  0.00 25.00
+reduced X2:  0.00284015001668
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00  0.00
+ 0.00 15.00  0.00
+ 0.00  0.00 25.00
+reduced X2:  0.00274519675197
+
+GV calculation on GPU...
+parameters: 
+13.26  1.62  0.00
+ 0.00 15.00  0.00
+ 0.00  0.00 25.00
+reduced X2:  0.00314028092973
+
+GV calculation on GPU...
+parameters: 
+13.26  0.62  0.00
+ 0.00 15.00  0.00
+ 0.00  0.00 25.00
+reduced X2:  0.00286241852
+
+GV calculation on GPU...
+parameters: 
+13.26  0.97  0.00
+ 0.00 15.00  0.00
+ 0.00  0.00 25.00
+reduced X2:  0.00293336728196
+
+GV calculation on GPU...
+parameters: 
+13.26  1.24  0.00
+ 0.00 15.00  0.00
+ 0.00  0.00 25.00
+reduced X2:  0.00288310615886
+
+GV calculation on GPU...
+parameters: 
+13.26  1.09  0.00
+ 0.00 15.00  0.00
+ 0.00  0.00 25.00
+reduced X2:  0.00285354454216
+
+GV calculation on GPU...
+parameters: 
+13.26  1.03  0.00
+ 0.00 15.00  0.00
+ 0.00  0.00 25.00
+reduced X2:  0.00305080350949
+
+GV calculation on GPU...
+parameters: 
+13.26  1.01  0.00
+ 0.00 15.00  0.00
+ 0.00  0.00 25.00
+reduced X2:  0.00292611097842
+
+GV calculation on GPU...
+parameters: 
+13.26  0.99  0.00
+ 0.00 15.00  0.00
+ 0.00  0.00 25.00
+reduced X2:  0.00285819552436
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00  0.00
+ 0.00 15.00  0.00
+ 0.00  0.00 25.00
+reduced X2:  0.00295504183323
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00  1.00
+ 0.00 15.00  0.00
+ 0.00  0.00 25.00
+reduced X2:  0.0030377983975
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -1.62
+ 0.00 15.00  0.00
+ 0.00  0.00 25.00
+reduced X2:  0.00316540658194
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00  0.00
+ 0.00 15.00  0.00
+ 0.00  0.00 25.00
+reduced X2:  0.00286768820822
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.62
+ 0.00 15.00  0.00
+ 0.00  0.00 25.00
+reduced X2:  0.00294224539118
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00  0.38
+ 0.00 15.00  0.00
+ 0.00  0.00 25.00
+reduced X2:  0.00314967768068
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.24
+ 0.00 15.00  0.00
+ 0.00  0.00 25.00
+reduced X2:  0.00271885728763
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.28
+ 0.00 15.00  0.00
+ 0.00  0.00 25.00
+reduced X2:  0.00297805782067
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.15
+ 0.00 15.00  0.00
+ 0.00  0.00 25.00
+reduced X2:  0.00255420864406
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.14
+ 0.00 15.00  0.00
+ 0.00  0.00 25.00
+reduced X2:  0.00271225224744
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.19
+ 0.00 15.00  0.00
+ 0.00  0.00 25.00
+reduced X2:  0.00328062437367
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.16
+ 0.00 15.00  0.00
+ 0.00  0.00 25.00
+reduced X2:  0.00304325585515
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.15
+ 0.00 15.00  0.00
+ 0.00  0.00 25.00
+reduced X2:  0.00291759325237
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.14
+ 0.00 15.00  0.00
+ 0.00  0.00 25.00
+reduced X2:  0.0026859323904
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.15
+ 0.00 15.00  0.00
+ 0.00  0.00 25.00
+reduced X2:  0.0031298223369
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.15
+ 0.00 15.00  0.00
+ 0.00  0.00 25.00
+reduced X2:  0.00314531802272
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.15
+ 0.00 15.00  0.00
+ 0.00  0.00 25.00
+reduced X2:  0.00300089198152
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.15
+ 1.00 15.00  0.00
+ 0.00  0.00 25.00
+reduced X2:  0.00262858364832
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.15
+ 2.62 15.00  0.00
+ 0.00  0.00 25.00
+reduced X2:  0.00287303595518
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.15
+ 1.00 15.00  0.00
+ 0.00  0.00 25.00
+reduced X2:  0.00286454407358
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.15
+ 1.62 15.00  0.00
+ 0.00  0.00 25.00
+reduced X2:  0.00271648820752
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.15
+ 2.00 15.00  0.00
+ 0.00  0.00 25.00
+reduced X2:  0.00266552889127
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.15
+ 2.44 15.00  0.00
+ 0.00  0.00 25.00
+reduced X2:  0.00268400110229
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.15
+ 2.12 15.00  0.00
+ 0.00  0.00 25.00
+reduced X2:  0.00244102241776
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.15
+ 2.22 15.00  0.00
+ 0.00  0.00 25.00
+reduced X2:  0.00300372530876
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.15
+ 2.07 15.00  0.00
+ 0.00  0.00 25.00
+reduced X2:  0.00316432753434
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.15
+ 2.16 15.00  0.00
+ 0.00  0.00 25.00
+reduced X2:  0.00286747415485
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.15
+ 2.10 15.00  0.00
+ 0.00  0.00 25.00
+reduced X2:  0.00292998589684
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.15
+ 2.12 15.00  0.00
+ 0.00  0.00 25.00
+reduced X2:  0.00277217759624
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.15
+ 2.12 16.00  0.00
+ 0.00  0.00 25.00
+reduced X2:  0.00732396175349
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.15
+ 2.12 13.38  0.00
+ 0.00  0.00 25.00
+reduced X2:  0.0168723611853
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.15
+ 2.12 15.00  0.00
+ 0.00  0.00 25.00
+reduced X2:  0.0029573805809
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.15
+ 2.12 14.38  0.00
+ 0.00  0.00 25.00
+reduced X2:  0.00481135469719
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.15
+ 2.12 15.38  0.00
+ 0.00  0.00 25.00
+reduced X2:  0.00365368685302
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.15
+ 2.12 15.00  0.00
+ 0.00  0.00 25.00
+reduced X2:  0.00318556446395
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.15
+ 2.12 14.76  0.00
+ 0.00  0.00 25.00
+reduced X2:  0.00295099856495
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.15
+ 2.12 14.88  0.00
+ 0.00  0.00 25.00
+reduced X2:  0.00264232488221
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.15
+ 2.12 14.88  0.00
+ 0.00  0.00 25.00
+reduced X2:  0.00236421663356
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.15
+ 2.12 14.82  0.00
+ 0.00  0.00 25.00
+reduced X2:  0.00304377250692
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.15
+ 2.12 14.86  0.00
+ 0.00  0.00 25.00
+reduced X2:  0.00286039534546
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.15
+ 2.12 14.87  0.00
+ 0.00  0.00 25.00
+reduced X2:  0.00259622070278
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.15
+ 2.12 14.88  0.00
+ 0.00  0.00 25.00
+reduced X2:  0.00295983351775
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.15
+ 2.12 14.88  0.00
+ 0.00  0.00 25.00
+reduced X2:  0.00253237705751
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.15
+ 2.12 14.88  0.00
+ 0.00  0.00 25.00
+reduced X2:  0.00250969310807
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.15
+ 2.12 14.88  1.00
+ 0.00  0.00 25.00
+reduced X2:  0.00271667496502
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.15
+ 2.12 14.88 -1.62
+ 0.00  0.00 25.00
+reduced X2:  0.00284073629311
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.15
+ 2.12 14.88  0.00
+ 0.00  0.00 25.00
+reduced X2:  0.0027287357631
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.15
+ 2.12 14.88 -0.62
+ 0.00  0.00 25.00
+reduced X2:  0.0032495084162
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.15
+ 2.12 14.88  0.38
+ 0.00  0.00 25.00
+reduced X2:  0.00283531297433
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.15
+ 2.12 14.88  0.07
+ 0.00  0.00 25.00
+reduced X2:  0.00261611405401
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.15
+ 2.12 14.88  0.17
+ 0.00  0.00 25.00
+reduced X2:  0.00308581046591
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.15
+ 2.12 14.88  0.11
+ 0.00  0.00 25.00
+reduced X2:  0.00291542096236
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.15
+ 2.12 14.88  0.04
+ 0.00  0.00 25.00
+reduced X2:  0.00347769286351
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.15
+ 2.12 14.88  0.08
+ 0.00  0.00 25.00
+reduced X2:  0.00268456089215
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.15
+ 2.12 14.88  0.06
+ 0.00  0.00 25.00
+reduced X2:  0.00296765141872
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.15
+ 2.12 14.88  0.07
+ 0.00  0.00 25.00
+reduced X2:  0.00286167333938
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.15
+ 2.12 14.88  0.06
+ 0.00  0.00 25.00
+reduced X2:  0.00293859708883
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.15
+ 2.12 14.88  0.07
+ 0.00  0.00 25.00
+reduced X2:  0.00269879244727
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.15
+ 2.12 14.88  0.07
+ 0.00  0.00 25.00
+reduced X2:  0.00281744671528
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.15
+ 2.12 14.88  0.07
+ 0.00  0.00 25.00
+reduced X2:  0.00269669467664
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.15
+ 2.12 14.88  0.07
+ 0.00  0.00 25.00
+reduced X2:  0.00302289686466
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.15
+ 2.12 14.88  0.07
+ 0.00  0.00 25.00
+reduced X2:  0.00265186476822
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.15
+ 2.12 14.88  0.07
+ 1.00  0.00 25.00
+reduced X2:  0.00300474133283
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.15
+ 2.12 14.88  0.07
+-1.62  0.00 25.00
+reduced X2:  0.00321278531231
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.15
+ 2.12 14.88  0.07
+ 0.00  0.00 25.00
+reduced X2:  0.00294405024317
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.15
+ 2.12 14.88  0.07
+-0.62  0.00 25.00
+reduced X2:  0.0024078610827
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.15
+ 2.12 14.88  0.07
+-1.00  0.00 25.00
+reduced X2:  0.00290674025154
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.15
+ 2.12 14.88  0.07
+-0.51  0.00 25.00
+reduced X2:  0.0028603126024
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.15
+ 2.12 14.88  0.07
+-0.75  0.00 25.00
+reduced X2:  0.00280197587885
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.15
+ 2.12 14.88  0.07
+-0.63  0.00 25.00
+reduced X2:  0.00260294205057
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.15
+ 2.12 14.88  0.07
+-0.58  0.00 25.00
+reduced X2:  0.00290308879017
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.15
+ 2.12 14.88  0.07
+-0.60  0.00 25.00
+reduced X2:  0.00272579466103
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.15
+ 2.12 14.88  0.07
+-0.62  0.00 25.00
+reduced X2:  0.00266579368892
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.15
+ 2.12 14.88  0.07
+-0.61  0.00 25.00
+reduced X2:  0.00314081338449
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.15
+ 2.12 14.88  0.07
+-0.62  0.00 25.00
+reduced X2:  0.00304578806661
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.15
+ 2.12 14.88  0.07
+-0.62  1.00 25.00
+reduced X2:  0.00331932260742
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.15
+ 2.12 14.88  0.07
+-0.62 -1.62 25.00
+reduced X2:  0.0029423862371
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.15
+ 2.12 14.88  0.07
+-0.62 -1.21 25.00
+reduced X2:  0.00276822135844
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.15
+ 2.12 14.88  0.07
+-0.62 -1.21 25.00
+reduced X2:  0.00269848733695
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.15
+ 2.12 14.88  0.07
+-0.62 -0.75 25.00
+reduced X2:  0.00302492263568
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.15
+ 2.12 14.88  0.07
+-0.62 -1.03 25.00
+reduced X2:  0.00282687132017
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.15
+ 2.12 14.88  0.07
+-0.62 -1.36 25.00
+reduced X2:  0.00294676480432
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.15
+ 2.12 14.88  0.07
+-0.62 -1.17 25.00
+reduced X2:  0.00290609552188
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.15
+ 2.12 14.88  0.07
+-0.62 -1.27 25.00
+reduced X2:  0.00280180308438
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.15
+ 2.12 14.88  0.07
+-0.62 -1.23 25.00
+reduced X2:  0.00286257746873
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.15
+ 2.12 14.88  0.07
+-0.62 -1.19 25.00
+reduced X2:  0.00288263664638
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.15
+ 2.12 14.88  0.07
+-0.62 -1.21 25.00
+reduced X2:  0.00286393557468
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.15
+ 2.12 14.88  0.07
+-0.62 -1.21 26.00
+reduced X2:  0.00667912996071
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.15
+ 2.12 14.88  0.07
+-0.62 -1.21 23.38
+reduced X2:  0.00895018837805
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.15
+ 2.12 14.88  0.07
+-0.62 -1.21 25.00
+reduced X2:  0.00281993696916
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.15
+ 2.12 14.88  0.07
+-0.62 -1.21 24.38
+reduced X2:  0.00380007244633
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.15
+ 2.12 14.88  0.07
+-0.62 -1.21 25.38
+reduced X2:  0.0034660438989
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.15
+ 2.12 14.88  0.07
+-0.62 -1.21 24.93
+reduced X2:  0.00293417931188
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.15
+ 2.12 14.88  0.07
+-0.62 -1.21 25.08
+reduced X2:  0.00319534866923
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.15
+ 2.12 14.88  0.07
+-0.62 -1.21 24.99
+reduced X2:  0.00271310116329
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.15
+ 2.12 14.88  0.07
+-0.62 -1.21 24.97
+reduced X2:  0.002919785994
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.15
+ 2.12 14.88  0.07
+-0.62 -1.21 24.99
+reduced X2:  0.00246878699411
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.15
+ 2.12 14.88  0.07
+-0.62 -1.21 24.99
+reduced X2:  0.00266201899114
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.15
+ 2.12 14.88  0.07
+-0.62 -1.21 24.99
+reduced X2:  0.00260553074989
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.15
+ 2.12 14.88  0.07
+-0.62 -1.21 24.99
+reduced X2:  0.00285857846705
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.15
+ 2.12 14.88  0.07
+-0.62 -1.21 24.99
+reduced X2:  0.0029785190094
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.15
+ 2.12 14.88  0.07
+-0.62 -1.21 24.99
+reduced X2:  0.00269982403077
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.15
+ 2.12 14.88  0.07
+-0.62 -1.21 24.99
+reduced X2:  0.00281613812175
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.15
+ 2.12 14.88  0.07
+-0.62 -1.21 24.99
+reduced X2:  0.00295364594354
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.15
+ 2.12 14.88  0.07
+-0.62 -1.21 24.99
+reduced X2:  0.00328784133266
+
+GV calculation on GPU...
+parameters: 
+11.51  2.00 -0.30
+ 4.24 14.76  0.13
+-1.24 -2.42 24.98
+reduced X2:  0.0311761366496
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.15
+ 2.12 14.88  0.07
+-0.62 -1.21 24.99
+reduced X2:  0.00260454341044
+
+GV calculation on GPU...
+parameters: 
+14.26  1.00 -0.15
+ 2.12 14.88  0.07
+-0.62 -1.21 24.99
+reduced X2:  0.00713543564172
+
+GV calculation on GPU...
+parameters: 
+11.64  1.00 -0.15
+ 2.12 14.88  0.07
+-0.62 -1.21 24.99
+reduced X2:  0.0180569823695
+
+GV calculation on GPU...
+parameters: 
+13.26  1.00 -0.15
+ 2.12 14.88  0.07
+-0.62 -1.21 24.99
+reduced X2:  0.00285850975418
+
+GV calculation on GPU...
+parameters: 
+12.64  1.00 -0.15
+ 2.12 14.88  0.07
+-0.62 -1.21 24.99
+reduced X2:  0.00564913999924
+
+GV calculation on GPU...
+parameters: 
+13.64  1.00 -0.15
+ 2.12 14.88  0.07
+-0.62 -1.21 24.99
+reduced X2:  0.00329786431383
+
+GV calculation on GPU...
+parameters: 
+13.35  1.00 -0.15
+ 2.12 14.88  0.07
+-0.62 -1.21 24.99
+reduced X2:  0.00290602928988
+
+GV calculation on GPU...
+parameters: 
+13.18  1.00 -0.15
+ 2.12 14.88  0.07
+-0.62 -1.21 24.99
+reduced X2:  0.00264821707815
+
+GV calculation on GPU...
+parameters: 
+12.97  1.00 -0.15
+ 2.12 14.88  0.07
+-0.62 -1.21 24.99
+reduced X2:  0.00341839971916
+
+GV calculation on GPU...
+parameters: 
+13.10  1.00 -0.15
+ 2.12 14.88  0.07
+-0.62 -1.21 24.99
+reduced X2:  0.00316253669336
+
+GV calculation on GPU...
+parameters: 
+13.21  1.00 -0.15
+ 2.12 14.88  0.07
+-0.62 -1.21 24.99
+reduced X2:  0.00282942190036
+
+GV calculation on GPU...
+parameters: 
+13.15  1.00 -0.15
+ 2.12 14.88  0.07
+-0.62 -1.21 24.99
+reduced X2:  0.00296223545516
+
+GV calculation on GPU...
+parameters: 
+13.19  1.00 -0.15
+ 2.12 14.88  0.07
+-0.62 -1.21 24.99
+reduced X2:  0.00315567659646
+
+GV calculation on GPU...
+parameters: 
+13.16  1.00 -0.15
+ 2.12 14.88  0.07
+-0.62 -1.21 24.99
+reduced X2:  0.00304302282605
+
+GV calculation on GPU...
+parameters: 
+13.18  1.00 -0.15
+ 2.12 14.88  0.07
+-0.62 -1.21 24.99
+reduced X2:  0.00352334098571
+
+GV calculation on GPU...
+parameters: 
+13.17  1.00 -0.15
+ 2.12 14.88  0.07
+-0.62 -1.21 24.99
+reduced X2:  0.00275845858441
+
+GV calculation on GPU...
+parameters: 
+13.18  1.00 -0.15
+ 2.12 14.88  0.07
+-0.62 -1.21 24.99
+reduced X2:  0.00283966300764
+
+GV calculation on GPU...
+parameters: 
+13.17  1.00 -0.15
+ 2.12 14.88  0.07
+-0.62 -1.21 24.99
+reduced X2:  0.00290567232072
+
+GV calculation on GPU...
+parameters: 
+13.18  1.00 -0.15
+ 2.12 14.88  0.07
+-0.62 -1.21 24.99
+reduced X2:  0.00263527663677
+
+GV calculation on GPU...
+parameters: 
+13.18  1.00 -0.15
+ 2.12 14.88  0.07
+-0.62 -1.21 24.99
+reduced X2:  0.00277821360424
+
+GV calculation on GPU...
+parameters: 
+13.18  2.00 -0.15
+ 2.12 14.88  0.07
+-0.62 -1.21 24.99
+reduced X2:  0.00273480552426
+
+GV calculation on GPU...
+parameters: 
+13.18  3.62 -0.15
+ 2.12 14.88  0.07
+-0.62 -1.21 24.99
+reduced X2:  0.0050026375499
+
+GV calculation on GPU...
+parameters: 
+13.18  2.00 -0.15
+ 2.12 14.88  0.07
+-0.62 -1.21 24.99
+reduced X2:  0.00314636432557
+
+GV calculation on GPU...
+parameters: 
+13.18  2.62 -0.15
+ 2.12 14.88  0.07
+-0.62 -1.21 24.99
+reduced X2:  0.00378862167066
+
+GV calculation on GPU...
+parameters: 
+13.18  1.62 -0.15
+ 2.12 14.88  0.07
+-0.62 -1.21 24.99
+reduced X2:  0.00314915504036
+
+GV calculation on GPU...
+parameters: 
+13.18  1.81 -0.15
+ 2.12 14.88  0.07
+-0.62 -1.21 24.99
+reduced X2:  0.00326651695919
+
+GV calculation on GPU...
+parameters: 
+13.18  2.24 -0.15
+ 2.12 14.88  0.07
+-0.62 -1.21 24.99
+reduced X2:  0.00334859879067
+
+GV calculation on GPU...
+parameters: 
+13.18  2.09 -0.15
+ 2.12 14.88  0.07
+-0.62 -1.21 24.99
+reduced X2:  0.00383755855485
+
+GV calculation on GPU...
+parameters: 
+13.18  1.93 -0.15
+ 2.12 14.88  0.07
+-0.62 -1.21 24.99
+reduced X2:  0.00298124341977
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.15
+ 2.12 14.88  0.07
+-0.62 -1.21 24.99
+reduced X2:  0.00273791487944
+
+GV calculation on GPU...
+parameters: 
+13.18  1.86 -0.15
+ 2.12 14.88  0.07
+-0.62 -1.21 24.99
+reduced X2:  0.00333390874447
+
+GV calculation on GPU...
+parameters: 
+13.18  1.90 -0.15
+ 2.12 14.88  0.07
+-0.62 -1.21 24.99
+reduced X2:  0.00290413021494
+
+GV calculation on GPU...
+parameters: 
+13.18  1.87 -0.15
+ 2.12 14.88  0.07
+-0.62 -1.21 24.99
+reduced X2:  0.00381785546802
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.15
+ 2.12 14.88  0.07
+-0.62 -1.21 24.99
+reduced X2:  0.00285081885289
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88  0.85
+ 2.12 14.88  0.07
+-0.62 -1.21 24.99
+reduced X2:  0.00319694936384
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -1.77
+ 2.12 14.88  0.07
+-0.62 -1.21 24.99
+reduced X2:  0.00332275349407
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.15
+ 2.12 14.88  0.07
+-0.62 -1.21 24.99
+reduced X2:  0.00292811522199
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.77
+ 2.12 14.88  0.07
+-0.62 -1.21 24.99
+reduced X2:  0.00303132070797
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88  0.23
+ 2.12 14.88  0.07
+-0.62 -1.21 24.99
+reduced X2:  0.00304852127073
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 2.12 14.88  0.07
+-0.62 -1.21 24.99
+reduced X2:  0.00263637857521
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.44
+ 2.12 14.88  0.07
+-0.62 -1.21 24.99
+reduced X2:  0.00349008659115
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.34
+ 2.12 14.88  0.07
+-0.62 -1.21 24.99
+reduced X2:  0.00349896450257
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.23
+ 2.12 14.88  0.07
+-0.62 -1.21 24.99
+reduced X2:  0.00311053819871
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.31
+ 2.12 14.88  0.07
+-0.62 -1.21 24.99
+reduced X2:  0.00291738692731
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.26
+ 2.12 14.88  0.07
+-0.62 -1.21 24.99
+reduced X2:  0.00310373918328
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.29
+ 2.12 14.88  0.07
+-0.62 -1.21 24.99
+reduced X2:  0.00318935433597
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 2.12 14.88  0.07
+-0.62 -1.21 24.99
+reduced X2:  0.00302924929301
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.29
+ 2.12 14.88  0.07
+-0.62 -1.21 24.99
+reduced X2:  0.00374046234367
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 2.12 14.88  0.07
+-0.62 -1.21 24.99
+reduced X2:  0.00279802136659
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 2.12 14.88  0.07
+-0.62 -1.21 24.99
+reduced X2:  0.00292096474453
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 2.12 14.88  0.07
+-0.62 -1.21 24.99
+reduced X2:  0.00264609854628
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 2.12 14.88  0.07
+-0.62 -1.21 24.99
+reduced X2:  0.0028771712705
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 3.12 14.88  0.07
+-0.62 -1.21 24.99
+reduced X2:  0.00340897462239
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 0.50 14.88  0.07
+-0.62 -1.21 24.99
+reduced X2:  0.00283238118966
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 1.24 14.88  0.07
+-0.62 -1.21 24.99
+reduced X2:  0.00276991985508
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 1.24 14.88  0.07
+-0.62 -1.21 24.99
+reduced X2:  0.00291606558872
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 1.58 14.88  0.07
+-0.62 -1.21 24.99
+reduced X2:  0.00366727166986
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 0.96 14.88  0.07
+-0.62 -1.21 24.99
+reduced X2:  0.00305398737998
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 1.15 14.88  0.07
+-0.62 -1.21 24.99
+reduced X2:  0.00340218178731
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 1.37 14.88  0.07
+-0.62 -1.21 24.99
+reduced X2:  0.00282173792697
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 1.45 14.88  0.07
+-0.62 -1.21 24.99
+reduced X2:  0.00300311062146
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 1.33 14.88  0.07
+-0.62 -1.21 24.99
+reduced X2:  0.00310071664597
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 1.40 14.88  0.07
+-0.62 -1.21 24.99
+reduced X2:  0.0032074648563
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 1.35 14.88  0.07
+-0.62 -1.21 24.99
+reduced X2:  0.00262055745198
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 1.34 14.88  0.07
+-0.62 -1.21 24.99
+reduced X2:  0.00289586332936
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 1.35 14.88  0.07
+-0.62 -1.21 24.99
+reduced X2:  0.00292155910199
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 1.35 15.88  0.07
+-0.62 -1.21 24.99
+reduced X2:  0.00433382567896
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 1.35 13.26  0.07
+-0.62 -1.21 24.99
+reduced X2:  0.0192750792716
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 1.35 14.88  0.07
+-0.62 -1.21 24.99
+reduced X2:  0.0031280826853
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 1.35 14.26  0.07
+-0.62 -1.21 24.99
+reduced X2:  0.00527904660948
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 1.35 15.26  0.07
+-0.62 -1.21 24.99
+reduced X2:  0.0025450063211
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 1.35 15.46  0.07
+-0.62 -1.21 24.99
+reduced X2:  0.00503251732242
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 1.35 15.10  0.07
+-0.62 -1.21 24.99
+reduced X2:  0.00290691349437
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 1.35 15.34  0.07
+-0.62 -1.21 24.99
+reduced X2:  0.0038637190802
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 1.35 15.20  0.07
+-0.62 -1.21 24.99
+reduced X2:  0.00338671879712
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 1.35 15.29  0.07
+-0.62 -1.21 24.99
+reduced X2:  0.00275969866019
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 1.35 15.24  0.07
+-0.62 -1.21 24.99
+reduced X2:  0.00296982399778
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 1.35 15.27  0.07
+-0.62 -1.21 24.99
+reduced X2:  0.00284324961371
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 1.35 15.25  0.07
+-0.62 -1.21 24.99
+reduced X2:  0.00310134267515
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 1.35 15.27  0.07
+-0.62 -1.21 24.99
+reduced X2:  0.00350191510278
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 1.35 15.26  0.07
+-0.62 -1.21 24.99
+reduced X2:  0.00276657526894
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 1.35 15.26  0.07
+-0.62 -1.21 24.99
+reduced X2:  0.00277596007352
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 1.35 15.26  1.07
+-0.62 -1.21 24.99
+reduced X2:  0.002556765329
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 1.35 15.26  2.68
+-0.62 -1.21 24.99
+reduced X2:  0.00366408854984
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 1.35 15.26  1.07
+-0.62 -1.21 24.99
+reduced X2:  0.00329353984232
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 1.35 15.26  1.68
+-0.62 -1.21 24.99
+reduced X2:  0.0037163960613
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 1.35 15.26  0.68
+-0.62 -1.21 24.99
+reduced X2:  0.00292204112402
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 1.35 15.26  0.45
+-0.62 -1.21 24.99
+reduced X2:  0.00287764705122
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 1.35 15.26  0.49
+-0.62 -1.21 24.99
+reduced X2:  0.0035126626908
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 1.35 15.26  0.30
+-0.62 -1.21 24.99
+reduced X2:  0.00339881943459
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 1.35 15.26  0.39
+-0.62 -1.21 24.99
+reduced X2:  0.00255618379452
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 1.35 15.26  0.36
+-0.62 -1.21 24.99
+reduced X2:  0.00336440425114
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 1.35 15.26  0.41
+-0.62 -1.21 24.99
+reduced X2:  0.00317504027539
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 1.35 15.26  0.38
+-0.62 -1.21 24.99
+reduced X2:  0.00448806310189
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 1.35 15.26  0.40
+-0.62 -1.21 24.99
+reduced X2:  0.00346086974403
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 1.35 15.26  0.39
+-0.62 -1.21 24.99
+reduced X2:  0.00323056128372
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 1.35 15.26  0.40
+-0.62 -1.21 24.99
+reduced X2:  0.00299005145771
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 1.35 15.26  0.39
+-0.62 -1.21 24.99
+reduced X2:  0.00295438007899
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 1.35 15.26  0.39
+ 0.38 -1.21 24.99
+reduced X2:  0.00271940681698
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 1.35 15.26  0.39
+ 2.00 -1.21 24.99
+reduced X2:  0.00319019782725
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 1.35 15.26  0.39
+ 0.38 -1.21 24.99
+reduced X2:  0.00306877382045
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 1.35 15.26  0.39
+ 1.00 -1.21 24.99
+reduced X2:  0.00302756843383
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 1.35 15.26  0.39
+ 1.38 -1.21 24.99
+reduced X2:  0.00367390479781
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 1.35 15.26  0.39
+ 0.71 -1.21 24.99
+reduced X2:  0.0027006054109
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 1.35 15.26  0.39
+ 0.70 -1.21 24.99
+reduced X2:  0.00355095649862
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 1.35 15.26  0.39
+ 0.72 -1.21 24.99
+reduced X2:  0.00350666622551
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 1.35 15.26  0.39
+ 0.71 -1.21 24.99
+reduced X2:  0.00369057985452
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 1.35 15.26  0.39
+ 0.71 -0.21 24.99
+reduced X2:  0.00279971944194
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 1.35 15.26  0.39
+ 0.71  1.41 24.99
+reduced X2:  0.00321927067022
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 1.35 15.26  0.39
+ 0.71 -0.21 24.99
+reduced X2:  0.00313894561709
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 1.35 15.26  0.39
+ 0.71  0.41 24.99
+reduced X2:  0.00299252640397
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 1.35 15.26  0.39
+ 0.71  0.79 24.99
+reduced X2:  0.00425468232304
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 1.35 15.26  0.39
+ 0.71  0.13 24.99
+reduced X2:  0.00420231796916
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 1.35 15.26  0.39
+ 0.71  0.56 24.99
+reduced X2:  0.00336548744804
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 1.35 15.26  0.39
+ 0.71  0.30 24.99
+reduced X2:  0.00300708421203
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 1.35 15.26  0.39
+ 0.71  0.47 24.99
+reduced X2:  0.00337244742455
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 1.35 15.26  0.39
+ 0.71  0.37 24.99
+reduced X2:  0.00338208999008
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 1.35 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00295286358039
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 1.35 15.26  0.39
+ 0.71  0.45 24.99
+reduced X2:  0.00319875047728
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 1.35 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00287249639234
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 1.35 15.26  0.39
+ 0.71  0.43 25.99
+reduced X2:  0.0086724383404
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 1.35 15.26  0.39
+ 0.71  0.43 23.37
+reduced X2:  0.00674020466499
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 1.35 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00242639610265
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 1.35 15.26  0.39
+ 0.71  0.43 24.37
+reduced X2:  0.00292197451251
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 1.35 15.26  0.39
+ 0.71  0.43 25.37
+reduced X2:  0.00525595448609
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 1.35 15.26  0.39
+ 0.71  0.43 24.73
+reduced X2:  0.00250217815359
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 1.35 15.26  0.39
+ 0.71  0.43 24.96
+reduced X2:  0.00281656905609
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 1.35 15.26  0.39
+ 0.71  0.43 25.13
+reduced X2:  0.0036433444648
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 1.35 15.26  0.39
+ 0.71  0.43 25.04
+reduced X2:  0.00287196652921
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 1.35 15.26  0.39
+ 0.71  0.43 25.01
+reduced X2:  0.00276590372444
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 1.35 15.26  0.39
+ 0.71  0.43 24.98
+reduced X2:  0.00251358780959
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 1.35 15.26  0.39
+ 0.71  0.43 25.00
+reduced X2:  0.00350385462906
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 1.35 15.26  0.39
+ 0.71  0.43 24.98
+reduced X2:  0.00274852446782
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 1.35 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00292626338002
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 1.35 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00319084712346
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 1.35 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.0029872751885
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 1.35 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00310187290303
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 1.35 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00227070604088
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 1.35 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00344215124779
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 1.35 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00298899267525
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 1.35 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00284912161922
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 1.35 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00254876380255
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 1.35 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00320950287282
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 1.35 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.0032511474051
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 1.35 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00294554274703
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 1.35 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00304808985792
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 1.35 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00311904335179
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 1.35 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00261411452142
+
+GV calculation on GPU...
+parameters: 
+13.10  2.77 -0.42
+ 0.59 15.64  0.72
+ 2.04  2.07 24.99
+reduced X2:  0.00430735973353
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 1.35 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00368439242072
+
+GV calculation on GPU...
+parameters: 
+14.18  1.88 -0.28
+ 1.35 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.0102807474997
+
+GV calculation on GPU...
+parameters: 
+11.56  1.88 -0.28
+ 1.35 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.0129603666318
+
+GV calculation on GPU...
+parameters: 
+13.18  1.88 -0.28
+ 1.35 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00409241965013
+
+GV calculation on GPU...
+parameters: 
+12.56  1.88 -0.28
+ 1.35 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00461232887041
+
+GV calculation on GPU...
+parameters: 
+13.56  1.88 -0.28
+ 1.35 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00609504776841
+
+GV calculation on GPU...
+parameters: 
+12.94  1.88 -0.28
+ 1.35 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00275425266415
+
+GV calculation on GPU...
+parameters: 
+12.89  1.88 -0.28
+ 1.35 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.002790871947
+
+GV calculation on GPU...
+parameters: 
+12.93  1.88 -0.28
+ 1.35 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00267867597208
+
+GV calculation on GPU...
+parameters: 
+12.91  1.88 -0.28
+ 1.35 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00268333621401
+
+GV calculation on GPU...
+parameters: 
+12.93  1.88 -0.28
+ 1.35 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00315998100224
+
+GV calculation on GPU...
+parameters: 
+12.93  1.88 -0.28
+ 1.35 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00276137551961
+
+GV calculation on GPU...
+parameters: 
+12.93  1.88 -0.28
+ 1.35 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00290830774887
+
+GV calculation on GPU...
+parameters: 
+12.93  2.88 -0.28
+ 1.35 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00337536501812
+
+GV calculation on GPU...
+parameters: 
+12.93  0.27 -0.28
+ 1.35 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.0028028850228
+
+GV calculation on GPU...
+parameters: 
+12.93  0.86 -0.28
+ 1.35 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00249477733176
+
+GV calculation on GPU...
+parameters: 
+12.93  0.86 -0.28
+ 1.35 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00269114569342
+
+GV calculation on GPU...
+parameters: 
+12.93  1.25 -0.28
+ 1.35 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00298691507488
+
+GV calculation on GPU...
+parameters: 
+12.93  0.63 -0.28
+ 1.35 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00272527695894
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80 -0.28
+ 1.35 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00249623230501
+
+GV calculation on GPU...
+parameters: 
+12.93  0.75 -0.28
+ 1.35 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00253075299071
+
+GV calculation on GPU...
+parameters: 
+12.93  0.79 -0.28
+ 1.35 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00272080185681
+
+GV calculation on GPU...
+parameters: 
+12.93  0.81 -0.28
+ 1.35 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00301874633504
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80 -0.28
+ 1.35 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00273793647123
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 1.35 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00272290510588
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  2.33
+ 1.35 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00333724640214
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 1.35 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00261121654235
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  1.33
+ 1.35 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00305966033355
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.33
+ 1.35 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00307035997189
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.84
+ 1.35 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00291932515328
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.57
+ 1.35 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00298138107466
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.71
+ 1.35 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00287300352593
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.77
+ 1.35 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00287609210688
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.74
+ 1.35 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00273528719955
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.73
+ 1.35 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00317892877887
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 1.35 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00257642779042
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.35 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00254100178551
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 3.97 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00331468074844
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.35 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00301615021168
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.97 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00284672863178
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 3.35 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00312630260473
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.0025685092299
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.69 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00307084552441
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.86 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00281139663477
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.76 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00295353601426
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.82 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.0032066317149
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.78 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00312559832629
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00297500490732
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 16.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00646330047047
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 13.64  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.0182730830976
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00228733511263
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 14.64  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00477758098568
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.64  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00451724881253
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.16  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00283219673233
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.32  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00269656297314
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.25  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00293158814119
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.29  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00316870204465
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.27  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.0029627882515
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.0027069460205
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.27  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00294259675023
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00330380650835
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00279452508295
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00268810318321
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00286492051778
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.0029255465493
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.0032215902948
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00285846670912
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00280198394049
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00339691956809
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00360219810555
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00295122298313
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00313009694787
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00281786838687
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00288108944087
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00306456987491
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00311940436218
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00281069925182
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.0025286022578
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00345633798441
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00376133819535
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00327950227534
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00302477574032
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00278750041338
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00304824617947
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.002983999666
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00282062232993
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.0023190568222
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00267593324245
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00291110446477
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00340529846575
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00315719066677
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00338642868303
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00332247118311
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00248671360618
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00291478001062
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00273960517799
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00323784761738
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00283960092475
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00293147879075
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00320390696193
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00323302841725
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.26  0.39
+ 0.71  0.43 24.99
+reduced X2:  0.00306196048936
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.26  1.39
+ 0.71  0.43 24.99
+reduced X2:  0.00294793945275
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.26  3.01
+ 0.71  0.43 24.99
+reduced X2:  0.0038846754004
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.26  1.39
+ 0.71  0.43 24.99
+reduced X2:  0.00340797868961
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.26  2.01
+ 0.71  0.43 24.99
+reduced X2:  0.00310205466865
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.26  2.39
+ 0.71  0.43 24.99
+reduced X2:  0.00287601982196
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.26  2.63
+ 0.71  0.43 24.99
+reduced X2:  0.00355264105815
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.26  2.25
+ 0.71  0.43 24.99
+reduced X2:  0.00331047490834
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.26  2.48
+ 0.71  0.43 24.99
+reduced X2:  0.00398277956216
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.26  2.34
+ 0.71  0.43 24.99
+reduced X2:  0.00340325404862
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.26  2.43
+ 0.71  0.43 24.99
+reduced X2:  0.0035807800943
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.26  2.37
+ 0.71  0.43 24.99
+reduced X2:  0.00343699171279
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.26  2.39
+ 0.71  0.43 24.99
+reduced X2:  0.00337569500348
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.26  2.39
+ 1.71  0.43 24.99
+reduced X2:  0.00396329005342
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.26  2.39
+-0.91  0.43 24.99
+reduced X2:  0.00336591136642
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.26  2.39
+-0.11  0.43 24.99
+reduced X2:  0.00309000895161
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.26  2.39
+-0.11  0.43 24.99
+reduced X2:  0.00287972368481
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.26  2.39
+ 0.20  0.43 24.99
+reduced X2:  0.0031631674475
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.26  2.39
+-0.42  0.43 24.99
+reduced X2:  0.00301691761925
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.26  2.39
+-0.16  0.43 24.99
+reduced X2:  0.00288885853338
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.26  2.39
+-0.05  0.43 24.99
+reduced X2:  0.00291177401351
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.26  2.39
+-0.12  0.43 24.99
+reduced X2:  0.00356112165191
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.26  2.39
+-0.09  0.43 24.99
+reduced X2:  0.00332941964778
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.26  2.39
+-0.10  0.43 24.99
+reduced X2:  0.00314358415638
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.26  2.39
+-0.11  0.43 24.99
+reduced X2:  0.0037626964832
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.26  2.39
+-0.11  1.43 24.99
+reduced X2:  0.00396438011556
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.26  2.39
+-0.11 -1.19 24.99
+reduced X2:  0.00330950369356
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.26  2.39
+-0.11 -3.80 24.99
+reduced X2:  0.00481425131037
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.26  2.39
+-0.11 -1.19 24.99
+reduced X2:  0.00314571011533
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.26  2.39
+-0.11 -2.19 24.99
+reduced X2:  0.0033539371116
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.26  2.39
+-0.11 -0.57 24.99
+reduced X2:  0.00315123684931
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.26  2.39
+-0.11 -0.91 24.99
+reduced X2:  0.00311402513773
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.26  2.39
+-0.11 -0.89 24.99
+reduced X2:  0.00297851935581
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.26  2.39
+-0.11 -0.77 24.99
+reduced X2:  0.00309394528693
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.26  2.39
+-0.11 -0.84 24.99
+reduced X2:  0.00277914406634
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.26  2.39
+-0.11 -0.83 24.99
+reduced X2:  0.00315636075492
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.26  2.39
+-0.11 -0.85 24.99
+reduced X2:  0.00346123618147
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.26  2.39
+-0.11 -0.84 24.99
+reduced X2:  0.00267376777382
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.26  2.39
+-0.11 -0.84 25.99
+reduced X2:  0.00802784060123
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.26  2.39
+-0.11 -0.84 23.37
+reduced X2:  0.00622747930795
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.26  2.39
+-0.11 -0.84 24.99
+reduced X2:  0.00361829959678
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.26  2.39
+-0.11 -0.84 24.37
+reduced X2:  0.00297218113189
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.26  2.39
+-0.11 -0.84 23.99
+reduced X2:  0.00513318958562
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.26  2.39
+-0.11 -0.84 24.60
+reduced X2:  0.00261783539007
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.26  2.39
+-0.11 -0.84 24.60
+reduced X2:  0.00259908699542
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.26  2.39
+-0.11 -0.84 24.51
+reduced X2:  0.00259142796272
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.26  2.39
+-0.11 -0.84 24.46
+reduced X2:  0.00267665490481
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.26  2.39
+-0.11 -0.84 24.55
+reduced X2:  0.00240231667961
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.26  2.39
+-0.11 -0.84 24.56
+reduced X2:  0.00266846322497
+
+GV calculation on GPU...
+parameters: 
+12.93  0.80  0.72
+ 2.80 15.26  2.39
+-0.11 -0.84 24.55
+reduced X2:  0.0025584131988
+  status: 0
+ success: True
+   direc: array([[ 1.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.],
+       [ 0.,  1.,  0.,  0.,  0.,  0.,  0.,  0.,  0.],
+       [ 0.,  0.,  1.,  0.,  0.,  0.,  0.,  0.,  0.],
+       [ 0.,  0.,  0.,  1.,  0.,  0.,  0.,  0.,  0.],
+       [ 0.,  0.,  0.,  0.,  1.,  0.,  0.,  0.,  0.],
+       [ 0.,  0.,  0.,  0.,  0.,  1.,  0.,  0.,  0.],
+       [ 0.,  0.,  0.,  0.,  0.,  0.,  1.,  0.,  0.],
+       [ 0.,  0.,  0.,  0.,  0.,  0.,  0.,  1.,  0.],
+       [ 0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  1.]])
+    nfev: 430
+     fun: 0.0024023166796079778
+       x: array([ 12.93245489,   0.79987203,   0.71655115,   2.79822372,
+        15.26272336,   2.3928405 ,  -0.1126907 ,  -0.83787356,  24.55453361])
+ message: 'Optimization terminated successfully.'
+     nit: 3

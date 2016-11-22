@@ -1,0 +1,16 @@
+Fit to ConvexLens, 2/6/15, 10:10:46 AM
+
+Data file: Iq_exp_txt
+
+Scale Factor = 	0.0526101	±	0.00297407
+cylinder radius rc (A) = 	80.7129	±	1.3992
+end cap radius R >= rc (A) = 	357.483	±	29.0586
+SLD cylinder (A^-2) = 	1e-06	±	0
+SLD solvent (A^-2) = 	0	±	0
+Incoherent Bgd (cm-1) = 	0	±	0
+chisq = 6.78476
+Npnts = 50 		 Sqrt(X^2/N) = 0.368368
+Fitted range = [0,49] = 0 < Q < 0.3
+FitError = No Error		FitQuitReason = No Error
+
+
