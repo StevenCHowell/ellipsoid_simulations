@@ -44,3 +44,4 @@
 .DS_Store
 ._*
 *~
+.ipynb_checkpoints/
