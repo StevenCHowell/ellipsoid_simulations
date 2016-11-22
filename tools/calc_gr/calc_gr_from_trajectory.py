@@ -115,8 +115,8 @@ def main(pdb_fname, run_log_fname, stride=1, sigma=1, dcd_fname=None,
         coor = box_mol.coor()[0] * sigma
 
         # slow_update_gr(coor, box_length[i], gr_all[i-n_skip], dr)
-        calc_gr(coor, box_length[i], gr_all[i-n_skip], dr)
-        # fortran_gr.calc_gr(coor, box_length[i], gr_all[i-n_skip], dr)
+        # calc_gr(coor, box_length[i], gr_all[i-n_skip], dr)
+        fortran_gr.calc_gr(coor, box_length[i], gr_all[i-n_skip], dr)
 
         gr_all[i-n_skip] /= n_ideal[i]  # normalize expected n for ideal gas
 
@@ -164,12 +164,10 @@ if __name__ == '__main__':
     import os.path as op
     sigma = 3.405
 
-    test = True
-
-    # run_path = '../../simulations/lj_sphere_monomer/runs/p_0p14/output'
-    run_path = './output'
+    test = False
 
     if test:
+        run_path = './output'
         pdb_fname = 'run2.pdb'
         dcd_fname = 'run2_last100.dcd'
         xst_fname = 'box_length_last100.txt'
@@ -180,10 +178,11 @@ if __name__ == '__main__':
 
         n_skip = 0
 
-        # gr_fname = 'gr_fortran.dat'; plot_fname = 'gr_fortran.png'
-        gr_fname = 'gr_python.dat'; plot_fname = 'gr_python.png'
+        gr_fname = 'gr_fortran.dat'; plot_fname = 'gr_fortran.png'
+        # gr_fname = 'gr_python.dat'; plot_fname = 'gr_python.png'
 
     else:
+        run_path = '../../simulations/lj_sphere_monomer/runs/p_0p14/output'
         pdb_fname = 'run2.pdb'
         dcd_fname = 'run2.dcd'
         xst_fname = 'box_length.txt'
@@ -193,6 +192,7 @@ if __name__ == '__main__':
         xst_fname = op.join(run_path, xst_fname)
 
         n_skip = 1000
+        gr_fname = 'gr_1000_25001.dat'; plot_fname = 'gr_1000_25001.png'
 
     gr = main(pdb_fname, xst_fname, sigma=sigma, dcd_fname=dcd_fname,
               n_skip=n_skip, gr_fname=gr_fname)
