@@ -1,0 +1,13 @@
+# Hailiang Zhang
+# NIST & UTK
+# Feb 2015
+
+Brief:
+    This is the package of the python version of GVVV method.
+
+Dependency:
+    This package needs numpy and sasmol
+
+Running:
+    python main.py input_parameters.txt
+    (check input_parameters.txt for details)
