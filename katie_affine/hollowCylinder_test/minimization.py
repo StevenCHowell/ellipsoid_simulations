@@ -7,19 +7,18 @@ Jan 2015
 import sys,os,glob,string,locale,numpy
 import time
 
-sys.path.append('/home/hailiang/work/LibrariesSources/python')
-from affine import affine 
+sys.path.append('/home/schowell/data/code/ellipsoid_simulations/hz_affine/')
+from affine import affine
 from affine import fileIO
-from affine import GV
+from GV_python import GV
 
-from affine.shapes import cappedPrism_equation as shape_equation
+from affine.shapes import hollowCylinder_equation as shape_equation
 
 from scipy import optimize
 
-import sassie.sasmol.sasmol as sasmol
-#import matplotlib.pylab as plt
+#import matplotlib.pyplot as plt
 
-if len(sys.argv)==1: NGPU=0
+if len(sys.argv)==1: NGPU= 1
 else: NGPU = locale.atoi(sys.argv[1])
 
 
@@ -32,9 +31,8 @@ def calcX2(parameters, Nq, qmax, Q,Iq_exp, Iq_model, Err_exp, bs, coordinate_mat
     sx = parameters[count]; count+=1
     sy  = parameters[count]; count+=1
     sz  = parameters[count]; count+=1
-    portion_cap_length = parameters[count]; count+=1
-    portion_handle_width = parameters[count]; count+=1
-    extra_args = [portion_cap_length, portion_handle_width]
+    inner_radius = parameters[count]; count+=1
+    extra_args = [inner_radius]
 
     hxy = parameters[count]; count+=1
     hxz = parameters[count]; count+=1
@@ -48,7 +46,7 @@ def calcX2(parameters, Nq, qmax, Q,Iq_exp, Iq_model, Err_exp, bs, coordinate_mat
     hzy = parameters[count]; count+=1
     dz  = 0.0
 
-    if sx<=0.0 or sy<=0.0 or sz<=0.0 or portion_cap_length<=0.0 or portion_cap_length>=1.0 or portion_handle_width<=0.0 or portion_handle_width>=1.:
+    if sx<=0.0 or sy<=0.0 or sz<=0.0 or inner_radius<=0.0 or inner_radius>=1.0:
         return numpy.inf
 
     affine_transformation_matrix = affine.buildAffineMatrix(sx,hxy,hxz,dx, hyx,sy,hyz,dy, hzx,hzy,sz,dz)
@@ -65,7 +63,7 @@ def calcX2(parameters, Nq, qmax, Q,Iq_exp, Iq_model, Err_exp, bs, coordinate_mat
     X2 = 0
     diff=(Iq_model-Iq_exp)/Err_exp
     diff2 = diff*diff
-    X2=numpy.sum(diff2)/(Nq-1) 
+    X2=numpy.sum(diff2)/(Nq-1)
     print 'parameters: '
     print '%12.8f %12.8f %12.8f'%(sx,hxy,hxz)
     print '%12.8f %12.8f %12.8f'%(hyx,sy,hyz)
@@ -75,7 +73,7 @@ def calcX2(parameters, Nq, qmax, Q,Iq_exp, Iq_model, Err_exp, bs, coordinate_mat
 
     return X2
 
- 
+
 
 if __name__ == '__main__':
 
@@ -106,9 +104,9 @@ if __name__ == '__main__':
     for q,i,e in zip(Q,I_exp,Err_exp):
         print q,i,e
 
-    # run minimization 
-    Npoints = 20000
-    parameters = (35.0, 35.0, 70.0, 0.3, 0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
+    # run minimization
+    Npoints = 10000
+    parameters = (40.0, 40.0, 30.0, 0.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
     bs = numpy.ones(Npoints)
     I_model = numpy.zeros(Nq)
     coordinate_matrix = numpy.matrix(numpy.zeros((3,Npoints)))
