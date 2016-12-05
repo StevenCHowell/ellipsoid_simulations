@@ -39,13 +39,20 @@ def affineTransformation(affine_transformation_matrix, affine_coordinate_matrix)
     result = affine_transformation_matrix*affine_coordinate_matrix
     return result
 
-def fillShapeByReverseAffineTransformation(Npoints, full_affine_transformation_matrix, shape_equation, coordinate_matrix, extra_args):
+def fillShapeByReverseAffineTransformation(n_points,
+                                           full_affine_transformation_matrix,
+                                           shape_equation, coordinate_matrix,
+                                           extra_args):
     '''
-    Fill a shape in the affine space
-        and do the bondary check by reverse affine transformation
-    Return: the affine coordinate matrix after transformation
+    Purpose:
+        Fill a shape in the affine space and do the bondary check
+        by reverse affine transformation.
+
+    Return:
+        the affine coordinate matrix after transformation
     '''
     affine_transformation_matrix = full_affine_transformation_matrix[:3,:3]
+
     # get the boundaries
     # ZHL note: only check for 4 cube vertex because the other 4 is just the reflections; this needs change if translation is included in the affine transformation matrix'''
     cube_vertex_coordinate_matrix = numpy.matrix([[-1.0,1.0,-1.0,1.0],[-1.0,-1.0,1.0,1.0],[-1.0,-1.0,-1.0,-1.0]])
@@ -56,8 +63,8 @@ def fillShapeByReverseAffineTransformation(Npoints, full_affine_transformation_m
     # check for points
     reverse_affine_transformation_matrix = affine_transformation_matrix.I
     points_found = 0
-    while points_found < Npoints:
-        points_remaining = Npoints - points_found
+    while points_found < n_points:
+        points_remaining = n_points - points_found
         coordinate_matrix_remaining = numpy.random.rand(3,points_remaining)
         coordinate_matrix_remaining[0,:] = affine_vertex_coordinate_min[0] + coordinate_matrix_remaining[0,:]*affine_edge_max
         coordinate_matrix_remaining[1,:] = affine_vertex_coordinate_min[1] + coordinate_matrix_remaining[1,:]*affine_edge_max
