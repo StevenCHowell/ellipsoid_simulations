@@ -10,6 +10,7 @@ import numpy
 import math
 import random
 
+
 def cube_equation(x,y,z,**kwargs):
     '''
     Check whether a point are within a unit cube or not
@@ -19,6 +20,7 @@ def cube_equation(x,y,z,**kwargs):
         return True
     else:
         return False
+
 
 def sphere_equation(x,y,z,**kwargs):
     '''
@@ -32,6 +34,7 @@ def sphere_equation(x,y,z,**kwargs):
         return True
     else:
         return False
+
 
 def prism_equation(x,y,z,**kwargs):
     '''
@@ -48,6 +51,7 @@ def prism_equation(x,y,z,**kwargs):
         return False
     else:
         return True
+
 
 def cappedPrism_equation(x,y,z,**kwargs):
     '''
@@ -71,6 +75,7 @@ def cappedPrism_equation(x,y,z,**kwargs):
         else:
             return True
 
+
 def pyramid_equation(x,y,z,**kwargs):
     '''
     Check whether a point are within a unit pyramid or not
@@ -85,6 +90,7 @@ def pyramid_equation(x,y,z,**kwargs):
     else:
         return False
 
+
 def cylinder_equation(x,y,z,**kwargs):
     '''
     Check whether a point are within a unit cylinder or not
@@ -97,6 +103,7 @@ def cylinder_equation(x,y,z,**kwargs):
         return True
     else:
         return False
+
 
 def hollowCylinder_equation(x,y,z,**kwargs):
     '''
@@ -113,6 +120,7 @@ def hollowCylinder_equation(x,y,z,**kwargs):
     else:
         return False
 
+
 def shell_equation(x,y,z,**kwargs):
     '''
     Check whether a point are within a unit half_shell or not
@@ -128,6 +136,7 @@ def shell_equation(x,y,z,**kwargs):
     else:
         return False
 
+
 def halfShell_equation(x,y,z,**kwargs):
     '''
     Check whether a point are within a unit half_shell or not
@@ -140,6 +149,7 @@ def halfShell_equation(x,y,z,**kwargs):
         return False
     else:
         return True
+
 
 def torus_equation(x,y,z,**kwargs):
     '''
@@ -158,6 +168,7 @@ def torus_equation(x,y,z,**kwargs):
         return True
     else:
         return False
+
 
 """
 def fillSphere(Npoints,radius=1.0):
