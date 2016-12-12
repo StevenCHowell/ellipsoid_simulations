@@ -14,11 +14,8 @@ Hailiang Zhang
 Jan 2015
 """
 
-import glob
-import locale
 import logging
 import os
-import string
 import sys
 import time
 
@@ -35,10 +32,11 @@ import sascalc
 
 logging.basicConfig(format='%(levelname)s: %(message)s', level=logging.DEBUG)
 
-if len(sys.argv) == 1:
-    NGPU = 1
-else:
-    NGPU = locale.atoi(sys.argv[1])
+# if len(sys.argv) == 1:
+    # NGPU = 1
+# else:
+    # import locale
+    # NGPU = locale.atoi(sys.argv[1])
 
 
 class AffineParameters:
@@ -174,10 +172,10 @@ def calc_x2(parameters, iq_goal, n_atoms, coor=None, iq_model=None):
 if __name__ == '__main__':
 
     # get the match data
-    match_iq_fname = 'output/Iq_exp_txt_q++.txt'
-    assert os.path.exists(match_iq_fname), 'no such file: {}'.format(
-        match_iq_fname)
-    iq_goal = np.loadtxt(match_iq_fname)
+    iq_goal_fname = 'data/Iq_exp_txt_q++.txt'
+    assert os.path.exists(iq_goal_fname), 'no such file: {}'.format(
+        iq_goal_fname)
+    iq_goal = np.loadtxt(iq_goal_fname)
     # logging.debug('Exp data:\n{}'.format(iq_goal))
 
     n_atoms = 10000
@@ -204,16 +202,16 @@ if __name__ == '__main__':
 
     calc_x2(parameters, iq_goal, n_atoms, coor, iq_model)
 
-    output_dir = 'output'
+    output_dir = 'output3'
     fileIO.make_and_write_pdb(coor, output_dir, 'model_start.pdb')
     np.savetxt(os.path.join(output_dir, 'model_start.iq'), iq_model)
 
-    # run minimization
-    methods = ['Powell', 'Nelder-Mead', 'BFGS']
-    args = (iq_goal, n_atoms, coor, iq_model)
-    results = optimize.minimize(calc_x2, parameters, args, methods[0])
+    # # run minimization
+    # methods = ['Powell', 'Nelder-Mead', 'BFGS']
+    # args = (iq_goal, n_atoms, coor, iq_model)
+    # results = optimize.minimize(calc_x2, parameters, args, methods[0])
 
-    logging.info('results: {}'.format(results))
+    # logging.info('results: {}'.format(results))
 
-    fileIO.make_and_write_pdb(coor, 'output', 'model_final.pdb')
-    np.savetxt(os.path.join(output_dir, 'model_final.iq'), iq_model)
+    # fileIO.make_and_write_pdb(coor, 'output', 'model_final.pdb')
+    # np.savetxt(os.path.join(output_dir, 'model_final.iq'), iq_model)
