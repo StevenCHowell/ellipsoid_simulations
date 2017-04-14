@@ -1,0 +1,49 @@
+xray # x-ray or neutron
+     # default is neutron
+
+data # input folder
+     # default is the running directory
+
+new_lysozyme.pdb # input pdb filename
+
+0.0 # D2O fraction
+
+0.0 # HD exchange ratio
+
+all # deuteration option
+    #     all--deuterate all non-aliphatic H's including buried
+    #     none--no deuteration
+    #     surface--deuterate all surface non-aliphatic H's (not implemented yet)
+    #     cryson--deuterate by cryson default (backbone HN exchanged at 0.9*D2O%, sidechain HN exchanged at 1.*D2O%) (not implemented yet)
+
+50 # number of q values
+   # default is 50
+
+0.5 # maximum q value
+    # default is 0.5
+
+complete # sascalc option
+       #     vacuum -- vacuum scattering calculation
+       #     solvent -- solvent scattering calculation
+       #     complete -- vacuum+solvent scattering calculation
+       #     default is 'vacuum'
+
+fixed  # golden vector method option
+       # fixed -- fixed number of golden vectors
+       # converge -- runtime average converge on the number of golden vectors
+       # default is 'fixed'
+
+35 # number of golden vectors
+   # default is 35 when golden vector method option is 'fixed'
+
+11 # starting number of golden vectors
+   # default is 11 when golden vector method option is 'converge'
+
+149 # maximum number of golden vectors
+    # default is 149 when golden vector method option is 'converge'
+
+0.001 # tolerance value of GVVV runtime average convergence
+      # default is 0.001 when golden vector method option is 'converge'
+
+results_GVVV_python # results folder
+                    # default is the running directory
