@@ -1,3 +1,7 @@
+# Johnson, J. K., Zollweg, J. A. & Gubbins, K. E. The Lennard-Jones equation of state revisited. Molecular Physics 78, 591–618 (1993).
+# DOI: 10.1080/00268979300100411
+# Table 2.  Molecular dynamics simulation results of this work. The numbers in parentheses are estimated errors of the mean in the last decimal place, e.g., 8.51(2) = 8.51 +/- 0.02
+#
 # p*  T*     P*         U*          P*_cs    U*_cs  Steps  dt*
 0.1   6.0    0.6499(6) -0.478(2)    0.6525  -0.452  30000  0.002
 0.2   6.0    1.442(1)  -0.942(2)    1.452   -0.890  30000  0.002
